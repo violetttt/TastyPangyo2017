@@ -74,9 +74,8 @@ FROM    	member m, review r
 
 <!-- ===========  select  ============= -->
 <!-- 모든 회원 조회 -->
-<select id="selectAllMember" resultMap="member-review-resultmap">
-	<include refid="select-member-review"/>
-	order by member_id
+<select id="selectAllMember" resultMap="member-basic-resultmap">
+	<include refid="select"/>
 </select>
 
 <select id="selectMemberCount" resultType="_int">

@@ -39,10 +39,8 @@ public class MemberServiceImpl implements MemberService{
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
-			if(dao.selectMemberById(session, member.getMemberId()) != null){
-				throw new DuplicatedIdException("이미 등록된 아이디 입니다");
-			}
 			dao.insertMember(session, member);
+			session.commit();
 		}finally{
 			if(session != null) session.close();
 		}
@@ -52,10 +50,8 @@ public class MemberServiceImpl implements MemberService{
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
-			if(dao.selectMemberById(session, member.getMemberId()) == null){
-				throw new MemberNotFoundException(String.format("ID가 %s인 회원이 없습니다.", member.getMemberId()));
-			}
 			dao.updateMember(session, member);
+			session.commit();
 		}finally{
 			if(session != null) session.close();
 		}
@@ -69,6 +65,7 @@ public class MemberServiceImpl implements MemberService{
 				throw new MemberNotFoundException(String.format("ID가 %s인 회원이 없습니다.", memberId));
 			}
 			dao.deleteMember(session, memberId);
+			session.commit();
 		}finally{
 			if(session != null) session.close();
 		}
@@ -82,6 +79,7 @@ public class MemberServiceImpl implements MemberService{
 				throw new MemberNotFoundException("해당하는 회원이 없습니다.");
 			}
 			dao.deleteMemberByVisitDate(session, visitDate);
+			session.commit();
 		}finally{
 			if(session != null) session.close();
 		}
@@ -94,6 +92,7 @@ public class MemberServiceImpl implements MemberService{
 			return dao.selectAllMember(session);
 			
 		}finally{
+			session.commit();
 			if(session != null) session.close();
 		}
 	}
@@ -105,6 +104,7 @@ public class MemberServiceImpl implements MemberService{
 			return dao.selectMemberCount(session);
 			
 		}finally{
+			session.commit();
 			if(session != null) session.close();
 		}
 	}
@@ -116,6 +116,7 @@ public class MemberServiceImpl implements MemberService{
 			return dao.selectMemberById(session, memberId);
 			
 		}finally{
+			session.commit();
 			if(session != null) session.close();
 		}
 	}
@@ -127,6 +128,7 @@ public class MemberServiceImpl implements MemberService{
 			return dao.selectMemberByVisitDate(session, visitDate);
 			
 		}finally{
+			session.commit();
 			if(session != null) session.close();
 		}
 	}
