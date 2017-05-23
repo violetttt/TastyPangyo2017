@@ -23,12 +23,12 @@ public class MemberTest {
 		List<Member> list = null;
 		
 		// 등록 - 
-		Member m = new Member("id", "pw", "사람", new Date());
-		Member m2 = new Member("id-2", "pw-2", "동물", new Date());
-		Member m3 = new Member("id-3", "pw-3", "짐승", new Date());
-		Member m4 = new Member("id-4", "pw-4", "곤충", new Date());
-		Member m5 = new Member("id-2", "pw-5", "식물", new Date());
-		service.insertMember(m5);
+//		Member m = new Member("id", "pw", "사람", new Date());
+//		Member m2 = new Member("id-2", "pw-2", "동물", new Date());
+//		Member m3 = new Member("id-3", "pw-3", "짐승", new Date());
+//		Member m4 = new Member("id-4", "pw-4", "곤충", new Date());
+//		Member m5 = new Member("id-2", "pw-5", "식물", new Date());
+//		service.insertMember(m5);
 		
 		// 수정 - 
 		//service.updateMember(m5);
@@ -38,19 +38,21 @@ public class MemberTest {
 		
 // 조회
 		// 회원수 조회 - O
-		System.out.println(service.selectMemberCount());
+//		System.out.println(service.selectMemberCount());
+		
 		// id로 회원조회 - 
-		System.out.println(service.selectMemberById("shh"));
+		System.out.println(service.selectMemberById("152"));
+		
 		// 접속일로 회원리스트 조회 - O
-		list = service.selectMemberByVisitDate(new Date(117,04,25));
-		for(Member mem : list){
-			System.out.println(mem);
-		}
-		// 모든 회원조회
-		list = service.selectAllMember();
-		for(Member mem : list){
-			System.out.println(mem);
-		}
+//		list = service.selectMemberByVisitDate(new Date(117,04,25));
+//		for(Member mem : list){
+//			System.out.println(mem);
+//		}
+//		// 모든 회원조회
+//		list = service.selectAllMember();
+//		for(Member mem : list){
+//			System.out.println(mem);
+//		}
 
 		
 	}

@@ -84,7 +84,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 		
 	}
-
+	
+	
+	// --------------------조회---------------------
 	@Override
 	public Restaurant selectRestaurantByID(int restaurantId) throws SQLException {
 		SqlSession session = null;
@@ -132,9 +134,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.commit();
 			session.close();
 		}
-		
-		
 	}
+	
 	public void printList(List<Restaurant> list, String label){
 	      System.out.printf("-----------%s-----------%n", label);
 	     for(Restaurant r : list){
