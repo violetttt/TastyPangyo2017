@@ -7,6 +7,6 @@
 </head>
 <body>
 <%= request.getAttribute("result") %>
-
+안늉
 </body>
 </html>

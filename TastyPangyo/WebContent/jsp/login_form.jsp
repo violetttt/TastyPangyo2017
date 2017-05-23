@@ -13,7 +13,7 @@ body{background-color : Bisque; text-align : center;}
 <body>
 <jsp:include page="/jsp/common.jsp"/>
 <h1>Login</h1>
-<form action="/TastyRoad/login">
+<form action="/TastyPangyo/login">
 <table>
 <tr>
 	<td>ID</td>

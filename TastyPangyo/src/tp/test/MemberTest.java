@@ -33,7 +33,7 @@ public class MemberTest {
 		// 수정 - O
 		service.updateMember(m5);
 		
-		// 삭제 - 
+		// 삭제 - O
 		service.deleteMember("shh");
 		
 // 조회
