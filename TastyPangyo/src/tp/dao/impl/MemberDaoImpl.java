@@ -21,22 +21,22 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Override
 	public int insertMember(SqlSession session, Member member) {
-		return session.selectOne(sql+"insertMember", member);
+		return session.insert(sql+"insertMember", member);
 	}
 
 	@Override
 	public int updateMember(SqlSession session, Member member) {
-		return session.selectOne(sql+"updateMember", member);
+		return session.update(sql+"updateMember", member);
 	}
 
 	@Override
 	public int deleteMember(SqlSession session, String memberId) {
-		return session.selectOne(sql+"deleteMember", memberId);
+		return session.delete(sql+"deleteMember", memberId);
 	}
 
 	@Override
 	public int deleteMemberByVisitDate(SqlSession session, Date visitDate) {
-		return session.selectOne(sql+"deleteMemberByVisitDate", visitDate);
+		return session.delete(sql+"deleteMemberByVisitDate", visitDate);
 	}
 
 	@Override
