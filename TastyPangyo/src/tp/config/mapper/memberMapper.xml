@@ -12,9 +12,18 @@ FROM	  member
 </sql>
 
 <sql id="select-member-review">
-SELECT  m.member_id, m.member_pw, m.member_name, m.visit_date,
-		   r.review_no,  r.restaurant_id, r.restaurant_name, r.registered_date, r.title, r.comments, r.kostar
-FROM    member m, review r
+SELECT  	m.member_id, 
+			m.member_pw, 
+			m.member_name, 
+			m.visit_date,
+		   	r.review_no,  
+		   	r.restaurant_id, 
+		   	r.restaurant_name, 
+		   	r.registered_date, 
+		   	r.title, 
+		   	r.comments, 
+		   	r.kostar
+FROM    	member m, review r
 </sql>
 
 <resultMap type="member" id="member-basic-resultmap">
@@ -75,13 +84,13 @@ FROM    member m, review r
 </select>
 	
 <!-- join -->
-<select id="selectMemberById" resultMap="member-review-resultmap">
+<select id="selectMemberById" parameterType="String" resultMap="member-review-resultmap">
 	<include refid="select-member-review"/>
 	WHERE m.member_id = r.member_id
 	AND m.member_id = #{memberId}
 </select>
 
-<select id="selectMemberByVisitDate" resultMap="member-basic-resultmap">
+<select id="selectMemberByVisitDate" parameterType="java.util.Date"  resultMap="member-basic-resultmap">
 	<include refid="select"/>
 	<![CDATA[
 	WHERE visit_date < #{visitDate}
