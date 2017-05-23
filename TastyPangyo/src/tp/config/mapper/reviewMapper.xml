@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.config.mapper.reviewMapper">
+    
+    <sql id="select-sql">
+        SELECT	review_no, 
+        		member_id, 
+        		restaurant_id, 
+        		restaurant_name, 
+        		registered_date, 
+        		title, 
+        		comments, 
+        		kostar
+        FROM	review
+    </sql>
+    
+    <!-- Review-Restaurant, Review-Member는 N:1 참조관계이다!!!!!! -->
+    <!-- resultMap -->
+    <resultMap type="review" id="review-resultmap">
+        <id column="review_no" property="reviewNo"/>
+        <result column="member_id" property="memberId"/>
+        <result column="restaurant_id" property="restaurantId"/>
+        <result column="restaurant_name" property="restaurantName"/>
+        <result column="registered_date" property="registeredDate"/> 
+        <result column="title" property="title"/>
+        <result column="comments" property="comments"/>
+        <result column="kostar" property="kostar"/>
+    </resultMap>
+    
+    <!-- review-restaurant -->
+    <resultMap type="review" id="review-restaurant-resultmap" extends="review-resultmap">
+        <association property="restaurant" javaType="tp.vo.Restaurant">
+            <result column="restaurant_id" property="restaurantId"/>
+            <result column="food_category" property="foodCategory"/>
+            <result column="location" property="location"/>
+            <result column="restaurant_name" property="restaurantName"/>
+            <result column="restaurant_tel_num" property="restaurantTelNum"/>
+            <result column="introduction" property="introduction"/>
+            <result column="hits" property="hits"/>
+        </association>
+    </resultMap>
+    
+    <!-- review-member -->
+    <resultMap type="review" id="review-member-resultmap" extends="review-resultmap">
+        <!-- Restaurant객체 association -->
+        <association property="restaurant" javaType="tp.vo.Restaurant">
+            <result column="restaurant_id" property="restaurantId"/>
+            <result column="food_category" property="foodCategory"/>
+            <result column="location" property="location"/>
+            <result column="restaurant_name" property="restaurantName"/>
+            <result column="restaurant_tel_num" property="restaurantTelNum"/>
+            <result column="introduction" property="introduction"/>
+            <result column="hits" property="hits"/>
+        </association>
+         <!-- Member객체 association -->
+        <association property="member" javaType="tp.vo.Member">
+            <result column="member_id" property="memberId"/>
+            <result column="member_pw" property="memberPw"/>
+            <result column="member_name" property="memberName"/>
+            <result column="visit_date" property="visitDate"/>
+        </association>
+    </resultMap>
+    
+    
+    
+    <resultMap type="review" id="review-restaurant-member-resultmap" extends="review-resultmap">
+        <association property="member" javaType="tp.vo.Member">
+            <result column="member_id" property="memberId"/>
+            <result column="member_pw" property="memberPw"/>
+            <result column="member_name" property="memberName"/>
+            <result column="visit_date" property="visitDate"/>
+        </association>
+    </resultMap>
+    
+    
+    <insert id="insertReview" parameterType="review">
+        <selectKey order="BEFORE" keyProperty="reviewNo"
+			resultType="int">
+			SELECT	review_no_seq.nextval 
+			FROM	dual
+		</selectKey>
+        INSERT INTO review
+        VALUES (
+        	#{reviewNo},
+        	#{memberId},
+        	#{restaurantId},
+        	#{restaurantName},
+        	#{registeredDate},
+        	#{title},
+        	#{comments},
+        	#{kostar}
+        )
+    </insert>
+    
+    <update id="updateReview" parameterType="review">
+        UPDATE	review
+        SET		restaurant_id = #{restaurantId},
+        		restaurant_name = #{restaurantName},
+        		registered_date = #{registeredDate},
+        		title = #{title},
+        		comments = #{comments},
+        		kostar = #{kostar}
+        WHERE	member_id = #{memberId}
+        AND		review_no = #{reviewNo} 
+    </update>
+    
+    <delete id="deleteReviewSelected" parameterType="_int" >
+        DELETE FROM	review
+	    WHERE  		review_no = #{value}
+    </delete>
+   
+    
+    
+    <delete id="deleteReviewByMemberId" parameterType="java.lang.String">
+        DELETE FROM	review
+        WHERE		member_id = #{value}
+    </delete>
+   
+    
+    <delete id="deleteReviewByRegisteredDate" parameterType="java.util.Date">
+        DELETE FROM review
+        WHERE		registered_date = #{value}
+    </delete>
+    
+    <delete id="deleteReviewByRestaurantName" parameterType="java.lang.String">
+        DELETE FROM review
+        WHERE		restaurant_name = #{value}
+    </delete>
+    
+    <delete id="deleteReviewByRestaurantId" parameterType="_int">
+        DELETE FROM	review
+        WHERE		restaurant_id = #{value}
+    </delete>
+    
+    <delete id="deleteReviewByTitle" parameterType="java.lang.String">
+        DELETE FROM	review
+        WHERE		title LIKE '%'||#{value}||'%'
+    </delete>
+    
+    <delete id="deleteReviewByComments" parameterType="java.lang.String">
+        DELETE FROM review
+        WHERE		comments LIKE '%'||#{value}||'%'
+    </delete>
+    
+    
+   
+    
+    
+    
+    <!-- SELECT -->
+    <select id="selectAllReviewOrderByNo" resultMap="review-resultmap">
+	    <include refid="select-sql"/>
+	    ORDER BY	review_no
+    </select>
+    
+    <select id="selectAllReviewOrderByMemberId" resultMap="review-resultmap">
+	    <include refid="select-sql"/>
+	    ORDER BY	member_id
+    </select>
+    
+    <select id="selectAllReviewOrderByNewestRegistered" resultMap="review-resultmap">
+	    <include refid="select-sql"/>
+	    ORDER BY	registered_date DESC
+    </select>
+    
+    <select id="selectReviewByNo" parameterType="_int" resultMap="review-resultmap">
+        <include refid="select-sql"/>
+        WHERE	review_no = #{value}
+    </select>
+    
+    <select id="selectReviewByRegisteredDate" parameterType="java.util.Date" resultMap="review-resultmap">
+        <include refid="select-sql"/>
+        WHERE	registered_date = #{value}
+    </select>
+    
+    <select id="selectReviewByRegisteredDateRange" parameterType="java.util.Date" resultMap="review-resultmap">
+        <include refid="select-sql"/>
+        WHERE	registered_date BETWEEN #{fromDate} AND #{toDate}
+    </select>
+    
+   	<select id="selectReviewByTitle" parameterType="java.lang.String" resultMap="review-resultmap">
+   	    <include refid="select-sql"/>
+   	    WHERE	title LIKE '%'||#{value}||'%'
+   	</select>
+   	
+   	<select id="selectReviewByComments" parameterType="java.lang.String" resultMap="review-resultmap">
+   	    <include refid="select-sql"/>
+   	    WHERE	comments LIKE '%'||#{value}||'%'
+   	</select>
+   	
+   	<select id="selectReviewByRestaurantName" parameterType="java.lang.String" resultMap="review-resultmap">
+   	    <include refid="select-sql"/>
+   	    WHERE	restaurant_name LIKE '%'||#{value}||'%'
+   	</select>
+   	
+   	<select id="selectReviewByRestaurantId" parameterType="_int" resultMap="review-resultmap">
+   	    <include refid="select-sql"/>
+   	    WHERE	restaurant_id = #{value}
+   	</select>
+   	
+   	<select id="selectAverageOfKostarByRestaurantId" parameterType="_int" resultMap="review-resultmap">
+   	    SELECT	AVG(kostar)
+   	    FROM	review
+   	    WHERE	restaurant_id = #{value}
+   	</select>
+   	
+   	
+   	<select id="selectCountReviewByRestaurantId" parameterType="_int" resultMap="review-resultmap">
+   	    SELECT	COUNT(review_no)
+   	    FROM	review
+   	    WHERE	member_id = ${value}
+   	</select>
+   	
+   	<select id="selectCountReviewByMemberId" parameterType="java.lang.String" resultMap="review-resultmap">
+   	    SELECT	COUNT(review_no)
+   	    FROM	review
+   	    WHERE	member_id = ${value}
+   	</select>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.config.mapper.memberMapper">
+<!-- 여기에 sql문들 작성 -->
+
+<sql id="select">
+SELECT  member_id, 
+		  member_pw,
+		  member_name,
+		  visit_date
+FROM	  member
+</sql>
+
+<sql id="select-member-review">
+SELECT  m.member_id, m.member_pw, m.member_name, m.visit_date,
+		   r.review_no,  r.restaurant_id, r.restaurant_name, r.registered_date, r.title, r.comments, r.kostar
+FROM    member m, review r
+</sql>
+
+<resultMap type="member" id="member-basic-resultmap">
+	<id column="member_id" property="memberId"/>
+	<result column="member_pw" property="memberPw"/>
+	<result column="member_name" property="memberName"/>
+	<result column="visit_date" property="visitDate"/>
+</resultMap>
+
+<resultMap type="member" id="member-review-resultmap" extends="member-basic-resultmap">
+	<collection property="reviewList" ofType="review">
+		<result column="review_no" property="reviewNo"/>
+		<result column="restaurant_id" property="restaurantId"/>
+		<result column="restaurant_name" property="restaurantName"/>
+		<result column="registered_date" property="registeredDate"/>
+		<result column="title" property="title"/>
+		<result column="comments" property="comments"/>
+		<result column="kostar" property="kostar"/>
+	</collection>
+</resultMap>
+
+<!-- 회원등록-가입 -->
+<insert id="insertMember" parameterType="member">
+	INSERT INTO member VALUES(#{memberId}, #{memberPw}, #{memberName}, #{visitDate})
+</insert>
+
+<!-- 회원정보 수정 -->
+<update id="updateMember" parameterType="member">
+	UPDATE  member 
+	SET		member_pw = #{memberPw},
+				member_name = #{memberName},
+				visit_date = #{visitDate}
+	WHERE	member_id = #{memberId}
+</update>
+
+<!-- 회원정보 삭제 - 사용자 -->
+<delete id="deleteMember" parameterType="String">
+	DELETE FROM member WHERE member_id = #{value}
+</delete>
+
+<!-- 회원정보 삭제 - 관리자 -->
+<delete id="deleteMemberByVisitDate" parameterType="java.util.Date">
+	DELETE FROM member 
+	<![CDATA[
+	WHERE visit_date < #{visitDate}
+	]]>
+</delete>
+
+<!-- ===========  select  ============= -->
+<!-- 모든 회원 조회 -->
+<select id="selectAllMember" resultMap="member-review-resultmap">
+	<include refid="select-member-review"/>
+	order by member_id
+</select>
+
+<select id="selectMemberCount" resultType="_int">
+	SELECT COUNT(member_id) FROM member
+</select>
+	
+<!-- join -->
+<select id="selectMemberById" resultMap="member-review-resultmap">
+	<include refid="select-member-review"/>
+	WHERE m.member_id = r.member_id
+	AND m.member_id = #{memberId}
+</select>
+
+<select id="selectMemberByVisitDate" resultMap="member-basic-resultmap">
+	<include refid="select"/>
+	<![CDATA[
+	WHERE visit_date < #{visitDate}
+	]]>
+</select>
+
+</mapper>

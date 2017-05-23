@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  configuration  PUBLIC "-//mybatis.org//DTD  Config  3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<settings>
+	<setting name="jdbcTypeForNull" value="NULL"/>
+</settings>
+
+<typeAliases>
+<package name="tp.vo"/>
+</typeAliases>
+
+<environments default="dev">
+		<!-- 한개의 환경설정 : transaction설정, DataSource설정 -->
+	<environment id="dev">
+		<transactionManager type="JDBC" />
+			<!-- 자바 datasourcemanager에서 연결설정하고 cpnnection pool설정하던거 여기서 해줌
+					- commit하고 rollback하던거를 여기서 설정하겠다는 얘기-->
+		<dataSource type="POOLED"><!-- connection Pool을 사용하는 DataSource를 만들라는 얘기 -->
+			<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+			<property name="username" value="scott" />
+			<property name="password" value="tiger" />
+			<property name="poolMaximumActiveConnections" value="100" />  <!-- connection Pool최대개수 -->
+		</dataSource>
+	</environment>
+</environments>
+
+<mappers>
+	<mapper resource="tp/config/mapper/memberMapper.xml"/>
+	<mapper resource="tp/config/mapper/restaurantMapper.xml"/>
+	<mapper resource="tp/config/mapper/reviewMapper.xml"/>
+	<mapper resource="tp/config/mapper/restaurantImageMapper.xml"/>
+</mappers>
+
+</configuration>
