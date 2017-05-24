@@ -26,29 +26,13 @@ a:hover{
 </style>
 </head>
 <body>
-<h1>Tasty Pan-gyo</h1>
+<jsp:include page="/jsp/common.jsp"/>
+<h1>회원 조회</h1>
 <hr>
-<a href="/TastyPangyo/member/login_form.jsp">&lt;로그인&gt;</a>
-<a href="/TastyPangyo/member/join_form.jsp">&lt;회원가입&gt;</a>
+<a href="/TastyPangyo/allmember">전체 회원 보기</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/TastyPangyo/count">총회원수 보기</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/TastyPangyo/member/selectById.jsp">회원 찾기</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/TastyPangyo/member/selectByVisitDate.jsp">장기 미접속자 찾기</a>
 <hr>
-<table>
-	<tr>
-		<th><a href="">한식</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">중식</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">일식</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">양식</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">분식</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">퓨전</a></th>
-		<th>&nbsp&nbsp&nbsp</th>
-		<th><a href="">기타</a></th>
-	</tr>
-</table>
-
-
 </body>
 </html>
