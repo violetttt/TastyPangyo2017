@@ -11,7 +11,7 @@ body{background-color : Bisque; text-align : center;}
 </style>
 </head>
 <body>
-<jsp:include page="/jsp/common.jsp"/>
+<jsp:include page="/member/common.jsp"/>
 <h1>Join</h1>
 <hr>
 <form action="/TastyPangyo/join" method="post">

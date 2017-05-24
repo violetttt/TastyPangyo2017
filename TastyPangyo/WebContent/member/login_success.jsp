@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/jsp/common.jsp"/>
+<jsp:include page="/member/common.jsp"/>
 <%= session.getAttribute("login") %>
 </body>
 </html>

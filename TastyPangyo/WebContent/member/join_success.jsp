@@ -13,7 +13,7 @@ h1{font-family: 'Philosopher', sans-serif; text-align:center;}
 body{background-color : Bisque; text-align : center;}
 </style>
 <body>
-<jsp:include page="/jsp/common.jsp"/>
+<jsp:include page="/member/common.jsp"/>
 <%= session.getAttribute("result") %><br>
 <%
 HttpSession ss = request.getSession();

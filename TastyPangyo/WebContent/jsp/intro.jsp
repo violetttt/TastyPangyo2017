@@ -28,8 +28,8 @@ a:hover{
 <body>
 <h1>Tasty Pan-gyo</h1>
 <hr>
-<a href="login_form.jsp">&lt;로그인&gt;</a>
-<a href="join_form.jsp">&lt;회원가입&gt;</a>
+<a href="/TastyPangyo/member/login_form.jsp">&lt;로그인&gt;</a>
+<a href="/TastyPangyo/member/join_form.jsp">&lt;회원가입&gt;</a>
 <hr>
 <table>
 	<tr>

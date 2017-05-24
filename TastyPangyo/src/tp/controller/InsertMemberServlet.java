@@ -26,6 +26,7 @@ public class InsertMemberServlet extends HttpServlet {
 		String pw = req.getParameter("pw");
 		String name = req.getParameter("name");
 		
+		
 		// 2. 처리 - Model호출
 		Member m = new Member(id, pw, name, new Date());
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
@@ -40,6 +41,8 @@ public class InsertMemberServlet extends HttpServlet {
 		result = "가입완료!";
 		session.setAttribute("result", result);
 		session.setAttribute("member", m);
+		
+		
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/join_success.jsp").forward(req, resp);
 	}
