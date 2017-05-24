@@ -134,14 +134,22 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>Review View</servlet-name>
+    <servlet-name>Review Viewer</servlet-name>
     <servlet-class>tp.controller.ShowReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Review View</servlet-name>
-    <url-pattern>/review/view</url-pattern>
+    <servlet-name>Review Viewer</servlet-name>
+    <url-pattern>/review/show</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>Review Remover</servlet-name>
+    <servlet-class>tp.controller.RemoveReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Remover</servlet-name>
+    <url-pattern>/review/remove</url-pattern>
+  </servlet-mapping>
 
   
 </web-app>
