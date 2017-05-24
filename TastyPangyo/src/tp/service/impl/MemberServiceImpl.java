@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public void insertMember(Member member) throws DuplicatedIdException, SQLException {
+	public void insertMember(Member member) throws DuplicatedIdException {
 		
 		SqlSession session = null;
 		try{
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public void updateMember(Member member) throws MemberNotFoundException, SQLException {
+	public void updateMember(Member member) throws MemberNotFoundException {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public void deleteMember(String memberId) throws MemberNotFoundException, SQLException {
+	public void deleteMember(String memberId) throws MemberNotFoundException {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -71,7 +71,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public void deleteMemberByVisitDate(Date visitDate) throws MemberNotFoundException, SQLException {
+	public void deleteMemberByVisitDate(Date visitDate) throws MemberNotFoundException {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -85,7 +85,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public List<Member> selectAllMember() throws SQLException {
+	public List<Member> selectAllMember() {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -97,7 +97,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public int selectMemberCount() throws SQLException {
+	public int selectMemberCount() {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -109,7 +109,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public Member selectMemberById(String memberId) throws SQLException {
+	public Member selectMemberById(String memberId) {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
@@ -121,7 +121,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public List<Member> selectMemberByVisitDate(Date visitDate) throws SQLException {
+	public List<Member> selectMemberByVisitDate(Date visitDate) {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();

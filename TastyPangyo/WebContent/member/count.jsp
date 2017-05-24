@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/jsp/common.jsp"/>
-<%= session.getAttribute("login") %>
+<jsp:include page="/member/memberSelect.jsp"/>
+총 회원수 <br>
+<%= request.getAttribute("memberCount") %> 명의 회원이 등록되어 있습니다.
 </body>
 </html>
