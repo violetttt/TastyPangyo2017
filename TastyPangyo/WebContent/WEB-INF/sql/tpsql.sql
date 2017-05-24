@@ -44,8 +44,8 @@ CREATE TABLE 	member(
 CREATE SEQUENCE restaurant_id_seq; 
 DROP SEQUENCE restaurant_id_seq;
 
-CREATE sequence review_no;
-DROP sequence review_no;
+CREATE sequence review_no_seq;
+DROP sequence review_no_seq;
 
 
 -- 조회

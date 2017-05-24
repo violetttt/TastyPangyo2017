@@ -50,7 +50,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		try{
 			session = factory.openSession();
 			count = dao.addRestaurant(restaurant, session);
-			//System.out.println(count + "행 증가");
+			System.out.println(count + "행 증가");
 			session.commit();
 		}finally{
 			session.close();
