@@ -82,12 +82,12 @@
 	<!-- 맛집 id로 변경 -->
 	<update id="modRestaurantInfo" parameterType="restaurant">
 	UPDATE restaurant
-	SET	   food_category =#{foodCategory},
-		   location  =#{location},
-		   restaurant_name = #{restaurantName},
+	SET	   food_category = 		#{foodCategory},
+		   location  =			#{location},
+		   restaurant_name = 	#{restaurantName},
 		   restaurant_tel_num = #{restaurantTelNum},
-		   introduction = #{introduction},
-		   menu=#{menu}
+		   introduction = 		#{introduction},
+		   menu=				#{menu}
 	WHERE  restaurant_id = #{restaurantId}
 	</update>
 	
@@ -125,7 +125,7 @@
 	</select>
 
 	<!-- 음식종류로 맛집List 조회 -->
-	<select id ="selectRestaurantInfoByRestaurantSort" parameterType ="restaurant" 
+	<select id ="selectRestaurantInfoByRestaurantSort" parameterType ="String" 
 														resultMap = "restaurant-resultmap">
 																										
 	SELECT 	
@@ -138,7 +138,7 @@
 			introduction,
 			menu			
 	FROM   restaurant												 
-	WHERE  food_category =#{foodCategory}
+	WHERE  food_category like '%'||#{foodCategory}||'%'
 	</select>
 											
 

@@ -43,8 +43,8 @@ public class RestaurantTest {
 				
 			
 			//서비스 테스트
-			RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();
-			service.addRestaurant(new Restaurant(0, "양식", "삼환하이펙스A", "스파게티집",1345, "01041953615", "맛난다", "메뉴다"));
+//			RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();
+	//		service.addRestaurant(new Restaurant(0, "양식", "삼환하이펙스A", "스파게티집",1345, "01041953615", "맛난다", "메뉴다"));
 //			service.modRestaurant(new Restaurant(1, "중식", "유스페이스1", "밥집",15, "01041953615", "맛난다", "메뉴다"));
 			
 			
@@ -52,14 +52,14 @@ public class RestaurantTest {
 //			System.out.println(dao.selectRestaurantByID(1, session));
 //			System.out.println(dao.selectRestaurantByName("김밥천국3", session));
 //			System.out.println(dao.selectRestaurantBySort("기타", session));
-//			System.out.println(dao.selectRestaurantByLocation("삼환하이펙스A", session));
+			System.out.println(dao.selectRestaurantByLocation("삼환", session));
 //			
 //			//서비스 조회테스트
 //			
-			list = (ArrayList<Restaurant>) service.selectRestaurantByLocation("삼환하이펙스");
-			for(Restaurant r : list){
-				System.out.println(r);
-			}
+//			list = (ArrayList<Restaurant>) service.selectRestaurantByLocation("삼환하이펙스");
+//			for(Restaurant r : list){
+//				System.out.println(r);
+//			}
 			
 			session.commit();
 		}finally{

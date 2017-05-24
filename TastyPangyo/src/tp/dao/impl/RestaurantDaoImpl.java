@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import tp.dao.RestaurantDao;
+import tp.exception.NotFoundRestaurantIdException;
 import tp.vo.Restaurant;
 
 public class RestaurantDaoImpl implements RestaurantDao{
@@ -18,37 +19,37 @@ public class RestaurantDaoImpl implements RestaurantDao{
 	   }
 	   
 	   @Override
-	   public int addRestaurant(Restaurant restaurant, SqlSession session) throws SQLException {
+	   public int addRestaurant(Restaurant restaurant, SqlSession session) {
 	      return session.insert(makeSql("insertRestaurantInfo"),restaurant);
 	   }
 
 	   @Override
-	   public int modRestaurant(Restaurant restaurant, SqlSession session) throws SQLException {
+	   public int modRestaurant(Restaurant restaurant, SqlSession session) {
 	      return session.update(makeSql("modRestaurantInfo"),restaurant);
 	   }
 
 	   @Override
-	   public int deleteRestaurant(int restaurantId, SqlSession session) throws SQLException {
+	   public int deleteRestaurant(int restaurantId, SqlSession session){
 	      return session.delete(makeSql("deleteRestaurantInfo"),restaurantId);
 	   }
 
 	   @Override
-	   public Restaurant selectRestaurantByID(int restaurantId, SqlSession session) throws SQLException {
+	   public Restaurant selectRestaurantByID(int restaurantId, SqlSession session){
 	      return session.selectOne(makeSql("selectRestaurantInfoByRestaurantId"),restaurantId);
 	   }
 
 	   @Override
-	   public List<Restaurant> selectRestaurantByName(String restaurantName, SqlSession session) throws SQLException {
+	   public List<Restaurant> selectRestaurantByName(String restaurantName, SqlSession session) {
 	      return session.selectList(makeSql("selectRestaurantInfoByRestaurantName"),restaurantName);
 	   }
 
 	   @Override
-	   public List<Restaurant> selectRestaurantBySort(String foodCategory, SqlSession session) throws SQLException {
+	   public List<Restaurant> selectRestaurantBySort(String foodCategory, SqlSession session) {
 	      return session.selectList(makeSql("selectRestaurantInfoByRestaurantSort"),foodCategory);
 	   }
 
 	   @Override
-	   public List<Restaurant> selectRestaurantByLocation(String location, SqlSession session) throws SQLException {
+	   public List<Restaurant> selectRestaurantByLocation(String location, SqlSession session) {
 	      return session.selectList(makeSql("selectRestaurantInfoByRestaurantLocation"),location);
 	   }
 	   

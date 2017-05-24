@@ -48,8 +48,25 @@
   	<url-pattern>/insertRes</url-pattern>
   </servlet-mapping>
   
+  <!-- 맛집 변경 서블릿 객체 등록 -->
+   <servlet>
+  	<servlet-name>updateRestaurantServlet</servlet-name>
+  	<servlet-class>tp.controller.UpdateRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>updateRestaurantServlet</servlet-name>
+  	<url-pattern>/updateRes</url-pattern>
+  </servlet-mapping>
   
-  
+  <!-- 맛집 조회 서블릿 객체 등록 -->
+   <servlet>
+  	<servlet-name>selectRestaurantServlet</servlet-name>
+  	<servlet-class>tp.controller.SelectRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>selectRestaurantServlet</servlet-name>
+  	<url-pattern>/selectRes</url-pattern>
+  </servlet-mapping>
   
   
   
