@@ -29,4 +29,14 @@
     <url-pattern>/join</url-pattern>
   </servlet-mapping>
   
+  <!-- 맛집 등록 서블릿 객체 등록 -->
+  <servlet>
+  	<servlet-name>insertRestaurantServlet</servlet-name>
+  	<servlet-class>tp.controller.InsertRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>insertRestaurantServlet</servlet-name>
+  	<url-pattern>/insertRes</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
