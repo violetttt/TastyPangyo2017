@@ -86,6 +86,17 @@ public interface ReviewDao {
 	int deleteReviewByComments(SqlSession session, String comments);
 
 	
+	
+	
+	/**
+	 * 모든 리뷰 조회 (정렬조건을 매개변수로 받음)
+	 * @param session
+	 * @param orderBy
+	 * @return
+	 */
+	List<Review> selectAllReview(SqlSession session, String orderBy);
+	
+	
 	/**
 	 * 등록번호로 리뷰 select
 	 * @param reviewNo

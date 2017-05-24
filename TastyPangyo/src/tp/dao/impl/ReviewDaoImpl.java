@@ -73,8 +73,10 @@ public class ReviewDaoImpl implements ReviewDao{
 
 	
 	
-	
-	
+	@Override
+	public List<Review> selectAllReview(SqlSession session, String orderBy) {
+		return session.selectList(MapperPath("selectAllReview"), orderBy);
+	}
 	
 	@Override
 	public Review selectReviewByNo(SqlSession session, int reviewNo) {

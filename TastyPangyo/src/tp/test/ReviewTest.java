@@ -55,21 +55,21 @@ public class ReviewTest {
 		
 		// 조회
 		//	(1) 전체 리뷰 : OK
-		rms.selectAllReview();
+//		rms.selectAllReview();
 		//	(2) 리뷰 번호로 조회 : Ok
-		rms.selectReviewByNo(35);
+//		rms.selectReviewByNo(35);
 		//	(3) 전체 리뷰 (아이디순) : OK
-		rms.selectAllReviewOrderByMemberId();
+//		rms.selectAllReviewOrderByMemberId();
 		//	(4) 전체 리뷰 (최근등록순) : 
-		rms.selectAllReviewOrderByNewestRegistered();
+//		rms.selectAllReviewOrderByNewestRegistered();
 		//	(5) 등록일로 조회
-		rms.selectReviewByRegisteredDate(new Date(117, 3, 15));
+//		rms.selectReviewByRegisteredDate(new Date(117, 3, 15));
 		//	(6) 등록기간으로 조회
-		rms.selectReviewByRegisteredDateRange(new Date(117, 3, 17), new Date(117, 4, 17));
+//		rms.selectReviewByRegisteredDateRange(new Date(117, 3, 17), new Date(117, 4, 17));
 		//	(7) 제목으로 조회
-		rms.selectReviewByTitle("불고기");
+//		rms.selectReviewByTitle("불고기");
 		//	(8) 내용으로
-		rms.selectReviewByComments("맥주");
+//		rms.selectReviewByComments("맥주");
 	}
 
 }

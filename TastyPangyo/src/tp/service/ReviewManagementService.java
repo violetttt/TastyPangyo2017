@@ -70,20 +70,12 @@ public interface ReviewManagementService {
 	
 	
 	/**
-	 * 모든 리뷰 조회
+	 * 모든 리뷰 조회 (정렬 조건, 널이면 리뷰번호순)
+	 * @param orderBy
+	 * @return
 	 */
-	List<Review> selectAllReview();
+	List<Review> selectAllReview(String orderBy);
 
-	/**
-	 * 전체조회 회원 아이디 정렬
-	 */
-	List<Review> selectAllReviewOrderByMemberId();
-	
-	/**
-	 * 전체조회 최근등록순 정렬
-	 */
-	List<Review> selectAllReviewOrderByNewestRegistered();
-	
 	/**
 	 * 특정 등록일 조회
 	 * @param registeredDate

@@ -148,6 +148,19 @@
     
     
     <!-- SELECT -->
+    <!-- 동적쿼리이용 모든 리뷰 조회 (정렬 조건) -->
+    <select id="selectAllReview" parameterType="java.lang.String" resultMap="review-resultmap">
+   	 	<include refid="select-sql"/>
+   	 		<choose>
+   	 			<when test="value == registeredDate">
+   	 			ORDER BY #{ value } DESC
+   	 			</when>
+   	 			<otherwise>
+   	 			ORDER BY #{ value } 
+   	 			</otherwise>
+   	 		</choose>
+    </select>
+    
     <select id="selectAllReviewOrderByNo" resultMap="review-resultmap">
 	    <include refid="select-sql"/>
 	    ORDER BY	review_no
