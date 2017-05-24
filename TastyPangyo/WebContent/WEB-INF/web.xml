@@ -37,6 +37,7 @@
   
   
   
+  
   <!-- ********************맛집관련******************** -->
   <!-- 맛집 등록 서블릿 객체 등록 -->
   <servlet>
@@ -56,19 +57,31 @@
   <!-- ********************리뷰관련******************** -->
   <servlet>
     <servlet-name>Review Register</servlet-name>
-    <servlet-class>tp.controller.ReviewRegister</servlet-class>
+    <servlet-class>tp.controller.RegisterReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Review Register</servlet-name>
     <url-pattern>/review/register</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>Review Selector</servlet-name>
-    <servlet-class>tp.controller.ReviewSelector</servlet-class>
+    <servlet-class>tp.controller.SelectReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Review Selector</servlet-name>
     <url-pattern>/review/select</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Review View</servlet-name>
+    <servlet-class>tp.controller.ShowReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review View</servlet-name>
+    <url-pattern>/review/view</url-pattern>
+  </servlet-mapping>
+  
+
   
 </web-app>
