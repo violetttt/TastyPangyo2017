@@ -15,9 +15,9 @@
 <form action="/TastyPangyo/review/select" method="post">
 	전체목록 
 	<select name="allReviews">
-		<option value="registeredDate">최신등록순</option>
-		<option value="reviewNo">리뷰번호순</option>
-		<option value="memberId">작성자순</option>
+		<option value="registered_date">최신등록순</option>
+		<option value="review_no">리뷰번호순</option>
+		<option value="member_id">작성자순</option>
 	</select>
 	<input type="submit" value="리뷰검색"><br>
 	</form>
@@ -44,37 +44,37 @@
 	작성일로 찾기
 	<!-- 년 -->
 	<select name="year">
-		<option value="2017">2017</option>
-		<option value="2016">2016</option>
-		<option value="2015">2015</option>
-		<option value="2014">2014</option>
+		<option  value="117">2017</option>
+		<option value="116">2016</option>
+		<option value="115">2015</option>
+		<option value="114">2014</option>
 	</select>
 	<!-- 월 -->	
 	<select name="month">
-		<option value="01">1</option>
-		<option value="02">2</option>
-		<option value="03">3</option>
-		<option value="04">4</option>
-		<option value="05">5</option>
-		<option value="06">6</option>
-		<option value="07">7</option>
-		<option value="08">8</option>
-		<option value="09">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
+		<option value="0">1</option>
+		<option value="1">2</option>
+		<option value="2">3</option>
+		<option value="3">4</option>
+		<option value="4">5</option>
+		<option value="5">6</option>
+		<option value="6">7</option>
+		<option value="7">8</option>
+		<option value="8">9</option>
+		<option value="9">10</option>
+		<option value="10">11</option>
+		<option value="11">12</option>
 	</select>
 	<!-- 일 -->	
 	<select name="day">
-		<option value="01">1</option>
-		<option value="02">2</option>
-		<option value="03">3</option>
-		<option value="04">4</option>
-		<option value="05">5</option>
-		<option value="06">6</option>
-		<option value="07">7</option>
-		<option value="08">8</option>
-		<option value="09">9</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
 		<option value="10">10</option>
 		<option value="11">11</option>
 		<option value="12">12</option>
@@ -86,16 +86,17 @@
 		<option value="18">18</option>
 		<option value="19">19</option>
 		<option value="20">20</option>
-		<option value="01">21</option>
-		<option value="02">22</option>
-		<option value="03">23</option>
-		<option value="04">24</option>
-		<option value="05">25</option>
-		<option value="06">26</option>
-		<option value="07">27</option>
-		<option value="08">28</option>
-		<option value="09">29</option>
-		<option value="10">10</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
 	</select>
 	
 	<input type="submit" value="리뷰검색"><br>

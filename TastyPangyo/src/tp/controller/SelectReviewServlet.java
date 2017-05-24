@@ -1,8 +1,8 @@
 package tp.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import tp.service.impl.ReviewManagementServiceImpl;
  * @author KOSTA
  *
  */
-public class ReviewSelector extends HttpServlet{
+public class SelectReviewServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,46 +27,100 @@ public class ReviewSelector extends HttpServlet{
 		Enumeration<String> s = req.getParameterNames();
 		String param = s.nextElement();
 
+//		System.out.println(param);	// 로그
 		
-		System.out.println(param);
+		// 파라미터의 이름(pama)을 체크해서 알맞은 service메서드를 호출해주는 메서드
+		String keyword = req.getParameter(param);
+		System.out.println(keyword);	//로그
 		
-		String selectKeyword = req.getParameter(param);
-		req.setAttribute("selectKeyword", selectKeyword);
-		System.out.println(selectKeyword);
 		// 비지니스로직처리
 		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
-		req.setAttribute("reviews", rms.selectReviewByTitle(param));
+		
 		switch(param){
 			case "allReviews" :
-				req.setAttribute("reviews", rms.selectAllReview(selectKeyword));
+				req.setAttribute("reviews", rms.selectAllReview(keyword));
+				if(keyword.equals("registered_date")){
+					keyword = "최신 등록순 전체조회";	
+				}else if(keyword.equals("review_no")){
+					keyword= "등록 번호순 전체조회";
+				}else if(keyword.equals("member_id")){
+					keyword = "작성자순 전체조회";
+				}
+				break;
 			case "title" :
-				req.setAttribute("reviews", rms.selectReviewByTitle(selectKeyword));
+				req.setAttribute("reviews", rms.selectReviewByTitle(keyword));
 				break;
 			case "comments" :
-				req.setAttribute("reviews", rms.selectReviewByComments(selectKeyword));
+				req.setAttribute("reviews", rms.selectReviewByComments(keyword));
 				break;
 			case "memberId" :
-				req.setAttribute("reviews", rms.selectReviewByComments(selectKeyword));
+				req.setAttribute("reviews", rms.selectReviewByMemberId(keyword));
 				break;
 			case "reviewNo" :
-				req.setAttribute("reviews", rms.selectReviewByNo(Integer.parseInt(selectKeyword)));
+				req.setAttribute("reviews", rms.selectReviewByNo(Integer.parseInt(keyword)));
 				break;
-			case "year" :
-				int year = Integer.parseInt(req.getParameter("year"))-1900;
-				int month = Integer.parseInt(req.getParameter("month"))-1;
-				int day = Integer.parseInt(req.getParameter("day"));
-				
-				Date registeredDate = new Date(year, month, day);
-				selectKeyword = new SimpleDateFormat("yyyy-MM-dd").format(registeredDate);
-				System.out.println(registeredDate);
+			case "year": case "month": case "day" :
+				Date registeredDate = new Date(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day")));
+				keyword = new SimpleDateFormat("yyyy-MM-dd").format(registeredDate);
+//				System.out.println(registeredDate);	//로그
 				req.setAttribute("reviews", rms.selectReviewByRegisteredDate(registeredDate));
+				break;
+			default :	// 검색 값 및 정렬조건 없이 리뷰 목록 조회할 떄
+				keyword="";
+				req.setAttribute("reviews", rms.selectAllReview("registered_date"));
+				
+				
 		}
 		
+		// 검색어를 request 속성에 저장 (응답 화면에 보여주기 위해)
+		req.setAttribute("keyword", keyword);
 		
 		// 3. 요청디스패치
 		req.getRequestDispatcher("/review/list.jsp").forward(req, resp);
 	
 	}
 	
+	
+	
+	private void serviceCheckByParam(HttpServletRequest req, String param) throws IOException{
+		String keyword = req.getParameter(param);
+//		System.out.println(keyword);	//로그
+		
+		// 비지니스로직처리
+		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		
+		switch(param){
+			case "allReviews" :
+				req.setAttribute("reviews", rms.selectAllReview(keyword));
+				if(keyword.equals("registered_date")){
+					keyword = "최신 등록순 전체조회";
+				}else if(keyword.equals("review_no")){
+					keyword= "등록 번호순 전체조회";
+				}else if(keyword.equals("member_id")){
+					keyword = "작성자순 전체조회";
+				}
+				break;
+			case "title" :
+				req.setAttribute("reviews", rms.selectReviewByTitle(keyword));
+				break;
+			case "comments" :
+				req.setAttribute("reviews", rms.selectReviewByComments(keyword));
+				break;
+			case "memberId" :
+				req.setAttribute("reviews", rms.selectReviewByMemberId(keyword));
+				break;
+			case "reviewNo" :
+				req.setAttribute("reviews", rms.selectReviewByNo(Integer.parseInt(keyword)));
+				break;
+			case "year" :
+				Date registeredDate = new Date(Integer.parseInt(req.getParameter("year")), Integer.parseInt(req.getParameter("month")), Integer.parseInt(req.getParameter("day")));
+				keyword = new SimpleDateFormat("yyyy-MM-dd").format(registeredDate);
+//				System.out.println(registeredDate);	//로그
+				req.setAttribute("reviews", rms.selectReviewByRegisteredDate(registeredDate));
+		}
+		
+		// 검색어를 request 속성에 저장 (응답 화면에 보여주기 위해)
+		req.setAttribute("keyword", keyword);
+	}
 
 }

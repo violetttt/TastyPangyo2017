@@ -1,7 +1,6 @@
 package tp.service.impl;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -39,83 +38,80 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 	
 	
 	@Override
-	public void addReview(Review review) {
+	public int addReview(Review review) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.insertReview(session, review);
-			System.out.printf("%d개의 리뷰가 등록되었습니다.%n",count);
-			session.commit();
+			return dao.insertReview(session, review);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 
 	@Override
-	public void updateReview(Review review) {
+	public int updateReview(Review review) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.updateReview(session, review);
-			System.out.printf("%d개의 리뷰가 수정되었습니다.%n",count);
-			session.commit();
+			return dao.updateReview(session, review);
+
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 
 	@Override
-	public void deleteReviewByMemberId(String memberId) {
+	public int deleteReviewByMemberId(String memberId) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByMemberId(session, memberId);
-			System.out.printf("%d개의 리뷰가 삭제되었습니다.%n",count);
-			session.commit();
+			return dao.deleteReviewByMemberId(session, memberId);
+	
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 
 	@Override
-	public void deleteReviewSelected(String[] noArr){
+	public int deleteReviewSelected(String[] noArr){
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = 0;
-			for(String s : noArr){
-				count += dao.deleteReviewSelected(session, Integer.parseInt(s));
-			}
-			System.out.printf("%d개의 리뷰가 삭제되었습니다.%n",count);
-			session.commit();
+			return  dao.deleteReviewSelected(session, noArr);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 
 	@Override
-	public void deleteReviewByRegisteredDate(Date registeredDate) {
+	public int deleteReviewByRegisteredDate(Date registeredDate) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByRegisteredDate(session, registeredDate);
-			System.out.printf("리뷰 등록일[%s]로 삭제 : %d개의 리뷰가 삭제되었습니다.%n",new SimpleDateFormat("yyyy-MM-dd").format(registeredDate),count);
-			session.commit();
+			return dao.deleteReviewByRegisteredDate(session, registeredDate);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 	
 	
 	@Override
-	public void deleteReviewByRestaurantName(String restaurantName) {
+	public int deleteReviewByRestaurantName(String restaurantName) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByRestaurantName(session, restaurantName);
-			System.out.printf("맛집 이름[%s]으로 삭제 : %d개의 리뷰가 삭제되었습니다.%n",restaurantName,count);
-			session.commit();
+			return dao.deleteReviewByRestaurantName(session, restaurantName);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 		
@@ -123,40 +119,40 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 	
 	
 	@Override
-	public void deleteReviewByRestaurantId(int restaurantId) {
+	public int deleteReviewByRestaurantId(int restaurantId) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByRestaurantId(session, restaurantId);
-			System.out.printf("맛집 번호[%s]로 삭제 : %d개의 리뷰가 삭제되었습니다.%n",restaurantId,count);
-			session.commit();
+			return dao.deleteReviewByRestaurantId(session, restaurantId);
+		
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
 	
 	@Override
-	public void deleteReviewByTitle(String title) {
+	public int deleteReviewByTitle(String title) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByTitle(session, title);
-			System.out.printf("맛집 제목[%s]로 삭제 : %d개의 리뷰가 삭제되었습니다.%n",title,count);
-			session.commit();
+			return dao.deleteReviewByTitle(session, title);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}	
 	
 	@Override
-	public void deleteReviewByComments(String comments) {
+	public int deleteReviewByComments(String comments) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.deleteReviewByComments(session, comments);
-			System.out.printf("맛집 내용[%s]로 삭제 : %d개의 리뷰가 삭제되었습니다.%n",comments,count);
-			session.commit();
+			return dao.deleteReviewByComments(session, comments);
+			
 		}finally{
+			session.commit();
 			session.close();
 		}
 	}
@@ -247,10 +243,11 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			return dao.selectReviewByNo(session, reviewNo);
+			review = dao.selectReviewByNo(session, reviewNo);
 			
 //			System.out.printf("----------리뷰번호[%s]로 조회----------%n", reviewNo);
-//			System.out.println(review);
+			System.out.println(review);
+			return review;
 			
 		}finally{
 			session.commit();
@@ -259,6 +256,21 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 	}
 	
 	
+	
+	@Override
+	public List<Review> selectReviewByMemberId(String memberId) {
+		SqlSession session = null;
+		try{
+			session = factory.openSession();
+			return dao.selectReviewByMemberId(session, memberId);
+		
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+	
+
 	
 	
 	
@@ -275,5 +287,4 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 		
 	}
 	
-
 }

@@ -1,7 +1,6 @@
 package tp.dao;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public interface ReviewDao {
 	 * @param list
 	 * @return
 	 */
-	int deleteReviewSelected(SqlSession session, int reviewNo);
+	int deleteReviewSelected(SqlSession session, String[] noArr);
 	
 	/**
 	 * 특정 회원이 등록한 리뷰 delete
@@ -109,23 +108,29 @@ public interface ReviewDao {
 	 * @param session
 	 * @return
 	 */
-	List<Review> selectAllReviewOrderByNo(SqlSession session);
+	List<Review> selectAllReviewOrderByNo(SqlSession session);	//필요없음
 	
 	/**
 	 * 모든 리뷰 조회(아이디 오름차순)
 	 * @param session
 	 * @return
 	 */
-	List<Review> selectAllReviewOrderByMemberId(SqlSession session);
+	List<Review> selectAllReviewOrderByMemberId(SqlSession session); //필요없음
 	
 	/**
 	 * 모든 리뷰 조회(날짜 내림차순,최신순)
 	 * @param session
 	 * @return
 	 */
-	List<Review> selectAllReviewOrderByNewestRegistered(SqlSession session);
+	List<Review> selectAllReviewOrderByNewestRegistered(SqlSession session); //필요없음
 	
-
+	/**
+	 * 작성자로 등록된 리뷰 select
+	 * @param session
+	 * @param memberId
+	 * @return
+	 */
+	List<Review> selectReviewByMemberId(SqlSession session, String memberId);
 	/**
 	 * 특정 날짜에 등록된 리뷰 select
 	 * @param session
