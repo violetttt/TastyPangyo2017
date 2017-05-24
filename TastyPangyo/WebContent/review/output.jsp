@@ -14,7 +14,7 @@
 <body>
 
 <!-- 리뷰index 화면 고정 -->
-<jsp:include page="/review/select_index.jsp"/>
+<jsp:include page="/review/index.jsp"/>
 
 <!-- 선택한 리뷰보기  -->
 <h3>선택리뷰보기</h3>

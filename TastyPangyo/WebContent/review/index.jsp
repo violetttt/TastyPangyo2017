@@ -1,11 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<style type="text/css">
+	.review_index {
+		background-color: #333;
+		color: #fff;
+	}
+
+</style>
+
+
+<div class="review_index">
+
+<h2>REVIEW</h2>
+<br>
+</div>
+
+
+

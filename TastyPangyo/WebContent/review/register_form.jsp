@@ -120,16 +120,21 @@
 			<fieldset class="review_form" size="150">
 				<legend class="screen_out">리뷰등록 form</legend>
 				<div class="row_group">
-					식당번호 <input type="text" name="restaurantId" size="40"><br>
-					식당명 <input type="text" name="restaurantName" size="40"><br>
-					작성자 <input type="text" name="memberId" size="40"><br>
+					<!-- 필수입력값(NOT NULL이여야 하는)은 input 속성으로 required를 줘서 반드시 입력값을 받고 넘어가게 하고
+					 oninvalid  -->
+					식당번호 <input type="text" name="restaurantId" size="40" 
+							required oninvalid="setCustomValidity('식당번호 입력해!!')" oninput="setCustomValidity('')"><br>
+					식당명 <input type="text" name="restaurantName" size="40" 
+							required oninvalid="setCustomValidity('식당명 입력해!!')" oninput="setCustomValidity('')"><br>
+					작성자 <input type="text" name="memberId" size="40" 
+							required oninvalid="setCustomValidity('작성자 입력해!!')" oninput="setCustomValidity('')"><br>
 					별점 <span class="kostar">
 						  <span class="input">
 						    <input type="radio" name="kostar" id="p1" value="1"><label for="p1">1</label>
 						    <input type="radio" name="kostar" id="p2" value="2"><label for="p2">2</label>
 						    <input type="radio" name="kostar" id="p3" value="3"><label for="p3">3</label>
 						    <input type="radio" name="kostar" id="p4" value="4"><label for="p4">4</label>
-						    <input type="radio" name="kostar" id="p5" value="5"><label for="p5">5</label>
+						    <input type="radio" name="kostar" id="p5" value="5" checked><label for="p5">5</label>
 						    <input type="radio" name="kostar" id="p6" value="6"><label for="p6">6</label>
 						    <input type="radio" name="kostar" id="p7" value="7"><label for="p7">7</label>
 						    <input type="radio" name="kostar" id="p8" value="8"><label for="p8">8</label>
@@ -139,13 +144,13 @@
 						  <output for="kostar"><b> </b>점</output>
 						</span>
 						<br>
-					제목 <input type="text" name="title" size="100">
+					제목 <input type="text" name="title" size="100" required>
 					<p>
 					<textarea name="comments" rows="10" cols="107" placeholder="리뷰 내용을 입력하세요."></textarea>
 					</p>
 				</div>
 				<input type="reset" value="입력초기화"> 
-		 		<input type="submit" value="리뷰등록">
+		 		<input type="submit" value="리뷰등록" >
 			
 			</fieldset>
 			

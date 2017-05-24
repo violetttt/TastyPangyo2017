@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- 리뷰index 화면 고정 -->
-<jsp:include page="/review/select_index.jsp"/>
+<jsp:include page="/review/index.jsp"/>
 
 <h3>리뷰목록</h3>
 <% if( request.getAttribute("keyword") != null){ %>

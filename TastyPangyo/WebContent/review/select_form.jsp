@@ -9,7 +9,7 @@
 <body>
 
 <!-- 리뷰index 화면 고정 -->
-<jsp:include page="/review/select_index.jsp"/>
+<jsp:include page="/review/index.jsp"/>
 
 <!-- 전체목록 조회 -->
 <form action="/TastyPangyo/review/select" method="post">
@@ -25,18 +25,18 @@
 
 <!-- 제목으로 찾기 -->
 <form action="/TastyPangyo/review/select" method="post">
-	제목으로 찾기 <input type="text" name="title" placeholder="제목 일부를 입력하세요"> 
+	제목으로 찾기 <input type="search" name="title" placeholder="제목 일부를 입력하세요"> 
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
 
 <form action="/TastyPangyo/review/select" method="post">
-	내용으로 찾기 <input type="text" name="comments" placeholder="내용 일부를 입력하세요">
+	내용으로 찾기 <input type="search" name="comments" placeholder="내용 일부를 입력하세요">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
 <form action="/TastyPangyo/review/select" method="post">
-	작성자로 찾기 <input type="text" name="memberId" placeholder="아이디를 입력하세요">
+	작성자로 찾기 <input type="search" name="memberId" placeholder="아이디를 입력하세요">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
