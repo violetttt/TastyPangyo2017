@@ -39,6 +39,7 @@ public class InsertMemberServlet extends HttpServlet {
 		}
 		result = "가입완료!";
 		session.setAttribute("result", result);
+		session.setAttribute("member", m);
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/join_success.jsp").forward(req, resp);
 	}
