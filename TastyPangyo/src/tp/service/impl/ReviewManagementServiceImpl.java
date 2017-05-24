@@ -170,11 +170,11 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 //	--select------------------------------------------------------------
 	
 	@Override
-	public List<Review> selectAllReview() {
+	public List<Review> selectAllReview(String orderBy) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			return dao.selectAllReviewOrderByNo(session);
+			return dao.selectAllReview(session, orderBy);
 
 		}finally{
 			session.commit();
@@ -183,32 +183,6 @@ public class ReviewManagementServiceImpl implements ReviewManagementService {
 	}
 	
 	
-	@Override
-	public List<Review> selectAllReviewOrderByMemberId() {
-		SqlSession session = null;
-		try{
-			session = factory.openSession();
-			return dao.selectAllReviewOrderByMemberId(session);
-
-		}finally{
-			session.commit();
-			session.close();
-		}
-	}
-	
-	@Override
-	public List<Review> selectAllReviewOrderByNewestRegistered() {
-		SqlSession session = null;
-		try{
-			session = factory.openSession();
-			return dao.selectAllReviewOrderByNewestRegistered(session);
-//			printList(list, "모든 리뷰 목록(최신등록순)");
-			
-		}finally{
-			session.commit();
-			session.close();
-		}
-	}
 	
 	
 	@Override
