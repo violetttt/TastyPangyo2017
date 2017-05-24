@@ -10,6 +10,9 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  
+  <!-- ********************회원관리 관련******************** -->
+  <!-- 로그인 서블릿  -->
   <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>tp.controller.LoginServlet</servlet-class>
@@ -19,16 +22,22 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  <!-- 회원가입 서블릿 -->
   <servlet>
     <servlet-name>join</servlet-name>
     <servlet-class>tp.controller.InsertMemberServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>join</servlet-name>
     <url-pattern>/join</url-pattern>
   </servlet-mapping>
   
+  
+  
+  
+  
+  
+  <!-- ********************맛집관련******************** -->
   <!-- 맛집 등록 서블릿 객체 등록 -->
   <servlet>
   	<servlet-name>insertRestaurantServlet</servlet-name>
@@ -37,6 +46,29 @@
   <servlet-mapping>
   	<servlet-name>insertRestaurantServlet</servlet-name>
   	<url-pattern>/insertRes</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  <!-- ********************리뷰관련******************** -->
+  <servlet>
+    <servlet-name>Review Register</servlet-name>
+    <servlet-class>tp.controller.ReviewRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Register</servlet-name>
+    <url-pattern>/review/register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Review Selector</servlet-name>
+    <servlet-class>tp.controller.ReviewSelector</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Selector</servlet-name>
+    <url-pattern>/review/select</url-pattern>
   </servlet-mapping>
   
 </web-app>
