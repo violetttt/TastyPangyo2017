@@ -32,7 +32,68 @@
     <url-pattern>/join</url-pattern>
   </servlet-mapping>
   
+   <!-- 회원탈퇴 서블릿 -->
+  <servlet>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>tp.controller.DeleteMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
   
+     <!-- 회원정보 수정 서블릿 -->
+  <servlet>
+    <servlet-name>update</servlet-name>
+    <servlet-class>tp.controller.UpdateMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>update</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- 모든 회원 조회 서블릿 -->
+  <servlet>
+    <servlet-name>allmember</servlet-name>
+    <servlet-class>tp.controller.SelectAllMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>allmember</servlet-name>
+    <url-pattern>/allmember</url-pattern>
+  </servlet-mapping>
+  
+	<!-- 총 회원 수 조회 서블릿 -->
+  <servlet>
+    <servlet-name>count</servlet-name>
+    <servlet-class>tp.controller.SelectMemberCountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>count</servlet-name>
+    <url-pattern>/count</url-pattern>
+  </servlet-mapping>
+  
+  <!-- id로 회원조회 서블릿 -->
+  <servlet>
+    <servlet-name>memberById</servlet-name>
+    <servlet-class>tp.controller.SelectMemberByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberById</servlet-name>
+    <url-pattern>/memberById</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 접속일로 회원 조회 서블릿 -->
+  <servlet>
+    <servlet-name>memberByVisitDate</servlet-name>
+    <servlet-class>tp.controller.SelectMemberByVisitDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberByVisitDate</servlet-name>
+    <url-pattern>/memberByVisitDate</url-pattern>
+  </servlet-mapping>
+
   
   
   
@@ -73,19 +134,39 @@
   <!-- ********************리뷰관련******************** -->
   <servlet>
     <servlet-name>Review Register</servlet-name>
-    <servlet-class>tp.controller.ReviewRegister</servlet-class>
+    <servlet-class>tp.controller.RegisterReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Review Register</servlet-name>
     <url-pattern>/review/register</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>Review Selector</servlet-name>
-    <servlet-class>tp.controller.ReviewSelector</servlet-class>
+    <servlet-class>tp.controller.SelectReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Review Selector</servlet-name>
     <url-pattern>/review/select</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Review Viewer</servlet-name>
+    <servlet-class>tp.controller.ShowReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Viewer</servlet-name>
+    <url-pattern>/review/show</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>Review Remover</servlet-name>
+    <servlet-class>tp.controller.RemoveReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Remover</servlet-name>
+    <url-pattern>/review/remove</url-pattern>
+  </servlet-mapping>
+
   
 </web-app>

@@ -34,17 +34,18 @@ public class InsertMemberServlet extends HttpServlet {
 		String result = null;
 		try {
 			service.insertMember(m);
-		} catch (DuplicatedIdException | SQLException e) {
+			result = "가입완료!";
+			session.setAttribute("result", result);
+			session.setAttribute("member", m);
+		} catch (DuplicatedIdException e) {
 			result = "이미 존재하는 id입니다";
 			req.setAttribute("result", result);
 		}
-		result = "가입완료!";
-		session.setAttribute("result", result);
-		session.setAttribute("member", m);
+		
 		
 		
 		// 3. 응답 - View 호출
-		req.getRequestDispatcher("/jsp/join_success.jsp").forward(req, resp);
+		req.getRequestDispatcher("/member/join_success.jsp").forward(req, resp);
 	}
 
 }

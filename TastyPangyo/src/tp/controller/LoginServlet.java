@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet{
 		// 2. 처리- Model 호출
 		String login = null;
 		Member m = null;
-		try{
+		
 			// selectMemberById의 결과(A)가 존재하고 A의 비밀번호와 입력받은 비밀번호가 일치하면 - 로그인 성공		
 			// selectMemberById의 결과(A)가 존재하나 A의 비밀번호와 입력받은 비밀번호가 틀리면 LoginFailException
 			// selectMemberById의 결과(A)가 없으면 MemberNotFoundException - 아이디 불일치
@@ -41,11 +41,7 @@ public class LoginServlet extends HttpServlet{
 				login = "비밀번호가 일치하지 않습니다";
 			}
 			login = "해당 ID가 존재하지 않습니다";
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		session.setAttribute("login", login);
 		
 /*		try {
@@ -63,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 */
 		
 		// 3. 응답 - View 호출
-		req.getRequestDispatcher("/jsp/login_success.jsp").forward(req, resp);	
+		req.getRequestDispatcher("/member/login_success.jsp").forward(req, resp);	
 	}
 	
 }

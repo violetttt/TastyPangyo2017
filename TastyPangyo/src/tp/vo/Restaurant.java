@@ -14,12 +14,12 @@ public class Restaurant implements Serializable{
 	private String menu;
 	
 	ArrayList<Review> reviews;         	//조인 위한 리뷰들
-	ArrayList<RestaurantImage> images;  //조인 위한 사진들 
+	ArrayList<String> images;  //조인 위한 사진들 
 	
 	public Restaurant(){}
 	
 	public Restaurant(int restaurantId, String foodCategory, String location, String restaurantName, int hits,
-			String restaurantTelNum, String introduction, String menu, ArrayList<RestaurantImage> images) {
+			String restaurantTelNum, String introduction, String menu, ArrayList<String> images) {
 		this.restaurantId = restaurantId;
 		this.foodCategory = foodCategory;
 		this.location = location;
@@ -32,7 +32,7 @@ public class Restaurant implements Serializable{
 	}
 	public Restaurant(int restaurantId, String foodCategory, String location, String restaurantName, int hits,
 			String restaurantTelNum, String introduction, String menu, ArrayList<Review> reviews,
-			ArrayList<RestaurantImage> images) {
+			ArrayList<String> images) {
 		this.restaurantId = restaurantId;
 		this.foodCategory = foodCategory;
 		this.location = location;
@@ -209,11 +209,11 @@ public class Restaurant implements Serializable{
 		this.reviews = reviews;
 	}
 
-	public ArrayList<RestaurantImage> getImages() {
+	public ArrayList<String> getImages() {
 		return images;
 	}
 
-	public void setImages(ArrayList<RestaurantImage> images) {
+	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
 

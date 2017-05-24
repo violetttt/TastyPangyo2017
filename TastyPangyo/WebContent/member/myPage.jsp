@@ -8,25 +8,19 @@
 @import url('https://fonts.googleapis.com/css?family=Philosopher');
 h1{font-family: 'Philosopher', sans-serif; text-align:center;}
 body{background-color : Bisque; text-align : center;}
+a:link{ text-decoration:none;	color:black;}
+a:visited{ text-decoration: none;	color:green;}
+a:hover{ text-decoration: underline;	color:red;}
 </style>
 </head>
 <body>
 <jsp:include page="/jsp/common.jsp"/>
-<h1>Login</h1>
-<form action="/TastyPangyo/login" method="post">
-<table>
-<tr>
-	<td>ID</td>
-	<td><input type="text" name="id" placeholder="id를 입력하세요"></td>
-</tr>
-<tr>
-	<td>Password</td>
-	<td><input type="password" name="pw" placeholder="비밀번호를 입력하세요"></td>
-</tr>
-</table>
-<input type="submit" value="확인">
+<h1>My Page</h1>
+<hr>
+<a href="/TastyPangyo/member/update.jsp">정보 수정</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="">리뷰 보기</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/TastyPangyo/member/delete.jsp">회원 탈퇴</a>
+<hr>
 
-
-</form>
 </body>
 </html>
