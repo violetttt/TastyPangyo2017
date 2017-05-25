@@ -13,12 +13,24 @@
 			)
 </insert>
 
+<!-- DELTE -->
+
 <delete id="deleteRestaurantImage" parameterType="restaurant">
 	DELETE FROM restaurant_image
 	WHERE restaurant_id = #{value}
 </delete>
 
+<delete id="deleteRestaurantImageByFile" parameterType="restaurant">
+	DELETE FROM restaurant_image
+	WHERE image = #{value}
+</delete>
 
+<!-- SELECT -->
+<select id="selectRestaurantImageById" parameterType="_int" resultType="java.lang.String">
+	SELECT image
+	FROM  restaurant_image
+	WHERE restaurant_id = #{value}
+</select>
 
 
 

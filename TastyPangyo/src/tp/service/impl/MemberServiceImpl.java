@@ -36,21 +36,20 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public String login(String id) throws LoginFailException, MemberNotFoundException {
+	public Member login(String id, String password) throws LoginFailException, MemberNotFoundException {
 		SqlSession session = null;
 		try{
 			session = factory.getSqlSessionFactory().openSession();
 			
-			String pw = dao.selectMemberPw(session, id);
 			
 			if(dao.selectMemberById(session, id) == null){ // id 불일치
 				throw new MemberNotFoundException("존재하지 않는 아이디입니다");
 			}else{ // id 일치
-				if(!(pw.equals(dao.selectMemberById(session, id).getMemberPw()))){
+				if(!(password.equals(dao.selectMemberById(session, id).getMemberPw()))){
 					// 비밀번호 불일치
 					throw new LoginFailException("비밀번호가 일치하지 않습니다");
 				}//로그인 성공
-				return dao.selectMemberById(session, id).getMemberName();
+				return dao.selectMemberById(session, id);
 			}
 			
 		}finally{
@@ -72,43 +71,39 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 	@Override
-	public void updateMember(Member member) throws MemberNotFoundException {
+	public void updateMember(Member member) {
 		SqlSession session = null;
-		try{
-			session = factory.getSqlSessionFactory().openSession();
-			dao.updateMember(session, member);
-			session.commit();
-		}finally{
-			if(session != null) session.close();
-		}
+		
+		session = factory.getSqlSessionFactory().openSession();
+		dao.updateMember(session, member);
+		session.commit();
+		
+		if(session != null) session.close();
+		
 	}
 	@Override
-	public void deleteMember(String memberId) throws MemberNotFoundException {
+	public void deleteMember(String memberPw) {
 		SqlSession session = null;
-		try{
-			session = factory.getSqlSessionFactory().openSession();
-			if(dao.selectMemberById(session, memberId) == null){
-				throw new MemberNotFoundException(String.format("ID가 %s인 회원이 없습니다.", memberId));
-			}
-			dao.deleteMember(session, memberId);
-			session.commit();
-		}finally{
-			if(session != null) session.close();
-		}
+		
+		session = factory.getSqlSessionFactory().openSession();
+			
+		dao.deleteMember(session, memberPw);
+		session.commit();
+		
+		if(session != null) session.close();
+		
 	}
 	@Override
-	public void deleteMemberByVisitDate(Date visitDate) throws MemberNotFoundException {
+	public void deleteMemberByVisitDate(Date visitDate) {
 		SqlSession session = null;
-		try{
-			session = factory.getSqlSessionFactory().openSession();
-			if(dao.selectMemberByVisitDate(session, visitDate)==null){
-				throw new MemberNotFoundException("해당하는 회원이 없습니다.");
-			}
-			dao.deleteMemberByVisitDate(session, visitDate);
-			session.commit();
-		}finally{
-			if(session != null) session.close();
-		}
+		
+		session = factory.getSqlSessionFactory().openSession();
+			
+		dao.deleteMemberByVisitDate(session, visitDate);
+		session.commit();
+		
+		if(session != null) session.close();
+		
 	}
 	@Override
 	public List<Member> selectAllMember() {
