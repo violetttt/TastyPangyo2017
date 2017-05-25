@@ -23,30 +23,20 @@ public class LoginServlet extends HttpServlet {
 
 		// 1. 요청파라미터 조회
 		String id = req.getParameter("id");
+		String pw = req.getParameter("pw");
+		
 		
 		// 2. 처리- Model 호출
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
-		
 		try {
-			session.setAttribute("login", service.login(id));
+			session.setAttribute("login", service.login(id,pw));
 		} catch (LoginFailException e) {
-			session.setAttribute("login", "비밀번호가 일치하지 않습니다");
+			session.setAttribute("loginfail", e.getMessage());
 			
 		} catch (MemberNotFoundException e) {
-			session.setAttribute("login", "아이디가 존재하지 않습니다");
+			session.setAttribute("loginfail", e.getMessage());
 		}
-		
-/*				try {
-					name = service.login(id);
-				} catch (LoginFailException e) {
-					name = e.getMessage();
-				} catch (MemberNotFoundException e) {
-					name = e.getMessage();
-				}
-				
-				session.setAttribute("login", name);
-				session.setAttribute("fail", name);*/
-
+		session.setAttribute("id", id);
 		
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);

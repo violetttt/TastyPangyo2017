@@ -10,9 +10,8 @@
 <body>
 <jsp:include page="/member/memberSelect.jsp"/>
 모든 회원 리스트<br>
-<%= request.getAttribute("allmember") %>
 <c:forEach var="member" items="${requestScope.allmember}">
-${member }
+${member }<br>
 </c:forEach>
 </body>
 </html>

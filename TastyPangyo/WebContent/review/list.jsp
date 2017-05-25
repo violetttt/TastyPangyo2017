@@ -1,7 +1,14 @@
+<%@page import="java.util.Date"%>
+<%@page import="tp.vo.Member"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%  %>
+
+<!-- 세션으로 받은 레스토랑 정보, 로그인 정본로 화면 리스트 뿌려주기 -->
+
+<%  //임으로 값 넣어서 확인
+	Member member= new Member("admin", "java", "관리자", new Date() );
+	session.setAttribute("member", member); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +17,12 @@
 </head>
 <body>
 <!-- 리뷰index 화면 고정 -->
-<jsp:include page="/review/index.jsp"/>
+<jsp:include page="/review/select_form.jsp"/>
 
 <h3>리뷰목록</h3>
 <% if( request.getAttribute("keyword") != null){ %>
-${ requestScope.keyword }"(으)로 찾은 결과입니다.<br>
-<%} %>
+"${ requestScope.keyword }"(으)로 찾은 결과입니다.<br>
+<%	} %>
 
 
 <form action="/TastyPangyo/review/remove" method="post"><!-- 관리모드를 위한 폼 -->
@@ -30,16 +37,23 @@ ${ requestScope.keyword }"(으)로 찾은 결과입니다.<br>
 			<th width="500px"> 제목 </th>
 			<th width="150px"> 작성자</th>
 			<th width="200px"> 작성일</th>
-			<th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
+			<!-- 관리자만 볼수있게 !!!! -->
+			<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }">
+				<th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
+				<th width ="60px"> 수정 </th>
+			</c:if>
 		</tr>
 	</thead>
+	<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }">
 	<tfoot>
 		<tr>
-		<td colspan="7" style="text-align: center">
-		<input type="submit" value="삭제" onclick="리뷰를 삭제합니다!">
+		<td colspan="8" style="text-align: center">
+		<input type="hidden" name="deleteCk" value="yes">
+		<input type="submit" value="삭제" onclick="confirm('선택한 리뷰를 삭제합니다')">
 		</td>
 		</tr>
 	</tfoot>
+	</c:if>
 	<tbody>
 	<c:forEach items="${ reviews }" var="review">	
 		<tr>
@@ -49,9 +63,11 @@ ${ requestScope.keyword }"(으)로 찾은 결과입니다.<br>
 			<td><a href ="/TastyPangyo/review/show?reviewNo=${ review.reviewNo }">${ review.title }</a> </td>
 			<td> ${ review.memberId }</td>
 			<td> <fmt:formatDate value="${ review.registeredDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }" >
 			<td style="text-align:center"> <input type="checkbox" name="reviewNo" value="${ review.reviewNo }"></td>
+			<td style="text-align:center">  <a href="/TastyPangyo/review/show/update-mode?reviewNo=${ review.reviewNo }&updateCk=yes"><input type="button" value="수정"></a></td>
+			</c:if>		
 		</tr>
-		
 		
 	</c:forEach>
 	</tbody>

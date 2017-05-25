@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tp.service.impl.ReviewManagementServiceImpl;
+import tp.service.impl.ReviewServiceImpl;
 
 /**
  * 리뷰 조회 서블릿
@@ -34,7 +34,7 @@ public class SelectReviewServlet extends HttpServlet{
 		System.out.println(keyword);	//로그
 		
 		// 비지니스로직처리
-		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 		
 		switch(param){
 			case "allReviews" :
@@ -87,7 +87,7 @@ public class SelectReviewServlet extends HttpServlet{
 //		System.out.println(keyword);	//로그
 		
 		// 비지니스로직처리
-		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 		
 		switch(param){
 			case "allReviews" :

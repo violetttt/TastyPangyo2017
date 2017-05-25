@@ -10,7 +10,7 @@ import tp.vo.Review;
  * @author Chloe
  *
  */
-public interface ReviewManagementService {
+public interface ReviewService {
 	/**
 	 * 리뷰 등록하는 메서드
 	 * @param review

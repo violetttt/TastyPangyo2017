@@ -1,16 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 
 <!-- 리뷰index 화면 고정 -->
 <jsp:include page="/review/index.jsp"/>
 
+<!-- 리뷰등록페이지로 가기 -->
+<a href ="/TastyPangyo/review/register_form.jsp" ><input type="button" value="리뷰등록페이지로"></a><br>
+<hr>	
 <!-- 전체목록 조회 -->
 <form action="/TastyPangyo/review/select" method="post">
 	전체목록 
@@ -25,7 +22,7 @@
 
 <!-- 제목으로 찾기 -->
 <form action="/TastyPangyo/review/select" method="post">
-	제목으로 찾기 <input type="search" name="title" placeholder="제목 일부를 입력하세요"> 
+	제목으로 찾기 <input type="search" name="title" placeholder="제목 일부를 입력하세요" required oninvalid="alert('값을 입력하세요!')"> 
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
@@ -96,11 +93,13 @@
 		<option value="28">28</option>
 		<option value="29">29</option>
 		<option value="30">30</option>
-		<option value="31">31</option>
+		<option value="31">31</option> 	
 	</select>
-	
 	<input type="submit" value="리뷰검색"><br>
-</form>		
+
+</form>
+<hr>
 
 </body>
 </html>
+

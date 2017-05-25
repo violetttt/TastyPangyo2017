@@ -183,6 +183,15 @@
     <url-pattern>/review/show</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Review Update Viewer</servlet-name>
+    <servlet-class>tp.controller.ShowReviewUpdateModeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Update Viewer</servlet-name>
+    <url-pattern>/review/show/update-mode</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
     <servlet-name>Review Remover</servlet-name>
     <servlet-class>tp.controller.RemoveReviewServlet</servlet-class>
@@ -191,6 +200,17 @@
     <servlet-name>Review Remover</servlet-name>
     <url-pattern>/review/remove</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Review Updater</servlet-name>
+    <servlet-class>tp.controller.UpdateReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Review Updater</servlet-name>
+    <url-pattern>/review/update</url-pattern>
+  </servlet-mapping>
+  
+  
 
   
 </web-app>

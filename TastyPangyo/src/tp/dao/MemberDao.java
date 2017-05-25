@@ -47,7 +47,7 @@ public interface MemberDao  {
 	 * @throws MemberNotFoundException
 	 * @throws SQLException
 	 */
-	int deleteMember(SqlSession session, String memberId);			
+	int deleteMember(SqlSession session, String memberPw);			
 	
 	
 	/**
