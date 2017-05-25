@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import tp.dao.impl.RestaurantDaoImpl;
+import tp.exception.NotInputDataException;
+import tp.exception.NotFoundRestaurantIdException;
 import tp.service.RestaurantService;
 import tp.util.SqlSessionFactoryManager;
 import tp.vo.Restaurant;
@@ -45,12 +47,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	RestaurantDaoImpl dao = RestaurantDaoImpl.getInstance();
 	
 	@Override
-	public void addRestaurant(Restaurant restaurant) throws SQLException {
+	public void addRestaurant(Restaurant restaurant) {
 		SqlSession session =null;
 		try{
 			session = factory.openSession();
 			count = dao.addRestaurant(restaurant, session);
-			System.out.println(count + "행 증가");
+//			System.out.println(count + "행 증가");
 			session.commit();
 		}finally{
 			session.close();
@@ -58,12 +60,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public void modRestaurant(Restaurant restaurant) throws SQLException {
+	public void modRestaurant(Restaurant restaurant) throws NotFoundRestaurantIdException {
 		SqlSession session=null;
 		try{
 			session = factory.openSession();
+			if(dao.selectRestaurantByID(restaurant.getRestaurantId(), session)==null){
+				throw new NotFoundRestaurantIdException("조회된 id - "+restaurant.getRestaurantId()+" 가 없습니다");
+			}
 			count = dao.modRestaurant(restaurant, session);
-			//System.out.println(count + "행 변경");
 			session.commit();
 		}finally{
 			session.close();
@@ -72,11 +76,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public void deleteRestaurant(int restaurantId) throws SQLException {
+	public void deleteRestaurant(int restaurantId) throws NotFoundRestaurantIdException {
 		SqlSession session = null;
 		try {
 			session = factory.openSession();
+			if(dao.selectRestaurantByID(restaurantId, session)==null){
+				throw new NotFoundRestaurantIdException("조회된 id - "+restaurantId+" 가 없습니다.");
+			}
 			count = dao.deleteRestaurant(restaurantId, session);
+			
 			//System.out.println(count+"행 삭제");
 			session.commit();
 		} finally {
@@ -87,20 +95,29 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	
 	// --------------------조회---------------------
+	/**
+	 * 맛집 id로 맛집조회
+	 */
 	@Override
-	public Restaurant selectRestaurantByID(int restaurantId) throws SQLException {
+	public Restaurant selectRestaurantByID(int restaurantId) throws NotFoundRestaurantIdException {
 		SqlSession session = null;
 		try {
 			session = factory.openSession();
+			if(dao.selectRestaurantByID(restaurantId, session)==null){
+				throw new NotFoundRestaurantIdException("조회된 id - "+restaurantId+" 가 없습니다.");
+			}
 			return dao.selectRestaurantByID(restaurantId, session);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 맛집 이름으로 맛집리스트 조회
+	 */
 	@Override
-	public List<Restaurant> selectRestaurantByName(String restaurantName) throws SQLException {
+	public List<Restaurant> selectRestaurantByName(String restaurantName){
 			SqlSession session = null;
 		try {
 			session = factory.openSession();
@@ -110,9 +127,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 음식 종류별로 맛집 조회
+	 */
 	@Override
-	public List<Restaurant> selectRestaurantBySort(String foodCategory) throws SQLException {
+	public List<Restaurant> selectRestaurantBySort(String foodCategory) {
 		SqlSession session = null;
 		try {
 			session = factory.openSession();
@@ -122,9 +142,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 위치로 (건물별) 맛집 조회
+	 */
 	@Override
-	public List<Restaurant> selectRestaurantByLocation(String location) throws SQLException {
+	public List<Restaurant> selectRestaurantByLocation(String location) {
 		SqlSession session = null;
 		try {
 			session = factory.openSession();
@@ -135,6 +158,22 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
+	/**
+	 * 전체조회
+	 */
+	@Override
+	public List<Restaurant> selectAllRestaurant() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectAllRestaurant(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+
+	
 	
 	public void printList(List<Restaurant> list, String label){
 	      System.out.printf("-----------%s-----------%n", label);
@@ -144,6 +183,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	      System.out.println("-----------------------------------");
 	      
 	   }
+
 
 
 }

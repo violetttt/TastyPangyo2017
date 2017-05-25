@@ -9,7 +9,8 @@ import tp.dao.RestaurantImageDao;
 import tp.dao.impl.RestaurantImageDaoImpl;
 import tp.service.RestaurantImageService;
 import tp.util.SqlSessionFactoryManager;
-import tp.vo.RestaurantImage;
+import tp.vo.Restaurant;
+
 
 public class RestaurantImageServiceImpl implements RestaurantImageService {
 	
@@ -29,15 +30,15 @@ public class RestaurantImageServiceImpl implements RestaurantImageService {
 	SqlSessionFactoryManager ssfm = SqlSessionFactoryManager.getInstance();
 	RestaurantImageDao dao = RestaurantImageDaoImpl.getInstance();
 	
-	RestaurantImage restaurantImage = null;
+	Restaurant restaurant = null;
 	int count = 0;
 	
 	@Override
-	public void insertRestaurantImage(RestaurantImage restaurantImage) {
+	public void insertRestaurantImage(Restaurant restaurant) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			count = dao.insertRestaurantImage(session, restaurantImage);
+			count = dao.insertRestaurantImage(session, restaurant);
 			System.out.println("추가된 이미지 수 :"+count);
 			session.commit();
 			

@@ -8,21 +8,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import tp.dao.impl.ReviewDaoImpl;
-import tp.service.ReviewManagementService;
+import tp.service.ReviewService;
 import tp.util.SqlSessionFactoryManager;
 import tp.vo.Review;
 
 
-public class ReviewManagementServiceImpl implements ReviewManagementService {
+public class ReviewServiceImpl implements ReviewService {
 	private static SqlSessionFactory factory;
-	private static ReviewManagementServiceImpl instance;
-	private ReviewManagementServiceImpl() throws IOException{
+	private static ReviewServiceImpl instance;
+	private ReviewServiceImpl() throws IOException{
 		SqlSessionFactoryManager ssfm = SqlSessionFactoryManager.getInstance();
 		factory = ssfm.getSqlSessionFactory();
 	}
-	public static ReviewManagementServiceImpl getInstance() throws IOException{
+	public static ReviewServiceImpl getInstance() throws IOException{
 		if(instance == null){
-			instance = new ReviewManagementServiceImpl();
+			instance = new ReviewServiceImpl();
 		}
 		return instance;
 	}
