@@ -11,14 +11,15 @@
 <table>
 	<tr>
 		<td>현재 별명</td>
-		<td></td>
+		<td><input type="text" name="rename" value="${sessionScope.name }" readonly></td>
 	</tr>
 	<tr>
 		<td>변경할 별명</td>
 		<td>
 			<input type="text" name="rename" placeholder="변경하실 별명을 입력하세요">
-			<input type="submit" value="변경">
+			
 		</td>
+		<td><input type="submit" value="변경"></td>
 	</tr>
 </table>
 

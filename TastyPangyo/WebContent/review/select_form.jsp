@@ -96,5 +96,10 @@
 		<option value="31">31</option> 	
 	</select>
 	<input type="submit" value="리뷰검색"><br>
+
 </form>
 <hr>
+
+</body>
+</html>
+

@@ -12,9 +12,9 @@ public class Restaurant implements Serializable{
 	private String restaurantTelNum;
 	private String introduction;
 	private String menu;
-	
+
 	ArrayList<Review> reviews;         	//조인 위한 리뷰들
-	ArrayList<String> images;  //조인 위한 사진들 
+	ArrayList<String> images;  			//조인 위한 사진들 
 	
 	public Restaurant(){}
 	
@@ -55,6 +55,7 @@ public class Restaurant implements Serializable{
 		this.introduction = introduction;
 		this.menu = menu;
 	}
+
 
 	@Override
 	public String toString() {
@@ -201,6 +202,8 @@ public class Restaurant implements Serializable{
 		this.menu = menu;
 	}
 
+
+
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
@@ -217,6 +220,7 @@ public class Restaurant implements Serializable{
 		this.images = images;
 	}
 
+	
 	
 	
 	

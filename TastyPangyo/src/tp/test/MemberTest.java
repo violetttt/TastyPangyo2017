@@ -9,13 +9,14 @@ import org.apache.ibatis.session.SqlSession;
 
 import tp.dao.impl.MemberDaoImpl;
 import tp.exception.DuplicatedIdException;
+import tp.exception.LoginFailException;
 import tp.exception.MemberNotFoundException;
 import tp.service.impl.MemberServiceImpl;
 import tp.vo.Member;
 
 public class MemberTest {
 
-	public static void main(String[] args) throws IOException, DuplicatedIdException, SQLException, MemberNotFoundException {
+	public static void main(String[] args) throws IOException, DuplicatedIdException, SQLException, MemberNotFoundException, LoginFailException {
 		
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
 		MemberDaoImpl dao = MemberDaoImpl.getInstance();
@@ -28,14 +29,18 @@ public class MemberTest {
 		Member m4 = new Member("id-4", "pw-4", "곤충", new Date());
 		Member m5 = new Member("id", "pw-5", "식물", new Date());
 		Member m6 = new Member("new", "flower", "꽃", new Date());
+		
+// 로그인
+		//System.out.println(service.login("shh"));
+		
 		// 등록 - O
-		service.insertMember(m6);
+		//service.insertMember(m6);
 	
 		// 수정 - O
-		service.updateMember(m5);
+		//service.updateMember(m5);
 		
 		// 삭제 - O
-		service.deleteMember("id-4");
+		//service.deleteMember("id-4");
 		
 // 조회
 		// 회원수 조회 - O

@@ -5,7 +5,7 @@
 
 <!-- INSERT -->
 
-<insert id="insertRestaurantImage" parameterType="restaurantImage">
+<insert id="insertRestaurantImage" parameterType="restaurant">
 	INSERT INTO restaurant_image
 	VALUES( 
 			#{image},
@@ -13,7 +13,7 @@
 			)
 </insert>
 
-<delete id="deleteRestaurantImage" parameterType="restaurantImage">
+<delete id="deleteRestaurantImage" parameterType="restaurant">
 	DELETE FROM restaurant_image
 	WHERE restaurant_id = #{value}
 </delete>
