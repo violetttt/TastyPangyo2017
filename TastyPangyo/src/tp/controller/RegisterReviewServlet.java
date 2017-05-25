@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import tp.service.impl.ReviewManagementServiceImpl;
 import tp.vo.Review;
 
-public class ReviewRegister extends HttpServlet{
+public class RegisterReviewServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

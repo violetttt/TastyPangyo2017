@@ -6,10 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%if(request.getAttribute("errorMessage")!=null){%>
-	<span style = "color:red;">
-	<%=request.getAttribute("errorMessage") %>
-	</span>
-	<%} %>
+
 </body>
 </html>

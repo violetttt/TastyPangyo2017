@@ -10,6 +10,7 @@ import tp.exception.NotFoundRestaurantIdException;
 import tp.vo.Restaurant;
 
 public interface RestaurantService {
+
 	public void addRestaurant(Restaurant restaurant);
 	
 	public void modRestaurant(Restaurant restaurant) throws NotFoundRestaurantIdException;
@@ -23,5 +24,7 @@ public interface RestaurantService {
 	List<Restaurant> selectRestaurantBySort(String foodCategory);	
 	
 	List<Restaurant> selectRestaurantByLocation(String location);	
+	
+	List<Restaurant> selectAllRestaurant();
 	
 }

@@ -17,7 +17,7 @@ import tp.service.impl.ReviewManagementServiceImpl;
  * @author KOSTA
  *
  */
-public class ReviewSelector extends HttpServlet{
+public class SelectReviewServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

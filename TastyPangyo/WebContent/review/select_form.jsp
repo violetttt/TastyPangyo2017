@@ -99,7 +99,7 @@
 	</select>
 	
 	<input type="submit" value="리뷰검색"><br>
-</form>
+</form>		
 
 </body>
 </html>

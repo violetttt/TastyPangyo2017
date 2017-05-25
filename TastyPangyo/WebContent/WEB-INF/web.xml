@@ -119,7 +119,7 @@
   	<url-pattern>/updateRes</url-pattern>
   </servlet-mapping>
   
-  <!-- 맛집 조회 서블릿 객체 등록 -->
+  <!-- 맛집조회 서블릿 객체 등록 -->
    <servlet>
   	<servlet-name>selectRestaurantServlet</servlet-name>
   	<servlet-class>tp.controller.SelectRestaurantServlet</servlet-class>

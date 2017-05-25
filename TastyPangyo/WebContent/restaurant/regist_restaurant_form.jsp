@@ -19,7 +19,7 @@
 				   유스페이스2<input type = "radio" name="location" value="유스페이스2" ><br>
 				  H스퀘어<input type = "radio" name="location" value="H스퀘어" ><br><br>
 		
-		음식 종류 : 한식<input type = "radio" name="foodCategory" value="한식" ><br>
+		음식 종류 : <br>한식<input type = "radio" name="foodCategory" value="한식" ><br>
 				   양식<input type = "radio" name="foodCategory" value="양식" ><br>
 				   중식<input type = "radio" name="foodCategory" value="중식"><br>
 				   일식<input type = "radio" name="foodCategory" value="일식" ><br>

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tp.exception.NotFoundRestaurantIdException;
 import tp.service.impl.RestaurantServiceImpl;
@@ -30,23 +31,23 @@ public class UpdateRestaurantServlet extends HttpServlet{
 		
 		//2. 처리
 
-				
+		HttpSession session = req.getSession();		
 		RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();
 									//결과를 보여줄 변수
 		
 
 		try {
 			service.modRestaurant(new Restaurant(resId, foodCategory, location, resName, hits, resTelNum, introduction, menu));
-			req.setAttribute("updateRes", "변경 성공");
+			session.setAttribute("updateRes", "변경 성공");
 		} catch (NotFoundRestaurantIdException e) {
-			req.setAttribute("updateRes", e.getMessage());
+			session.setAttribute("updateRes", e.getMessage());
 		}	
 			
 		
 			
 			
 		//3. 응답
-			req.getRequestDispatcher("/restaurant/update_success.jsp").forward(req, resp);
+			resp.sendRedirect("restaurant/update_success.jsp");
 		
 		
 		

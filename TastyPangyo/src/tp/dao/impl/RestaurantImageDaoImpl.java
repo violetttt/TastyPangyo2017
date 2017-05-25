@@ -3,7 +3,7 @@ package tp.dao.impl;
 import org.apache.ibatis.session.SqlSession;
 
 import tp.dao.RestaurantImageDao;
-import tp.vo.RestaurantImage;
+import tp.vo.Restaurant;
 
 public class RestaurantImageDaoImpl implements RestaurantImageDao {
 
@@ -15,8 +15,8 @@ public class RestaurantImageDaoImpl implements RestaurantImageDao {
 	}
 	
 	@Override
-	public int insertRestaurantImage(SqlSession session, RestaurantImage restaurantImage) {
-		return session.insert("tp.config.mapper.restaurantImageMapper.insertRestaurantImage",restaurantImage);
+	public int insertRestaurantImage(SqlSession session, Restaurant restaurant) {
+		return session.insert("tp.config.mapper.restaurantImageMapper.insertRestaurantImage",restaurant);
 	}
 
 	@Override

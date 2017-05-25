@@ -25,4 +25,6 @@ public interface RestaurantDao {
 	
 	List<Restaurant> selectRestaurantByLocation(String location, SqlSession session);	// 위치로 맛집List 조회
 	
+	List<Restaurant> selectAllRestaurant (SqlSession session);	// 전체 맛집조회
+	
 }

@@ -95,6 +95,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	
 	// --------------------조회---------------------
+	/**
+	 * 맛집 id로 맛집조회
+	 */
 	@Override
 	public Restaurant selectRestaurantByID(int restaurantId) throws NotFoundRestaurantIdException {
 		SqlSession session = null;
@@ -109,7 +112,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 맛집 이름으로 맛집리스트 조회
+	 */
 	@Override
 	public List<Restaurant> selectRestaurantByName(String restaurantName){
 			SqlSession session = null;
@@ -121,7 +127,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 음식 종류별로 맛집 조회
+	 */
 	@Override
 	public List<Restaurant> selectRestaurantBySort(String foodCategory) {
 		SqlSession session = null;
@@ -133,7 +142,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 위치로 (건물별) 맛집 조회
+	 */
 	@Override
 	public List<Restaurant> selectRestaurantByLocation(String location) {
 		SqlSession session = null;
@@ -146,6 +158,22 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
+	/**
+	 * 전체조회
+	 */
+	@Override
+	public List<Restaurant> selectAllRestaurant() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectAllRestaurant(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+
+	
 	
 	public void printList(List<Restaurant> list, String label){
 	      System.out.printf("-----------%s-----------%n", label);
@@ -155,6 +183,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	      System.out.println("-----------------------------------");
 	      
 	   }
+
 
 
 }

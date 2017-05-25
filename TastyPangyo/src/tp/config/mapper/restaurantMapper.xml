@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tp.config.mapper.restaurantMapper">
 	
-	<!-- 맛집 전체 정보 조회 -->
+	<!-- 맛집 정보 조회 (사진들과 리뷰 포함)-->
 	<sql id="select-sql">
 	SELECT    r.restaurant_id,
 			  r.food_category,
@@ -22,6 +22,7 @@
 	   		  v.kostar   
 	FROM   restaurant r, restaurant_image i, review v
 	</sql>
+	
 
 
 	<!-- 맛집 맵 -->
@@ -39,10 +40,10 @@
 	<!-- 맛집(리뷰,사진포함) resultmap -->
 	<resultMap type="restaurant"  id ="restaurantInfo-resultmap" extends ="restaurant-resultmap">
 		
-		<!-- 사진들 받는 ArrayList -->
-		<collection ofType ="restaurantImage"	property="images">
-		<result column="restaurant_id" property="restaurantId"/>
-		<result column="image" property="image"/>
+		<!-- 사진들 받는 ArryList -->
+		<collection ofType="restaurant" 		property="images">
+			<result column = "restaurant_id"	property="restaurantId"/>
+			<result column = "image"		property="image"/>
 		</collection>
 		
 		<!-- 리뷰들 받는 ArrayList -->
@@ -157,6 +158,22 @@
 		FROM   restaurant												 
 		WHERE  location like '%'||#{restaurantName}||'%'													
 	 </select>
+	 
+	 <!-- 전체 맛집List조회 -->
+	 <select id="selectAllRestaurant" resultMap = "restaurant-resultmap">
+	 	SELECT 	
+			restaurant_id,
+			food_category,
+			location,
+			restaurant_name,
+			hits,		
+			restaurant_tel_num,
+			introduction,
+			menu	
+	 	FROM
+	 		restaurant	 
+	 </select>
+	 
 	 
 
 

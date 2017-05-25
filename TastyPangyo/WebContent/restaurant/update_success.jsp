@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=request.getAttribute("updateRes")%>
+<%=session.getAttribute("updateRes")%>
 </body>
 </html>

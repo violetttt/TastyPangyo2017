@@ -19,6 +19,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 1.요청파라미터 조회
 		req.setCharacterEncoding("utf-8");
+		HttpSession session = req.getSession();
 
 		String name = req.getParameter("resName");
 		String resTelNum = req.getParameter("resTelNum");
@@ -32,13 +33,15 @@ public class InsertRestaurantServlet extends HttpServlet {
 
 		if (name.isEmpty() || resTelNum.isEmpty() || location.isEmpty() || foodCategory.isEmpty() || menu.isEmpty()
 				|| introduction.isEmpty()) {
-			req.setAttribute("insertRes", "값을 입력해 주세요");
+			session.setAttribute("insertRes", "값을 입력해 주세요");
 		} else {
 			Restaurant res = new Restaurant(0, foodCategory, location, name, 0, resTelNum, introduction, menu);
 			service.addRestaurant(res);
-			req.setAttribute("insertRes", "등록이 완료되었습니다");
+			session.setAttribute("insertRes", "등록이 완료되었습니다.");
+			session.setAttribute("restaurantList",service.selectAllRestaurant());
 		}
-		req.getRequestDispatcher("/restaurant/regist_success.jsp").forward(req, resp);
+		
+		resp.sendRedirect("restaurant/regist_success.jsp");
 	}
 
 }
