@@ -11,6 +11,7 @@
   </welcome-file-list>
   
   
+  
   <!-- ********************회원관리 관련******************** -->
   
   <!-- 로그인 서블릿  -->
@@ -209,8 +210,48 @@
     <servlet-name>Review Updater</servlet-name>
     <url-pattern>/review/update</url-pattern>
   </servlet-mapping>
+
+  
+  <listener>
+   <listener-class>tp.controller.TastyPangyoListener</listener-class>
+ </listener>
   
   
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>tp.controller.TastyPangyoListenerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index.do</url-pattern>
+    </servlet-mapping>
+
+  <!-- ********************맛집 이미지 관련******************** --> 
+	
+ <context-param>
+    <param-name>rootPath</param-name>
+    <param-value>/TastyPangyo</param-value>
+ </context-param>
+ <context-param>
+    <param-name>tempdir</param-name>
+    <param-value>C:\temp</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>ImageUploadServlet</servlet-name>
+    <servlet-class>tp.controller.RestaurantImageUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageUploadServlet</servlet-name>
+    <url-pattern>/tp/imageupload</url-pattern>
+  </servlet-mapping>
+   <servlet>
+  	<servlet-name>DeleteImage</servlet-name>
+  	<servlet-class>tp.controller.DeleteRestaurantImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteImage</servlet-name>
+  	<url-pattern>/tp/imagedelete</url-pattern>
+  </servlet-mapping>
 
   
 </web-app>
