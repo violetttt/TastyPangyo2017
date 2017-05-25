@@ -43,7 +43,7 @@
 		<!-- 사진들 받는 ArryList -->
 		<collection ofType=	"restaurant" 		property="images">
 			<result column = "restaurant_id"	property="restaurantId"/>
-			<result column = "image"			property="image"/>
+			<result column = "image"			property="image" />
 		</collection>
 		
 		<!-- 리뷰들 받는 ArrayList -->
