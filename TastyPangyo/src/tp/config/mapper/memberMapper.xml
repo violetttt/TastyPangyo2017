@@ -62,7 +62,7 @@ FROM    	member m, review r
 
 <!-- 회원정보 삭제 - 사용자 -->
 <delete id="deleteMember" parameterType="String">
-	DELETE FROM member WHERE member_id = #{value}
+	DELETE FROM member WHERE member_pw = #{memberPw}
 </delete>
 
 <!-- 회원정보 삭제 - 관리자 -->
