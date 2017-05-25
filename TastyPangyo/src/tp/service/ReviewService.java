@@ -10,7 +10,7 @@ import tp.vo.Review;
  * @author Chloe
  *
  */
-public interface ReviewManagementService {
+public interface ReviewService {
 	/**
 	 * 리뷰 등록하는 메서드
 	 * @param review
@@ -115,6 +115,12 @@ public interface ReviewManagementService {
 	 * @return
 	 */
 	List<Review> selectReviewByMemberId(String memberId);
+	
+	/**
+	 *  평균별점 순으로 맛집조회
+	 * @return
+	 */
+	List<Review> selectRestaurantIdByAvgKostar();
 	
 	
 }

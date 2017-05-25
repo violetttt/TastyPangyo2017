@@ -27,7 +27,7 @@ a:hover{
 </head>
 <body>
 <jsp:include page="/jsp/common.jsp"/>
-<h1>회원 조회</h1>
+<h1>회원 관리</h1>
 <hr>
 <a href="/TastyPangyo/allmember">전체 회원 보기</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <a href="/TastyPangyo/count">총회원수 보기</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

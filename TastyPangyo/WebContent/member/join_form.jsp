@@ -18,15 +18,15 @@ body{background-color : Bisque; text-align : center;}
 <table>
 <tr>
 	<td>아이디</td>
-	<td><input type="text" name="id" placeholder="아이디를 입력하세요"></td>
+	<td><input type="text" name="id" placeholder="아이디를 입력하세요" required oninvalid="setCustomValidity('아이디를 입력해주세요!')" oninput="setCustomValidity('')"></td>
 </tr>
 <tr>
 	<td>비밀번호</td>
-	<td><input type="password" name="pw" placeholder="비밀번호를 입력하세요"></td>
+	<td><input type="password" name="pw" placeholder="비밀번호를 입력하세요" required oninvalid="setCustomValidity('비밀번호를 입력해주세요!')" oninput="setCustomValidity('')"></td>
 </tr>
 <tr>
 	<td>이름</td>
-	<td><input type="text" name="name" placeholder="이름을 입력하세요"></td>
+	<td><input type="text" name="name" placeholder="이름을 입력하세요" required oninvalid="setCustomValidity('이름을 입력해주세요!')" oninput="setCustomValidity('')"></td>
 </tr>
 </table>
 <input type="submit" value="가입">

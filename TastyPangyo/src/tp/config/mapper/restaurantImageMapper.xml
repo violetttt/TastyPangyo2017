@@ -5,7 +5,7 @@
 
 <!-- INSERT -->
 
-<insert id="insertRestaurantImage" parameterType="restaurantImage">
+<insert id="insertRestaurantImage" parameterType="restaurant">
 	INSERT INTO restaurant_image
 	VALUES( 
 			#{image},
@@ -13,12 +13,24 @@
 			)
 </insert>
 
-<delete id="deleteRestaurantImage" parameterType="restaurantImage">
+<!-- DELTE -->
+
+<delete id="deleteRestaurantImage" parameterType="restaurant">
 	DELETE FROM restaurant_image
 	WHERE restaurant_id = #{value}
 </delete>
 
+<delete id="deleteRestaurantImageByFile" parameterType="restaurant">
+	DELETE FROM restaurant_image
+	WHERE image = #{value}
+</delete>
 
+<!-- SELECT -->
+<select id="selectRestaurantImageById" parameterType="_int" resultType="java.lang.String">
+	SELECT image
+	FROM  restaurant_image
+	WHERE restaurant_id = #{value}
+</select>
 
 
 

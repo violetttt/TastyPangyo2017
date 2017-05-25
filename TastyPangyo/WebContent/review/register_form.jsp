@@ -1,6 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	Date date = new Date();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,9 +116,14 @@
 
 
 <body>
+
+
+<!-- 리뷰index 화면 고정 -->
+<jsp:include page="/review/select_form.jsp"/>
+
 	<h3>리뷰 등록 페이지</h3>
 	<div class="review_form">
-		<form id="review_form" action="/TastyPangyo/review/register"
+		<form id="review_form" action="/TastyPangyo/review/register_forward.jsp"
 			method="post">
 			<fieldset class="review_form" size="150">
 				<legend class="screen_out">리뷰등록 form</legend>
@@ -151,9 +159,7 @@
 				</div>
 				<input type="reset" value="입력초기화"> 
 		 		<input type="submit" value="리뷰등록" >
-			
 			</fieldset>
-			
 		</form>
 	</div>
 

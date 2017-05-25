@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=request.getAttribute("result")%>
+<%=session.getAttribute("insertRes")%>
+<%=session.getAttribute("restaurantList") %>
 </body>
 </html>

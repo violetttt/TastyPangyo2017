@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import tp.service.impl.ReviewManagementServiceImpl;
+import tp.service.impl.ReviewServiceImpl;
 import tp.vo.Review;
 
 public class RegisterReviewServlet extends HttpServlet{
@@ -27,6 +27,7 @@ public class RegisterReviewServlet extends HttpServlet{
 		}
 		*/
 	
+		/*
 		// 1. 요청 파라미터 조회
 		
 		int restaurantId = Integer.parseInt(req.getParameter("restaurantId"));
@@ -39,17 +40,29 @@ public class RegisterReviewServlet extends HttpServlet{
 	
 		
 		// 2. 비지니스로직 처리
-		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 		Review review = new Review(0, memberId, restaurantId, restaurantName, registeredDate, title, comments, kostar);
 		rms.addReview(review);
 		
-		session.setAttribute("review", review);
+		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
 		
 		// 3. 요청 디스패처로 전달
 		//우선 등록 성공페이지(register_success.jsp)에서 등록한 정보 모두 보여줌
-		resp.sendRedirect("../review/output.jsp");
+		resp.sendRedirect("../review/list.jsp");
 //		req.getRequestDispatcher("/review/output.jsp").forward(req, resp);
-	
+	*/
+		
+		// 1. 요청 파라미터 조회
+		Review review = (Review)req.getAttribute("review");
+		review.setRegisteredDate(new Date());
+		System.out.println(review);
+		// 2. 비지니스로직 처리
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
+		rms.addReview(review);
+		
+		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
+		
+		resp.sendRedirect("../review/list.jsp");
 	}
 	 
 

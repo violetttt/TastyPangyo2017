@@ -16,6 +16,13 @@ import tp.vo.Member;
  *
  */
 public interface MemberDao  {  
+	
+	
+	/**
+	 * 로그인 체크 
+	 * @param id
+	 */
+	String selectMemberPw(SqlSession session, String id);
 	/**
 	 * 회원정보 등록
 	 * @param member
@@ -40,7 +47,7 @@ public interface MemberDao  {
 	 * @throws MemberNotFoundException
 	 * @throws SQLException
 	 */
-	int deleteMember(SqlSession session, String memberId);			
+	int deleteMember(SqlSession session, String memberPw);			
 	
 	
 	/**

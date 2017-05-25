@@ -5,21 +5,26 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import tp.exception.NotInputDataException;
+import tp.exception.NotFoundRestaurantIdException;
 import tp.vo.Restaurant;
 
 public interface RestaurantService {
-	public void addRestaurant(Restaurant restaurant) throws SQLException;
+
+	public void addRestaurant(Restaurant restaurant);
 	
-	public void modRestaurant(Restaurant restaurant) throws SQLException;
+	public void modRestaurant(Restaurant restaurant) throws NotFoundRestaurantIdException;
 	
-	public void deleteRestaurant(int restaurantId) throws SQLException;
+	public void deleteRestaurant(int restaurantId) throws NotFoundRestaurantIdException;
 	
-	Restaurant selectRestaurantByID(int restaurantId) throws SQLException;
+	Restaurant selectRestaurantByID(int restaurantId) throws NotFoundRestaurantIdException;
 	
-	List<Restaurant> selectRestaurantByName(String restaurantName) throws SQLException; 
+	List<Restaurant> selectRestaurantByName(String restaurantName); 
 	
-	List<Restaurant> selectRestaurantBySort(String foodCategory) throws SQLException;	
+	List<Restaurant> selectRestaurantBySort(String foodCategory);	
 	
-	List<Restaurant> selectRestaurantByLocation(String location)throws SQLException;	
+	List<Restaurant> selectRestaurantByLocation(String location);	
+	
+	List<Restaurant> selectAllRestaurant();
 	
 }

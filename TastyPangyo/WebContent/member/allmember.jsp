@@ -9,10 +9,28 @@
 </head>
 <body>
 <jsp:include page="/member/memberSelect.jsp"/>
-모든 회원 리스트<br>
-<%= request.getAttribute("allmember") %>
+<table border="1">
+<thead>
+	<tr>
+		<th>회원 아이디</th>
+		<th>회원 이름</th>
+		<th>최종 방문일</th>
+		<th>작성 리뷰</th>
+	</tr>
+</thead>
+<tbody>
 <c:forEach var="member" items="${requestScope.allmember}">
-${member }
+	<tr>
+		<td>${member.memberId }</td>
+		<td>${member.memberName }</td>
+		<td>${member.visitDate }</td>
+		<td><a href="">보기</a></td>
+	</tr>
 </c:forEach>
+</tbody>
+</table>
+
+
+
 </body>
 </html>
