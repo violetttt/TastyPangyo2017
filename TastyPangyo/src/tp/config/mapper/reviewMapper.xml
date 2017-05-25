@@ -104,9 +104,21 @@
         AND		review_no = #{reviewNo} 
     </update>
     
-    <delete id="deleteReviewSelected" parameterType="_int" >
+    <delete id="deleteReviewSelected" parameterType="java.util.ArrayList" >
         DELETE FROM	review
-	    WHERE  		review_no = #{value}
+        <where>
+			<choose>
+				<when test="list != null and list.size() > 0">
+	 		 		review_no IN 
+	 		 		<foreach collection="list" open="(" close=")" separator="," item="reviewNo">
+	 		 			#{reviewNo}
+	 		 		</foreach>
+	 		 	</when>
+	 		 	<otherwise>
+					1 = -1	<!-- 아무것도 select안되게 거짓 조건 설정 -->
+				</otherwise>
+	 		 </choose>
+	 	</where>
     </delete>
    
     
@@ -151,17 +163,19 @@
     <!-- 동적쿼리이용 모든 리뷰 조회 (정렬 조건) -->
     <select id="selectAllReview" parameterType="java.lang.String" resultMap="review-resultmap">
    	 	<include refid="select-sql"/>
-   	 		<choose>
-   	 			<when test="value == registeredDate">
-   	 			ORDER BY #{ value } DESC
+   	 	${value}
+   	 		<!-- <choose>
+   	 			<when test="value != null and value =='member_id'">
+   	 			ORDER BY ${ value } DESC
    	 			</when>
    	 			<otherwise>
-   	 			ORDER BY #{ value } 
+   	 			ORDER BY ${ value }  
    	 			</otherwise>
-   	 		</choose>
-    </select>
+   	 		</choose> -->
+	  </select>
     
-    <select id="selectAllReviewOrderByNo" resultMap="review-resultmap">
+    
+   <!--  <select id="selectAllReviewO	rderByNo" resultMap="review-resultmap">
 	    <include refid="select-sql"/>
 	    ORDER BY	review_no
     </select>
@@ -174,16 +188,21 @@
     <select id="selectAllReviewOrderByNewestRegistered" resultMap="review-resultmap">
 	    <include refid="select-sql"/>
 	    ORDER BY	registered_date DESC
-    </select>
+    </select> -->
     
     <select id="selectReviewByNo" parameterType="_int" resultMap="review-resultmap">
         <include refid="select-sql"/>
         WHERE	review_no = #{value}
     </select>
     
-    <select id="selectReviewByRegisteredDate" parameterType="java.util.Date" resultMap="review-resultmap">
+    <select id="selectReviewByMemberId" parameterType="java.lang.String" resultMap="review-resultmap">
         <include refid="select-sql"/>
-        WHERE	registered_date = #{value}
+        WHERE	member_id = #{value}
+    </select>
+    
+    <select id="selectReviewByRegisteredDate" parameterType="map" resultMap="review-resultmap">
+        <include refid="select-sql"/>
+        WHERE	registered_date BETWEEN #{value1} AND #{value2}
     </select>
     
     <select id="selectReviewByRegisteredDateRange" parameterType="java.util.Date" resultMap="review-resultmap">

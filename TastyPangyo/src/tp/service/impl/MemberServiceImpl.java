@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import tp.dao.MemberDao;
 import tp.dao.impl.MemberDaoImpl;
 import tp.exception.DuplicatedIdException;
+import tp.exception.LoginFailException;
 import tp.exception.MemberNotFoundException;
 import tp.service.MemberService;
 import tp.util.SqlSessionFactoryManager;
@@ -33,6 +34,31 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	
+	
+	@Override
+	public String login(String id) throws LoginFailException, MemberNotFoundException {
+		SqlSession session = null;
+		try{
+			session = factory.getSqlSessionFactory().openSession();
+			
+			String pw = dao.selectMemberPw(session, id);
+			
+			if(dao.selectMemberById(session, id) == null){ // id 불일치
+				throw new MemberNotFoundException("존재하지 않는 아이디입니다");
+			}else{ // id 일치
+				if(!(pw.equals(dao.selectMemberById(session, id).getMemberPw()))){
+					// 비밀번호 불일치
+					throw new LoginFailException("비밀번호가 일치하지 않습니다");
+				}//로그인 성공
+				return dao.selectMemberById(session, id).getMemberName();
+			}
+			
+		}finally{
+			session.commit();
+			if(session != null) session.close();
+		}
+	}
+
 	@Override
 	public void insertMember(Member member) throws DuplicatedIdException {
 		

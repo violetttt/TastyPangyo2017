@@ -15,55 +15,55 @@ public interface ReviewManagementService {
 	 * 리뷰 등록하는 메서드
 	 * @param review
 	 */
-	void addReview(Review review);
+	int addReview(Review review);
 	
 
 	/**
 	 * 선택한 리뷰 수정 메서드 (reviewNo, memberId로 )
 	 * @param review
 	 */
-	void updateReview(Review review);
+	int updateReview(Review review);
 
 	/**
 	 * 회원의 모든 리뷰 삭제 메서드
 	 * @param memberId
 	 */
-	void deleteReviewByMemberId(String memberId);
+	int deleteReviewByMemberId(String memberId);
 	
 	/**
 	 * 선택한 리뷰 삭제 메서드
 	 * @param memberId
 	 */
-	void deleteReviewSelected(String[] arr);
+	int deleteReviewSelected(String[] arr);
 	
 	/**
 	 * 등록한 날자로 삭제
 	 * @param registeredDate
 	 */
-	void deleteReviewByRegisteredDate(Date registeredDate);
+	int deleteReviewByRegisteredDate(Date registeredDate);
 	
 	/**
 	 * 가게 이름으로 delete
 	 * @param restaurantName
 	 */
-	void deleteReviewByRestaurantName(String restaurantName);
+	int deleteReviewByRestaurantName(String restaurantName);
 	
 	/**
 	 * 가게 번호로 deletes
 	 * @param restaurantId
 	 */
-	void deleteReviewByRestaurantId(int restaurantId);
+	int deleteReviewByRestaurantId(int restaurantId);
 	/**
 	 * 제목으로 delete
 	 * @param title
 	 */
-	void deleteReviewByTitle(String title);
+	int deleteReviewByTitle(String title);
 	
 	/**
 	 * 내용으로 delete
 	 * @param comments
 	 */
-	void deleteReviewByComments(String comments);
+	int deleteReviewByComments(String comments);
 	
 	
 	
@@ -108,6 +108,13 @@ public interface ReviewManagementService {
 	 * @return
 	 */
 	Review selectReviewByNo(int reviewNo);
+	
+	/**
+	 *멤버 아이디로 리뷰 조회
+	 * @param memberId
+	 * @return
+	 */
+	List<Review> selectReviewByMemberId(String memberId);
 	
 	
 }

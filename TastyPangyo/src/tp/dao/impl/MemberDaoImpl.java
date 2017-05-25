@@ -20,6 +20,10 @@ public class MemberDaoImpl implements MemberDao{
 	
 	
 	@Override
+	public String selectMemberPw(SqlSession session, String id) {
+		return session.selectOne(sql+"selectMemberPw", id);
+	}
+	@Override
 	public int insertMember(SqlSession session, Member member) {
 		return session.insert(sql+"insertMember", member);
 	}

@@ -1,10 +1,13 @@
 package tp.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.omg.PortableServer.POAPackage.NoServant;
 
 import tp.dao.ReviewDao;
 import tp.vo.Review;
@@ -38,8 +41,13 @@ public class ReviewDaoImpl implements ReviewDao{
 	
 	
 	@Override
-	public int deleteReviewSelected(SqlSession session, int reviewNo) {
-		return session.delete(MapperPath("deleteReviewSelected"), reviewNo);
+	public int deleteReviewSelected(SqlSession session, String[] noArr) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(String noStr : noArr){
+			
+		list.add(Integer.parseInt(noStr.trim()));
+		}
+		return session.delete(MapperPath("deleteReviewSelected"), list);
 	}
 	@Override
 	public int deleteReviewByMemberId(SqlSession session, String memberId) {
@@ -75,6 +83,10 @@ public class ReviewDaoImpl implements ReviewDao{
 	
 	@Override
 	public List<Review> selectAllReview(SqlSession session, String orderBy) {
+		// orderBy로 정렬 조건 column이름을 받아서 정렬문으로 만들어주고 던저 주기  
+		// 작성일(registered_date)이 넘어오면 오름
+		orderBy = "ORDER BY "+orderBy +(orderBy.equals("registered_date")? " DESC":"");
+		System.out.println(orderBy);
 		return session.selectList(MapperPath("selectAllReview"), orderBy);
 	}
 	
@@ -95,9 +107,27 @@ public class ReviewDaoImpl implements ReviewDao{
 	public List<Review> selectAllReviewOrderByNewestRegistered(SqlSession session) {
 		return session.selectList(MapperPath("selectAllReviewOrderByNewestRegistered"));
 	}
+	
+	@Override
+	public List<Review> selectReviewByMemberId(SqlSession session, String memberId) {
+		return session.selectList(MapperPath("selectReviewByMemberId"), memberId);
+	}
+	
+	
 	@Override
 	public List<Review> selectReviewByRegisteredDate(SqlSession session, Date registeredDate) {
-		return session.selectList(MapperPath("selectReviewByRegisteredDate"), registeredDate);
+		//캘린더 객체 생성
+		Calendar c = Calendar.getInstance();
+		//입력받은 날짜대로 캘린더 객체 시간 설정
+		c.setTime(registeredDate);
+		//c.add(바꿔줄 단위[연도, 월, 일], 더해줄 값) -> 다음날(DATE)로 시간을 설정
+		c.add(Calendar.DATE, 1); // eg.2017-05-24 => 2017-05-25
+		//yyyy-MM-dd 00:00:00 부터 yyyy-MM-dd 23:59:59까지 범위  MAP에 저장
+		HashMap map = new HashMap();
+		map.put("value1", registeredDate);
+		map.put("value2", new Date(c.getTimeInMillis()-1));	// yyyy-MM-dd 23:59:59로 만들기 위해 1 밀리초만큼 빼주기
+		System.out.println(map);
+		return session.selectList(MapperPath("selectReviewByRegisteredDate"), map);
 	}
 
 	@Override
@@ -141,6 +171,7 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int selectCountReviewByMemberId(SqlSession session, String memberId) {
 		return session.selectOne(MapperPath("selectCountReviewByMemberId"), memberId);
 	}
+	
 	
 	
 

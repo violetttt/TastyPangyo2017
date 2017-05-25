@@ -16,6 +16,13 @@ import tp.vo.Member;
  *
  */
 public interface MemberDao  {  
+	
+	
+	/**
+	 * 로그인 체크 
+	 * @param id
+	 */
+	String selectMemberPw(SqlSession session, String id);
 	/**
 	 * 회원정보 등록
 	 * @param member

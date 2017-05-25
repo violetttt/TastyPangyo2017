@@ -43,7 +43,7 @@ public class RegisterReviewServlet extends HttpServlet{
 		Review review = new Review(0, memberId, restaurantId, restaurantName, registeredDate, title, comments, kostar);
 		rms.addReview(review);
 		
-		session.setAttribute("registerReview", review);
+		session.setAttribute("review", review);
 		
 		// 3. 요청 디스패처로 전달
 		//우선 등록 성공페이지(register_success.jsp)에서 등록한 정보 모두 보여줌

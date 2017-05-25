@@ -4,9 +4,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-
 import tp.exception.DuplicatedIdException;
+import tp.exception.LoginFailException;
 import tp.exception.MemberNotFoundException;
 import tp.vo.Member;
 /**
@@ -15,6 +14,13 @@ import tp.vo.Member;
  *
  */
 public interface MemberService {
+	
+	/**
+	 * 로그인 체크 메소드
+	 * @param id
+	 */
+	String login(String id) throws LoginFailException, MemberNotFoundException;
+	
 	/**
 	 * 회원정보 등록 메소드
 	 * @param member

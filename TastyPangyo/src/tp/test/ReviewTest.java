@@ -1,7 +1,9 @@
 package tp.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import tp.service.impl.ReviewManagementServiceImpl;
 import tp.vo.Review;
@@ -13,6 +15,7 @@ public class ReviewTest {
 		Review review = null;
 		Date d = new Date();
 		String[] noArr = new String[]{"7", "9", "11", "13"};
+		List<Review> list = new ArrayList<Review>();
 		/**
 		private int reviewNo;
 		private String memberId;	// 회원 테이블 외래키
@@ -70,6 +73,9 @@ public class ReviewTest {
 //		rms.selectReviewByTitle("불고기");
 		//	(8) 내용으로
 //		rms.selectReviewByComments("맥주");
+		list = rms.selectAllReview("member_id");
+		rms.printList(list, "label");
+		
 	}
 
 }
