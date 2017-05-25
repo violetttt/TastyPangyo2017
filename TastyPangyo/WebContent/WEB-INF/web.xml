@@ -141,6 +141,19 @@
   </servlet-mapping>
   
   
+  <!-- 맛집삭제 서블릿 객체 등록 -->
+  <servlet>
+  	<servlet-name>DeleteRestaurantServlet</servlet-name>
+  	<servlet-class>tp.controller.DeleteRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteRestaurantServlet</servlet-name>
+  	<url-pattern>/deleteRes</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
   
   <!-- ********************리뷰관련******************** -->
   <servlet>
