@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Philosopher');
 h1{font-family: 'Philosopher', sans-serif; text-align:center;}
 body{background-color : Bisque; text-align : center;}
 </style>
+</head>
 <body>
 <jsp:include page="/jsp/common.jsp"/>
 <%= session.getAttribute("result") %><br>

@@ -26,6 +26,7 @@ SELECT  	m.member_id,
 FROM    	member m, review r
 </sql>
 
+
 <resultMap type="member" id="member-basic-resultmap">
 	<id column="member_id" property="memberId"/>
 	<result column="member_pw" property="memberPw"/>
@@ -72,23 +73,34 @@ FROM    	member m, review r
 	]]>
 </delete>
 
+
 <!-- ===========  select  ============= -->
-<!-- 모든 회원 조회 -->
+
+<!-- 로그인용 ID,PW조회 -->
+<select id="selectMemberPw" parameterType="String" resultType="String">
+	SELECT 	member_pw 
+	FROM 	member
+	WHERE	member_id = #{memberId}
+</select>
+
+<!-- 모든 회원리스트 조회 -->
 <select id="selectAllMember" resultMap="member-basic-resultmap">
 	<include refid="select"/>
 </select>
 
+<!-- 총 회원수 조회 -->
 <select id="selectMemberCount" resultType="_int">
 	SELECT COUNT(member_id) FROM member
 </select>
 	
-<!-- join -->
+<!-- ID로 회원 조회 -->
 <select id="selectMemberById" parameterType="String" resultMap="member-review-resultmap">
 	<include refid="select-member-review"/>
-	WHERE m.member_id = r.member_id(+)
-	AND m.member_id = #{memberId}
+	WHERE	m.member_id = r.member_id(+)
+	AND		m.member_id = #{memberId}
 </select>
 
+<!-- 접속일로 회원리스트 조회 -->
 <select id="selectMemberByVisitDate" parameterType="java.util.Date"  resultMap="member-basic-resultmap">
 	<include refid="select"/>
 	<![CDATA[
