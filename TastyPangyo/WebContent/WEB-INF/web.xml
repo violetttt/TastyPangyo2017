@@ -11,6 +11,7 @@
   </welcome-file-list>
   
   
+  
   <!-- ********************회원관리 관련******************** -->
   
   <!-- 로그인 서블릿  -->
@@ -209,10 +210,25 @@
     <servlet-name>Review Updater</servlet-name>
     <url-pattern>/review/update</url-pattern>
   </servlet-mapping>
+
   
+  <listener>
+   <listener-class>tp.controller.TastyPangyoListener</listener-class>
+ </listener>
+  
+  
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>tp.controller.TastyPangyoListenerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index.do</url-pattern>
+    </servlet-mapping>
+
   <!-- ********************맛집 이미지 관련******************** --> 
 	
-<context-param>
+ <context-param>
     <param-name>rootPath</param-name>
     <param-value>/TastyPangyo</param-value>
  </context-param>

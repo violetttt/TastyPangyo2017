@@ -16,6 +16,7 @@ public class Restaurant implements Serializable{
 
 	ArrayList<Review> reviews;         	//조인 위한 리뷰들
 	ArrayList<String> images;  			//조인 위한 사진들 
+
 	
 	public Restaurant(){}
 	

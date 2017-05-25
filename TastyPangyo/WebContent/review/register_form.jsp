@@ -120,6 +120,7 @@
 
 <!-- 리뷰index 화면 고정 -->
 <jsp:include page="/review/select_form.jsp"/>
+
 	<h3>리뷰 등록 페이지</h3>
 	<div class="review_form">
 		<form id="review_form" action="/TastyPangyo/review/register_forward.jsp"
