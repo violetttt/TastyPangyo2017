@@ -123,11 +123,11 @@
 					<!-- 필수입력값(NOT NULL이여야 하는)은 input 속성으로 required를 줘서 반드시 입력값을 받고 넘어가게 하고
 					 oninvalid  -->
 					식당번호 <input type="text" name="restaurantId" size="40" 
-							required oninvalid="setCustomValidity('식당번호 입력해!!')" oninput="setCustomValidity('')"><br>
+							required oninvalid="this.setCustomValidity('식당번호 입력해!!')" oninput="setCustomValidity('')"><br>
 					식당명 <input type="text" name="restaurantName" size="40" 
-							required oninvalid="setCustomValidity('식당명 입력해!!')" oninput="setCustomValidity('')"><br>
+							required oninvalid="this.setCustomValidity('식당명 입력해!!')" oninput="setCustomValidity('')"><br>
 					작성자 <input type="text" name="memberId" size="40" 
-							required oninvalid="setCustomValidity('작성자 입력해!!')" oninput="setCustomValidity('')"><br>
+							required oninvalid="this.setCustomValidity('작성자 입력해!!')" oninput="setCustomValidity('')"><br>
 					별점 <span class="kostar">
 						  <span class="input">
 						    <input type="radio" name="kostar" id="p1" value="1"><label for="p1">1</label>
