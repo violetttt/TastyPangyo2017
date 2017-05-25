@@ -24,12 +24,23 @@ public class Review implements Serializable{
    //constructor
    public Review() {
    }
-
    
+   // 리뷰 Register시에 리뷰번호와 작성일은 빼고 입력을 받아오게 하는 생성자
+   public Review(String memberId, int restaurantId, String restaurantName, String title,
+		String comments, int kostar) {
+	this.memberId = memberId;
+	this.restaurantId = restaurantId;
+	this.restaurantName = restaurantName;
+	this.title = title;
+	this.comments = comments;
+	this.kostar = kostar;
+}
 
 
 
-   public Review(int reviewNo, String memberId, int restaurantId, String restaurantName, Date registeredDate,
+
+
+public Review(int reviewNo, String memberId, int restaurantId, String restaurantName, Date registeredDate,
          String title, String comments, int kostar) {
       this.reviewNo = reviewNo;
       this.memberId = memberId;

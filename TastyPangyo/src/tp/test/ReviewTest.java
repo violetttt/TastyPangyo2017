@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import tp.service.impl.ReviewManagementServiceImpl;
+import tp.service.impl.ReviewServiceImpl;
 import tp.vo.Review;
 
 public class ReviewTest {
 	public static void main(String[] args) throws IOException{
-		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 
 		Review review = null;
 		Date d = new Date();

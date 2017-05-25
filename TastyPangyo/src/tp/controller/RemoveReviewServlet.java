@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import tp.service.impl.ReviewManagementServiceImpl;
+import tp.service.impl.ReviewServiceImpl;
 
 
 public class RemoveReviewServlet extends HttpServlet{
@@ -21,7 +21,7 @@ public class RemoveReviewServlet extends HttpServlet{
 		String[] noArr = req.getParameterValues("reviewNo");
 		
 		// 2. 비지니스 로직 처리
-		ReviewManagementServiceImpl rms = ReviewManagementServiceImpl.getInstance();
+		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 		rms.deleteReviewSelected(noArr);
 		
 		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
