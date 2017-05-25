@@ -52,7 +52,22 @@ public Review(int reviewNo, String memberId, int restaurantId, String restaurant
       this.kostar = kostar;
    }
 
-   public Review(int reviewNo, String memberId, int restaurantId, String restaurantName, Date registeredDate,
+
+
+   public Review(int reviewNo, String memberId, int restaurantId, String restaurantName, Date registeredDate, String title,
+		String comments, int kostar, Restaurant restaurant) {
+	this.reviewNo = reviewNo;
+	this.memberId = memberId;
+	this.restaurantId = restaurantId;
+	this.restaurantName = restaurantName;
+	this.registeredDate = registeredDate;
+	this.title = title;
+	this.comments = comments;
+	this.kostar = kostar;
+	this.restaurant = restaurant;
+}
+
+public Review(int reviewNo, String memberId, int restaurantId, String restaurantName, Date registeredDate,
          String title, String comments, int kostar, Member member, Restaurant restaurant) {
       this.reviewNo = reviewNo;
       this.memberId = memberId;
@@ -266,7 +281,7 @@ public Review(int reviewNo, String memberId, int restaurantId, String restaurant
    @Override
    public String toString() {
       return "Review [reviewNo=" + reviewNo + ", memberId=" + memberId + ", restaurantId=" + restaurantId
-            + ", restaurantName=" + restaurantName + ", registeredDate=" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(registeredDate) + ", title=" + title
+            + ", restaurantName=" + restaurantName + ", title=" + title
             + ", comments=" + comments + ", kostar=" + kostar + "]";
    }
 }

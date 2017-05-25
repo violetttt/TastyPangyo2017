@@ -203,4 +203,11 @@ public interface ReviewDao {
 	 * @return
 	 */
 	int selectCountReviewByMemberId(SqlSession session, String memberId);
+
+	/**
+	 * 평점순으로 
+	 * @param session
+	 * @return
+	 */
+	List<Review> selectRestaurantIdByAvgKostar(SqlSession session);
 }

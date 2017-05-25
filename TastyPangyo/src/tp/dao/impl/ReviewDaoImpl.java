@@ -173,6 +173,12 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 	
 	
+	@Override
+	public List<Review> selectRestaurantIdByAvgKostar(SqlSession session) {
+		return session.selectList(MapperPath("selectRestaurantIdByAvgKostar"));
+	}
+	
+	
 	
 
 }

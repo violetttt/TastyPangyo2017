@@ -11,6 +11,7 @@
   </welcome-file-list>
   
   
+  
   <!-- ********************회원관리 관련******************** -->
   
   <!-- 로그인 서블릿  -->
@@ -198,6 +199,19 @@
   </servlet-mapping>
   
   
+  <listener>
+   <listener-class>tp.controller.TastyPangyoListener</listener-class>
+ </listener>
+  
+  
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <servlet-class>tp.controller.TastyPangyoListenerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index.do</url-pattern>
+  </servlet-mapping>
 
   
 </web-app>

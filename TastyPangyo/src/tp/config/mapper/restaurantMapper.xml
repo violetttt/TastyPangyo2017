@@ -39,7 +39,6 @@
 
 	<!-- 맛집(리뷰,사진포함) resultmap -->
 	<resultMap type="restaurant"  id ="restaurantInfo-resultmap" extends ="restaurant-resultmap">
-		
 		<!-- 사진들 받는 ArryList -->
 		<collection ofType=	"restaurant" 		property="images">
 			<result column = "restaurant_id"	property="restaurantId"/>
