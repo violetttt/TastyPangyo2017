@@ -9,7 +9,7 @@
 	<center>
 	<form action="/TastyPangyo/updateRes" method="post">
 		
-		맛집 ID : <input type = "text" name="resId"><br><br>
+		맛집 ID : <input type = "text" name="resId" value = "${param.PK}" ><br><br>
 		
 		맛집 이름 : <input type = "text" name="resName"><br><br>
 		
@@ -33,9 +33,7 @@
 		<p>
 		<input type="submit" value="변경"> 		
 		</form>
-	
-	
-	
+
 	</center>
 </body>
 </html>

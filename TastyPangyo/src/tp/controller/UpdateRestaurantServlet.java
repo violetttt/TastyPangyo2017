@@ -39,17 +39,14 @@ public class UpdateRestaurantServlet extends HttpServlet{
 		try {
 			service.modRestaurant(new Restaurant(resId, foodCategory, location, resName, hits, resTelNum, introduction, menu));
 			session.setAttribute("updateRes", "변경 성공");
+			session.setAttribute("resList", service.selectAllRestaurant());
 		} catch (NotFoundRestaurantIdException e) {
 			session.setAttribute("updateRes", e.getMessage());
 		}	
 			
-		
-			
-			
 		//3. 응답
-			resp.sendRedirect("restaurant/update_success.jsp");
+			resp.sendRedirect("restaurant/res_result.jsp");
 		
-		
-		
+				
 	}
 }

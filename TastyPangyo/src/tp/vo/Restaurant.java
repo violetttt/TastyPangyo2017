@@ -13,7 +13,7 @@ public class Restaurant implements Serializable{
 	private String introduction;
 	private String menu;
 	private String image;
-	
+
 	ArrayList<Review> reviews;         	//조인 위한 리뷰들
 	ArrayList<String> images;  			//조인 위한 사진들 
 	
