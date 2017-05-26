@@ -1,6 +1,7 @@
 <%@page import="tp.vo.Member"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,9 @@
 	<tr>
 		<td>${member.memberId }</td>
 		<td>${member.memberName }</td>
-		<td>${member.visitDate }</td>
+		<td>
+			<fmt:formatDate value="${member.visitDate }"  pattern="yyyy-MM-dd"/>
+		</td>
 		<td><a href="">보기</a></td>
 	</tr>
 </c:forEach>

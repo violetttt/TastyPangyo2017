@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,9 @@
 	<tr>
 		<td>${memberById.memberId }</td>
 		<td>${memberById.memberName }</td>
-		<td>${memberById.visitDate }</td>
+		<td>
+			<fmt:formatDate value="${memberById.visitDate }"  pattern="yyyy-MM-dd"/>
+		</td>
 		<td><a href="">보기</a></td>
 	</tr>
 </tbody>

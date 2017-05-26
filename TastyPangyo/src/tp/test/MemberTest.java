@@ -40,7 +40,7 @@ public class MemberTest {
 		//service.updateMember(m5);
 		
 		// 삭제 - O
-		//service.deleteMember("000");
+		service.deleteMember("f");
 		
 // 조회
 		// 회원수 조회 - O

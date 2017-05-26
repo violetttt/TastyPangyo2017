@@ -41,15 +41,15 @@ public class MemberServiceImpl implements MemberService{
 		try{
 			session = factory.getSqlSessionFactory().openSession();
 			
-			
-			if(dao.selectMemberById(session, id) == null){ // id 불일치
+			Member m = dao.selectMemberById(session, id);
+			if(m == null){ // id 불일치
 				throw new MemberNotFoundException("존재하지 않는 아이디입니다");
 			}else{ // id 일치
-				if(!(password.equals(dao.selectMemberById(session, id).getMemberPw()))){
+				if(!(password.equals(m.getMemberPw()))){
 					// 비밀번호 불일치
 					throw new LoginFailException("비밀번호가 일치하지 않습니다");
 				}//로그인 성공
-				return dao.selectMemberById(session, id);
+				return m;
 			}
 			
 		}finally{

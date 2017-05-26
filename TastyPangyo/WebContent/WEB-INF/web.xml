@@ -70,6 +70,16 @@
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
   
+     <!-- 회원탈퇴- 관리자 서블릿 -->
+  <servlet>
+    <servlet-name>deleteByVisitDate</servlet-name>
+    <servlet-class>tp.controller.DeleteByVisitDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteByVisitDate</servlet-name>
+    <url-pattern>/deleteByVisitDate</url-pattern>
+  </servlet-mapping>
+  
      <!-- 회원정보 수정 서블릿 -->
   <servlet>
     <servlet-name>update</servlet-name>
@@ -122,7 +132,15 @@
     <url-pattern>/memberByVisitDate</url-pattern>
   </servlet-mapping>
 
-  
+   <!-- 회원리뷰보기 서블릿 -->
+  <servlet>
+    <servlet-name>SelectMemberReview</servlet-name>
+    <servlet-class>tp.controller.SelectMemberReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectMemberReview</servlet-name>
+    <url-pattern>/SelectMemberReview</url-pattern>
+  </servlet-mapping> 
   
   
   
