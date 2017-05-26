@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+
+
   <display-name>TastyPangyo</display-name>
   <welcome-file-list>
 
@@ -8,6 +10,11 @@
   
   
   <!-- ********************메인페이지 동작 리스너와 서블릿******************** -->
+  
+  
+  <listener>
+   <listener-class>tp.controller.TastyPangyoListener</listener-class>
+ </listener>
   
   <servlet>
     <servlet-name>index</servlet-name>
@@ -63,6 +70,16 @@
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
   
+     <!-- 회원탈퇴- 관리자 서블릿 -->
+  <servlet>
+    <servlet-name>deleteByVisitDate</servlet-name>
+    <servlet-class>tp.controller.DeleteByVisitDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteByVisitDate</servlet-name>
+    <url-pattern>/deleteByVisitDate</url-pattern>
+  </servlet-mapping>
+  
      <!-- 회원정보 수정 서블릿 -->
   <servlet>
     <servlet-name>update</servlet-name>
@@ -115,7 +132,15 @@
     <url-pattern>/memberByVisitDate</url-pattern>
   </servlet-mapping>
 
-  
+   <!-- 회원리뷰보기 서블릿 -->
+  <servlet>
+    <servlet-name>SelectMemberReview</servlet-name>
+    <servlet-class>tp.controller.SelectMemberReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectMemberReview</servlet-name>
+    <url-pattern>/SelectMemberReview</url-pattern>
+  </servlet-mapping> 
   
   
   
@@ -220,11 +245,6 @@
     <url-pattern>/review/update</url-pattern>
   </servlet-mapping>
 
-  
-  <listener>
-   <listener-class>tp.controller.TastyPangyoListener</listener-class>
- </listener>
-  
   <!-- ********************맛집 이미지 관련******************** --> 
 	
  <context-param>

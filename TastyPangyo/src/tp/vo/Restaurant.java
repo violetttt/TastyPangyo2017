@@ -13,6 +13,7 @@ public class Restaurant implements Serializable{
 	private String introduction;
 	private String menu;
 	private String image;
+	private int avgKostar;
 
 	ArrayList<Review> reviews;         	//조인 위한 리뷰들
 	ArrayList<String> images;  			//조인 위한 사진들 
@@ -58,6 +59,27 @@ public class Restaurant implements Serializable{
 		this.menu = menu;
 	}
 	
+	
+	
+	
+	
+	public Restaurant(int restaurantId, String foodCategory, String location, String restaurantName, int hits,
+			String restaurantTelNum, String introduction, String menu, String image, int avgKostar,
+			ArrayList<Review> reviews, ArrayList<String> images) {
+		this.restaurantId = restaurantId;
+		this.foodCategory = foodCategory;
+		this.location = location;
+		this.restaurantName = restaurantName;
+		this.hits = hits;
+		this.restaurantTelNum = restaurantTelNum;
+		this.introduction = introduction;
+		this.menu = menu;
+		this.image = image;
+		this.avgKostar = avgKostar;
+		this.reviews = reviews;
+		this.images = images;
+	}
+
 	public Restaurant(int restaurantId, String image ){
 		this.restaurantId = restaurantId;
 		this.image=  image;
@@ -157,6 +179,9 @@ public class Restaurant implements Serializable{
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
+	
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -243,6 +268,14 @@ public class Restaurant implements Serializable{
 				+ ", restaurantName=" + restaurantName + ", hits=" + hits + ", restaurantTelNum=" + restaurantTelNum
 				+ ", introduction=" + introduction + ", menu=" + menu + ", image=" + image + ", reviews=" + reviews
 				+ ", images=" + images + "]";
+	}
+
+	public int getAvgKostar() {
+		return avgKostar;
+	}
+
+	public void setAvgKostar(int avgKostar) {
+		this.avgKostar = avgKostar;
 	}
 
 	

@@ -61,6 +61,17 @@ public class RestaurantDaoImpl implements RestaurantDao{
 	   private String makeSql(String id){
 	      return "tp.config.mapper.restaurantMapper."+id;
 	   }
+	   
+		@Override
+		public List<Restaurant> selectAllRestaurantByHit(SqlSession session) {
+			return session.selectList(makeSql("selectAllRestaurantByHit"));
+		}
+		@Override
+		public List<Restaurant> selectRestaurantIdByAvgKostar(SqlSession session) {
+			return session.selectList(makeSql("selectRestaurantIdByAvgKostar"));
+		}
+	   
+	   
 	
 
 }

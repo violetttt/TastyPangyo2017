@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +10,11 @@
 	<center>
 	<form action="/TastyPangyo/updateRes" method="post">
 		
-		맛집 ID : <input type = "text" name="resId" value = "${param.PK}" ><br><br>
+		맛집 ID : <input type = "text" name="resId" value = "${param.PK}" readonly><br><br>
 		
-		맛집 이름 : <input type = "text" name="resName"><br><br>
+		맛집 이름 : <input type = "text" name="resName" required="required"><br><br>
 		
-		전화번호 : <input type="text" name="resTelNum"><br><br>
+		전화번호 : <input type="text" name="resTelNum" required="required"><br><br>
 		
 		맛집 위치 :<br> 삼환하이펙스A<input type = "radio" name="location" value="삼환하이펙스A" ><br>
 				   삼환하이펙스B<input type = "radio" name="location" value="삼환하이펙스B" ><br>
@@ -27,11 +28,12 @@
 				   일식<input type = "radio" name="foodCategory" value="일식" ><br>
 				  기타<input type = "radio" name="foodCategory" value="기타" ><br><br>
 		
-		맛집 메뉴 : <textarea rows="10" cols="30" name="menu"></textarea><br><br>
+		맛집 메뉴 : <textarea rows="10" cols="30" name="menu" required="required"></textarea><br><br>
 		
-		맛집 소개 : <textarea rows="10" cols="30" name="introduction"></textarea><br><br>	
+		맛집 소개 : <textarea rows="10" cols="30" name="introduction" required="required"></textarea><br><br>	
 		<p>
-		<input type="submit" value="변경"> 		
+		<input type="submit" value="변경">
+		 		
 		</form>
 
 	</center>

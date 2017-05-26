@@ -18,7 +18,9 @@ a:hover{ text-decoration: underline;	color:red;}
 <h1>My Page</h1>
 <hr>
 <a href="/TastyPangyo/member/update.jsp">정보 수정</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<a href="">리뷰 보기</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="/TastyPangyo/SelectMemberReview">리뷰 보기
+<form action=""><input type="hidden" name ="id" value="${sessionScope.id }"></form>
+</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <a href="/TastyPangyo/member/delete.jsp">회원 탈퇴</a>
 <hr>
 

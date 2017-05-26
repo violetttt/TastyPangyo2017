@@ -64,7 +64,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		SqlSession session=null;
 		try{
 			session = factory.openSession();
-			if(dao.selectRestaurantByID(restaurant.getRestaurantId(), session)==null){
+			if(dao.selectRestaurantByID(restaurant.getRestaurantId(),session)==null){
 				throw new NotFoundRestaurantIdException("조회된 id - "+restaurant.getRestaurantId()+" 가 없습니다");
 			}
 			count = dao.modRestaurant(restaurant, session);
@@ -172,7 +172,35 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
+	
+	
 
+	@Override
+	public List<Restaurant> selectAllRestaurantByHit() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectAllRestaurantByHit(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+
+	@Override
+	public List<Restaurant> selectRestaurantIdByAvgKostar() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectRestaurantIdByAvgKostar(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+		
+		
+	}
+	
 	
 	
 	public void printList(List<Restaurant> list, String label){
@@ -183,6 +211,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	      System.out.println("-----------------------------------");
 	      
 	   }
+
 
 
 
