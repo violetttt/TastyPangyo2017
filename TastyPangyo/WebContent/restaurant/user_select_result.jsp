@@ -29,7 +29,8 @@
 			</tr>
 	</c:forEach>
 	</tbody>
-	
 	</table>
+	${requestScope.errorMessage}
+	
 </body>
 </html>

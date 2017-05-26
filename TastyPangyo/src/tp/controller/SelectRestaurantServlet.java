@@ -14,10 +14,19 @@ import tp.service.impl.RestaurantServiceImpl;
 import tp.vo.Member;
 
 public class SelectRestaurantServlet extends HttpServlet {
+		
+		@Override
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			doPost(request, response);
+		}
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		// 요청 파라미터 조회
+		
 		HttpSession session = req.getSession();
 		Enumeration<String> s = req.getParameterNames();
 		String paramName = s.nextElement();

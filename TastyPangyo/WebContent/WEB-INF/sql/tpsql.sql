@@ -11,7 +11,7 @@ CREATE TABLE  restaurant(
 					menu						VARCHAR2(500)		NOT NULL
 					);
 	
-DROP TABLE 	restaurantimage;
+DROP TABLE 	restaurant_image;
 CREATE TABLE 	restaurant_image(
 					image						VARCHAR2(100) 	NOT NULL,
 					restaurant_id				NUMBER				NOT NULL,

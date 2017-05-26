@@ -8,7 +8,8 @@
 	<center>
 	<h1>맛집 등록(TastyPanGyo)</h1>
 		<body>
-		<form action="/TastyPangyo/insertRes" method="post" enctype="application/x-www-form-urlencoded">
+		<form action="/TastyPangyo/insertRes" method="post" >
+		
 		맛집 이름 : <input type = "text" name="resName"><br><br>
 		
 		전화번호 : <input type="text" name="resTelNum"><br><br>
