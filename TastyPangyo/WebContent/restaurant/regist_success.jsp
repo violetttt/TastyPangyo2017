@@ -13,10 +13,11 @@
 
 <!-- 삭제  -->
 
+<input type="hidden" name="resId" value="${sessionScope.restaurtid }">
+
 <c:forEach items="${ requestScope.result }" var="name">
 		<form action="${initParam.rootPath}/tp/imagedelete" method="post">
 		<p>
-		<input type="hidden" name="resId" value="${requestScope.restaurtid}">
 		<input type="hidden" name="name" value="${name}">
 		<img src="${initParam.rootPath }/up_images/${name}" width="400px"><input type="submit" value="삭제">
 		</p>

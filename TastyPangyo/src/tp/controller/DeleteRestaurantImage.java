@@ -23,14 +23,14 @@ public class DeleteRestaurantImage extends HttpServlet {
 		
 		String imagePath = request.getParameter("name");
 		
-		String restId	= request.getParameter("resId");
-		int id = Integer.parseInt(restId);
+		int restId = (int)session.getAttribute("resId");
+		
 		
 		Restaurant vo = new Restaurant();	// 저장할 vo 소환
 		
 		if(imagePath==null){	// 전체 삭제
 		
-			ris.deleteRestaurantImage(id);
+			ris.deleteRestaurantImage(restId);
 		}
 		else{
 			
