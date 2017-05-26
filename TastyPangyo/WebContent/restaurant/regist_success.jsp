@@ -8,8 +8,16 @@
 
 </head>
 <body>
-<%=session.getAttribute("insertRes")%>
-<%=session.getAttribute("restaurantList") %>
+<%=session.getAttribute("insertRes")%><br>
+
+<h3>등록된 맛집정보</h3>
+
+식당명 : ${sessionScope.insertRestaurant.restaurantName}<br>
+음식종류 : ${sessionScope.insertRestaurant.foodCategory}<br>
+위치 : ${sessionScope.insertRestaurant.location}<br>
+소개글 : ${sessionScope.insertRestaurant.introduction}<br>
+<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a>
+
 
 <!-- 삭제  -->
 

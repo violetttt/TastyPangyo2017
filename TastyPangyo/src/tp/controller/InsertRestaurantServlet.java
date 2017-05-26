@@ -74,7 +74,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 								
 								service.addRestaurant(vo);	// 맛집 테이블에 저장
 								session.setAttribute("insertRes", "등록이 완료 되었습니다.");
-								session.setAttribute("restaurantList", service.selectAllRestaurant());
+								session.setAttribute("insertRestaurant",service.selectRestaurantByID(vo.getRestaurantId()));
 							}
 							
 							
@@ -97,14 +97,9 @@ public class InsertRestaurantServlet extends HttpServlet {
 			}	// 큰 if else 종료
 	}	// for문 종료
 	
-	
-		
-				ris.selectRestaurantImageById(vo.getRestaurantId());
-				
+				ris.selectRestaurantImageById(vo.getRestaurantId());			
 				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId())));
-				
 				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
-				
 				req.setAttribute("restaurtid", vo.getRestaurantId());
 				
 				
