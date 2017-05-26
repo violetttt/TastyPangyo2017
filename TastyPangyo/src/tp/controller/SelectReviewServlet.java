@@ -56,8 +56,8 @@ public class SelectReviewServlet extends HttpServlet {
 			// 비지니스로직처리
 		
 
-			if (member==null || !member.getMemberId().equals("admin")) { //일반회원일때는 회원아이디로 작성된 것만 보여줌 
-				req.setAttribute("reviews", rms.selectReviewByMemberId("chloes"));
+			if (member==null || !member.getMemberId().equals("admin") ) { //일반회원일때는 회원아이디로 작성된 것만 보여줌 
+				req.setAttribute("reviews", rms.selectReviewByMemberId(keyword));
 			} else {
 				switch (param) {
 				case "allReviews":
