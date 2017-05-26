@@ -9,6 +9,7 @@ CREATE TABLE  restaurant(
 					restaurant_tel_num		VARCHAR2(50)		NOT NULL,
 					introduction				VARCHAR2(1000)	NOT NULL,
 					menu						VARCHAR2(500)		NOT NULL
+					
 					);
 	
 DROP TABLE 	restaurant_image;
@@ -92,12 +93,58 @@ insert into member values('sey', '777', '성은영', '2017,05,01');
 insert into member values('admin', 'java', '관리자', '2017,01,01');
 
 
-INSERT INTO restaurant_image	values ('c:\java\교동1',1);
-INSERT INTO restaurant_image	values ('c:\java\교동2',1);
-INSERT INTO restaurant_image	values ('c:\java\교동3',1);
-INSERT INTO restaurant_image	values ('c:\java\교동4',1);
-INSERT INTO restaurant_image	values ('c:\java\교동5',1);
+INSERT INTO restaurant_image	values ('새마을식당',2);
+INSERT INTO restaurant_image	values ('새마을식당',2);
+INSERT INTO restaurant_image	values ('새마을식당1',2);
+INSERT INTO restaurant_image	values ('브루클린2',1);
+INSERT INTO restaurant_image	values ('브루클린1',1);
 
 INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
 
 DELETE FROM member WHERE visit_date < '2017,05,20'
+
+SELECT    restaurant_id,
+			 food_category,
+			 location,
+			 restaurant_name,
+			 hits,
+			 restaurant_tel_num,
+			introduction
+	FROM   restaurant
+	ORDER BY hits
+	
+	SELECT  r.restaurant_id,
+			 r.food_category,
+			 r.location,
+			 r.restaurant_name,
+			 r.hits,
+			 r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM   restaurant r, restaurant_image i
+	WHERE	r.restaurant_id = i.restaurant_id(+)
+	ORDER BY r.hits
+	
+	
+	
+	SELECT	avg(v.kostar),
+			v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM REVIEW v, RESTAURANT r, RESTAURANT_IMAGE i
+	WHERE v.restaurant_id=r.restaurant_id 
+	AND r.restaurant_id=i.restaurant_id(+)
+	GROUP BY v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	ORDER BY AVG(v.kostar) DESC

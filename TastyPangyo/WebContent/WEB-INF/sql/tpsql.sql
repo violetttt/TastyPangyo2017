@@ -33,7 +33,7 @@ CONSTRAINT   review_member_fk      FOREIGN KEY (member_id)      REFERENCES membe
 					);
 
 --은영이가 한거---			
-SELECT	avg(v.kostar), 
+SELECT	round(avg(v.kostar), 1), 
 		v.restaurant_id,
 		 r.food_category,
 		  r.location,
