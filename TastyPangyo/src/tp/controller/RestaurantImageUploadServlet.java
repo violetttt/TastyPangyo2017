@@ -67,7 +67,7 @@ public class RestaurantImageUploadServlet extends HttpServlet {
 				request.setAttribute("restaurtid", vo.getRestaurantId());
 			
 			// 응답 처리
-			request.getRequestDispatcher("/restaurantImage/insertimage_result.jsp").forward(request, respose);
+			request.getRequestDispatcher("/restaurant/regist_success.jsp").forward(request, respose);
 			
 		}catch(Exception e){
 			e.printStackTrace();

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,9 @@
 	<center>
 	<h1>맛집 등록(TastyPanGyo)</h1>
 		<body>
-		<form action="/TastyPangyo/insertRes" method="post" >
-		
+
+		<form action="/TastyPangyo/insertRes" method="post" enctype="multipart/form-data">
+
 		맛집 이름 : <input type = "text" name="resName"><br><br>
 		
 		전화번호 : <input type="text" name="resTelNum"><br><br>
@@ -29,9 +31,11 @@
 		맛집 메뉴 : <textarea rows="10" cols="30" name="menu"></textarea><br><br>
 		
 		맛집 소개 : <textarea rows="10" cols="30" name="introduction"></textarea><br><br>
+
 		
-		사진 첨부 : 	
-		<p>
+		사진 첨부 :<input type="file" name="image" multiple width="100"> 
+	
+		<br>
 		<input type="submit" value="등록"> 		
 		</form>
 		</body>

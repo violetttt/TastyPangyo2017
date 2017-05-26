@@ -1,5 +1,5 @@
 -- 테이블
-DROP TABLE		restaurant;
+DROP TABLE	restaurant;
 CREATE TABLE  restaurant(
 					restaurant_id 			NUMBER				PRIMARY KEY,
 					food_category			VARCHAR2(50)  		NOT NULL,
@@ -114,7 +114,7 @@ INSERT INTO RESTAURANT 	values(4,'양식','삼환하이펙스A','김밥천국3',
 
 INSERT INTO restaurantimage	values ('c:\java\교동1',4);
 INSERT INTO restaurantimage	values ('c:\java\교동2',4);
-INSERT INTO restaurantimage	values ('c:\java\교동3',4);
+INSERT INTO restaurantimage	values ('C:\Users\kosta\Downloads\BONO (1)',4);
 INSERT INTO restaurantimage	values ('c:\java\교동4',4);
 INSERT INTO restaurantimage	values ('c:\java\교동5',4);
 
