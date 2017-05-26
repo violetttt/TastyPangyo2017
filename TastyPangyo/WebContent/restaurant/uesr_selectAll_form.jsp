@@ -9,10 +9,8 @@
 <body>
 
 <%--전체조회 --%>
-	<form action = "/TastyPangyo/selectRes" method ="post">
-	<input type = "submit" name = "allRes" value ="전체조회"> 
-	</form>
-	<p>
+	
+	<a href="/TastyPangyo/selectRes?allRes=allRes">전체조회</a>
 	</center>
 	
 </body>

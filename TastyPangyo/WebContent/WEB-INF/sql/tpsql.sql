@@ -1,20 +1,20 @@
 -- 테이블
-DROP TABLE		restaurant;
+DROP TABLE	restaurant;
 CREATE TABLE  restaurant(
 					restaurant_id 			NUMBER				PRIMARY KEY,
 					food_category			VARCHAR2(50)  		NOT NULL,
-					location					VARCHAR2(100)		NOT NULL,
-					restaurant_name		VARCHAR2(100)		NOT NULL,
-					hits						NUMBER				NOT NULL,
+					location				VARCHAR2(100)		NOT NULL,
+					restaurant_name			VARCHAR2(100)		NOT NULL,
+					hits					NUMBER				NOT NULL,
 					restaurant_tel_num		VARCHAR2(50)		NOT NULL,
-					introduction				VARCHAR2(1000)	NOT NULL,
-					menu						VARCHAR2(500)		NOT NULL
+					introduction			VARCHAR2(1000)		NOT NULL,
+					menu					VARCHAR2(500)		NOT NULL
 					);
 	
-DROP TABLE 	restaurantimage;
+DROP TABLE 	restaurant_image;
 CREATE TABLE 	restaurant_image(
 					image						VARCHAR2(100) 	NOT NULL,
-					restaurant_id				NUMBER				NOT NULL,
+					restaurant_id				NUMBER			NOT NULL,
 CONSTRAINT	restaurant_image_fk	FOREIGN KEY(restaurant_id) REFERENCES  restaurant ON DELETE CASCADE
 					);
 				
@@ -23,7 +23,7 @@ CREATE TABLE 	review (
 					review_no      		NUMBER(5)      		PRIMARY KEY,
 					member_id      		VARCHAR2(20)  		NOT NULL,
 					restaurant_id   		NUMBER(6)      		NOT NULL,
-					restaurant_name   	VARCHAR2(20)   	NOT NULL,
+					restaurant_name   	VARCHAR2(20)   		NOT NULL,
 					registered_date   	DATE        			NOT NULL,
 					title         			VARCHAR2(120)   	NOT NULL,
 					comments      		VARCHAR2(1000)   	NOT NULL,
@@ -114,10 +114,10 @@ INSERT INTO RESTAURANT 	values(4,'양식','삼환하이펙스A','김밥천국3',
 
 INSERT INTO restaurantimage	values ('c:\java\교동1',4);
 INSERT INTO restaurantimage	values ('c:\java\교동2',4);
-INSERT INTO restaurantimage	values ('c:\java\교동3',4);
+INSERT INTO restaurantimage	values ('C:\Users\kosta\Downloads\BONO (1)',4);
 INSERT INTO restaurantimage	values ('c:\java\교동4',4);
 INSERT INTO restaurantimage	values ('c:\java\교동5',4);
 
 INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
-
+INSERT INTO review VALUES	(15 ,'ke',64,'교동맛있어','2017-05-28' ,'ㅇㅇ','맛난다',10);
 SELECT review_no_seq.nextval     FROM dual

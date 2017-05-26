@@ -10,7 +10,7 @@
 	<table border = "1">
 		<thead>
 			<tr>
-				<th width="50px">  식당명        </th>
+				<th width="100px">  식당명        </th>
 				<th width="100px"> 음식종류     </th>
 				<th width="150px"> 위치 		  </th>
 				<th width="100px"> 음식점 번호  </th>
@@ -21,7 +21,7 @@
 	
 	<c:forEach items="${sessionScope.resList}" var = "res">	
 			<tr align="center">
-				<td>${res.restaurantName}</td>
+				<td><a href = "/TastyPangyo/selectResById?restaurantId=${res.restaurantId}">${res.restaurantName}</a></td>
 				<td>${res.foodCategory}</td>
 			 	<td>${res.location}</td>
 				<td>${res.restaurantTelNum}</td>
@@ -29,7 +29,8 @@
 			</tr>
 	</c:forEach>
 	</tbody>
-	
 	</table>
+	${requestScope.errorMessage}
+	
 </body>
 </html>

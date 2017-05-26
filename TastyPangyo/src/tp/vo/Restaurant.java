@@ -179,9 +179,16 @@ public class Restaurant implements Serializable{
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
+
 	
 	
-	
+	public int getAvgKostar() {
+		return avgKostar;
+	}
+
+	public void setAvgKostar(int avgKostar) {
+		this.avgKostar = avgKostar;
+	}
 
 	@Override
 	public int hashCode() {
@@ -268,14 +275,6 @@ public class Restaurant implements Serializable{
 				+ ", restaurantName=" + restaurantName + ", hits=" + hits + ", restaurantTelNum=" + restaurantTelNum
 				+ ", introduction=" + introduction + ", menu=" + menu + ", image=" + image + ", reviews=" + reviews
 				+ ", images=" + images + "]";
-	}
-
-	public int getAvgKostar() {
-		return avgKostar;
-	}
-
-	public void setAvgKostar(int avgKostar) {
-		this.avgKostar = avgKostar;
 	}
 
 	

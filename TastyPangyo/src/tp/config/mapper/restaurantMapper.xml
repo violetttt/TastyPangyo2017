@@ -35,7 +35,6 @@
 			<result column=	"hits"							property = "hits"/>
 			<result column ="restaurant_tel_num" 	property = "restaurantTelNum"/>
 			<result column = "introduction"			property="introduction"/>
-			<result column= "menu"					property="menu"/>
 	</resultMap>
 
 
@@ -189,7 +188,7 @@
 	 
 	 <!-- 평균별점  순으로  조회-->
 	<select id="selectRestaurantIdByAvgKostar" resultMap="restaurantInfo-resultmap">
-	SELECT	round(avg(v.kostar), 1),
+	SELECT	avg(v.kostar),
 			v.restaurant_id,
 			r.food_category,
 			r.location,
