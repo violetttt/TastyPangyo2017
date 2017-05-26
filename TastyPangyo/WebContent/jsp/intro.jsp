@@ -41,12 +41,12 @@ a:hover{
 		<input type="submit" value="확인">
 		<a href="/TastyPangyo/member/join_form.jsp">&nbsp&nbsp&lt;회원가입&gt;</a>
 	</c:when>
+
 	
 	<c:otherwise>
 			<%= session.getAttribute("id") %>님 환영합니다.&nbsp
 			<a href="/TastyPangyo/logout">로그아웃</a>&nbsp
 			<a href="/TastyPangyo/member/myPage.jsp">마이페이지</a>
-		
 	</c:otherwise>
 </c:choose>
 </form>
