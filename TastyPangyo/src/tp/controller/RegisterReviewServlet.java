@@ -62,7 +62,7 @@ public class RegisterReviewServlet extends HttpServlet{
 		review.setRegisteredDate(new Date());
 		String str = review.getComments();
 		System.out.println(str);
-		str.replace("\r\n", "<br>");
+		str.replaceAll("\r\n","<br>");
 		System.out.println(review);
 		// 2. 비지니스로직 처리
 		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();

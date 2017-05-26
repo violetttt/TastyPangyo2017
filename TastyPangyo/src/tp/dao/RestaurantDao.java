@@ -27,4 +27,7 @@ public interface RestaurantDao {
 	
 	List<Restaurant> selectAllRestaurant (SqlSession session);	// 전체 맛집조회
 	
+	List<Restaurant> selectAllRestaurantByHit(SqlSession session); // 조회수 순으로 조회
+
+	List<Restaurant> selectRestaurantIdByAvgKostar(SqlSession session);// 별점으로 조회
 }

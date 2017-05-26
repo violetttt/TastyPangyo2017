@@ -23,7 +23,8 @@
 	FROM   restaurant r, restaurant_image i, review v
 	</sql>
 	
-
+	
+	
 
 	<!-- 맛집 맵 -->
 	<resultMap type="restaurant"  id="restaurant-resultmap">
@@ -40,11 +41,8 @@
 	<!-- 맛집(리뷰,사진포함) resultmap -->
 	<resultMap type="restaurant"  id ="restaurantInfo-resultmap" extends ="restaurant-resultmap">
 		<!-- 사진들 받는 ArryList -->
-		<collection ofType=	"restaurant" 		property="images">
-			<result column = "restaurant_id"	property="restaurantId"/>
-			<result column = "image"			property="image" />
-		</collection>
-		
+		<collection ofType=	"java.lang.String" 		property="images" column="image"/>
+	
 		<!-- 리뷰들 받는 ArrayList -->
 		<collection ofType="review" 		property="reviews">
 		<result column = "review_no"		property="reviewNo"/>
@@ -173,7 +171,45 @@
 	 		restaurant	 
 	 </select>
 	 
+	 <!-- 조호순으로 맛집List 조회 -->
+	 <select id="selectAllRestaurantByHit" resultMap="restaurantInfo-resultmap">
+	 SELECT  r.restaurant_id,
+			 r.food_category,
+			 r.location,
+			 r.restaurant_name,
+			 r.hits,
+			 r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM   restaurant r, restaurant_image i
+	WHERE	r.restaurant_id = i.restaurant_id(+)
+	ORDER BY r.hits
+	</select>
 	 
+	 <!-- 평균별점  순으로  조회-->
+	<select id="selectRestaurantIdByAvgKostar" resultMap="restaurantInfo-resultmap">
+	SELECT	avg(v.kostar),
+			v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM REVIEW v, RESTAURANT r, RESTAURANT_IMAGE i
+	WHERE v.restaurant_id=r.restaurant_id 
+	AND r.restaurant_id=i.restaurant_id(+)
+	GROUP BY v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	ORDER BY AVG(v.kostar) DESC
+	</select>
 
 
 </mapper>

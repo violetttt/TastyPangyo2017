@@ -27,4 +27,8 @@ public interface RestaurantService {
 	
 	List<Restaurant> selectAllRestaurant();
 	
+	List<Restaurant> selectAllRestaurantByHit();
+	
+	List<Restaurant> selectRestaurantIdByAvgKostar();
+	
 }

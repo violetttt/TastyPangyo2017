@@ -250,7 +250,7 @@
    	</select>
 
 	<!-- 평균별점  순으로  조회-->
-	<select id="selectRestaurantIdByAvgKostar" resultMap="review-restaurant-resultmap">
+	<select id="selectAvgKostarByRestaurantId" resultMap="review-restaurant-resultmap">
 	SELECT	avg(v.kostar),
 			v.restaurant_id,
 			r.food_category,
@@ -259,6 +259,7 @@
 			r.hits,
 			r.restaurant_tel_num,
 			r.introduction
+			i.image
 	FROM REVIEW v, RESTAURANT r
 	WHERE v.restaurant_id=r.restaurant_id(+)
 	GROUP BY v.restaurant_id,

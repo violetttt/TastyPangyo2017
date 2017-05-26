@@ -273,11 +273,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 	
 	@Override
-	public List<Review> selectRestaurantIdByAvgKostar() {
+	public List<Review> selectAvgKostarByRestaurantId() {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			return dao.selectRestaurantIdByAvgKostar(session);
+			return dao.selectAvgKostarByRestaurantId(session);
 		
 		}finally{
 			session.commit();

@@ -209,5 +209,5 @@ public interface ReviewDao {
 	 * @param session
 	 * @return
 	 */
-	List<Review> selectRestaurantIdByAvgKostar(SqlSession session);
+	List<Review> selectAvgKostarByRestaurantId(SqlSession session);
 }

@@ -172,7 +172,35 @@ public class RestaurantServiceImpl implements RestaurantService {
 			session.close();
 		}
 	}
+	
+	
 
+	@Override
+	public List<Restaurant> selectAllRestaurantByHit() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectAllRestaurantByHit(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+
+	@Override
+	public List<Restaurant> selectRestaurantIdByAvgKostar() {
+		SqlSession session = null;
+		try{
+		session = factory.openSession();
+		return dao.selectRestaurantIdByAvgKostar(session);
+		}finally{
+			session.commit();
+			session.close();
+		}
+		
+		
+	}
+	
 	
 	
 	public void printList(List<Restaurant> list, String label){
@@ -183,6 +211,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	      System.out.println("-----------------------------------");
 	      
 	   }
+
 
 
 

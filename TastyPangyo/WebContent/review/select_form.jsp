@@ -5,9 +5,17 @@
 <!-- 리뷰index 화면 고정 -->
 <jsp:include page="/review/index.jsp"/>
 
+
 <!-- 리뷰등록페이지로 가기 -->
 <a href ="/TastyPangyo/review/register_form.jsp" ><input type="button" value="리뷰등록페이지로"></a><br>
 <hr>	
+<!-- 전체리뷰 가기 -->
+<a href ="/TastyPangyo/review/select" >전체리뷰</a><br>
+<hr>
+
+<!-- 전체리뷰 가기 -->
+<a href ="/TastyPangyo/review/select?select=${sessionScope.login.memberId}" >내리뷰</a><br>
+<hr>
 <!-- 전체목록 조회 -->
 <form action="/TastyPangyo/review/select" method="post">
 	전체목록 
@@ -28,12 +36,12 @@
 <hr>
 
 <form action="/TastyPangyo/review/select" method="post">
-	내용으로 찾기 <input type="search" name="comments" placeholder="내용 일부를 입력하세요">
+	내용으로 찾기 <input type="search" name="comments" placeholder="내용 일부를 입력하세요" required oninvalid="alert('값을 입력하세요!')">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
 <form action="/TastyPangyo/review/select" method="post">
-	작성자로 찾기 <input type="search" name="memberId" placeholder="아이디를 입력하세요">
+	작성자로 찾기 <input type="search" name="memberId" placeholder="아이디를 입력하세요" required oninvalid="alert('값을 입력하세요!')">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
