@@ -108,6 +108,7 @@ AND	   r.restaurant_id = 1
 
 -- 삽입
 INSERT INTO member VALUES('152','1234','이병문','2016-05-23');
+INSERT INTO member VALUES('admin','1234','이병문','2016-05-23');
 
 INSERT INTO RESTAURANT 	values(4,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
 
