@@ -7,27 +7,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<style>
+td{
+ width: 300px;
+ text-align: center;
+}
+</style>
+
+
 <body>
 <!-- 메이화면 페이지 -->
-<section>
+	<fieldset class="review_form" size="150">
+				<legend class="screen_out">별점 TOP5</legend>
+	<table> 
+		<tr>
+			<c:forEach items="${ applicationScope.reviews }" var="review">
+				<td>
+				<!-- top 5 별점 조회수 -->
+				${ review }
+				
+				</td>
+			</c:forEach>
+		</tr>
+	</table>
+	</fieldset>
 
-<article>
-</article>
 
-</section>
-
-<section>
-<article>
-</article>
-<article>
-</article>
-<article>
-</article>
-<article>
-</article>
-<article>
-</article>
-</section>
 
 
 

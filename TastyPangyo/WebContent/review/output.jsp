@@ -44,7 +44,7 @@
 </table>
 <br>
 <form action="/TastyPangyo/review/select" method="post">
-	<button type="submit" name="allReviews" value="registered_date">전체목록보기</button>
+	<button type="submit" name="default" value="registered_date">전체목록보기</button>
 </form> 
 
 </body>

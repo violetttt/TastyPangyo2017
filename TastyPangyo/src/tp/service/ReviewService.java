@@ -116,5 +116,11 @@ public interface ReviewService {
 	 */
 	List<Review> selectReviewByMemberId(String memberId);
 	
+	/**
+	 *  평균별점 순으로 맛집조회
+	 * @return
+	 */
+	List<Review> selectRestaurantIdByAvgKostar();
+	
 	
 }

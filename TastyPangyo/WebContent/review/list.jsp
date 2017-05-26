@@ -6,9 +6,7 @@
 
 <!-- 세션으로 받은 레스토랑 정보, 로그인 정본로 화면 리스트 뿌려주기 -->
 
-<%  //임으로 값 넣어서 확인
-	Member member= new Member("admin", "java", "관리자", new Date() );
-	session.setAttribute("member", member); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +18,7 @@
 <jsp:include page="/review/select_form.jsp"/>
 
 <h3>리뷰목록</h3>
-<% if( request.getAttribute("keyword") != null){ %>
+<% if( request.getAttribute("keyword") != null ){ %>
 "${ requestScope.keyword }"(으)로 찾은 결과입니다.<br>
 <%	} %>
 
@@ -38,13 +36,13 @@
 			<th width="150px"> 작성자</th>
 			<th width="200px"> 작성일</th>
 			<!-- 관리자만 볼수있게 !!!! -->
-			<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }">
+			<c:if test="${ sessionScope.login.memberId == 'admin' and sessionScope.login.memberPw == '1234' }">
 				<th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
 				<th width ="60px"> 수정 </th>
 			</c:if>
 		</tr>
 	</thead>
-	<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }">
+	<c:if test="${ sessionScope.login.memberId == 'admin' and sessionScope.login.memberPw == '1234' }">
 	<tfoot>
 		<tr>
 		<td colspan="8" style="text-align: center">
@@ -55,7 +53,7 @@
 	</tfoot>
 	</c:if>
 	<tbody>
-	<c:forEach items="${ reviews }" var="review">	
+	<c:forEach items="${ requestScope.reviews }" var="review">	
 		<tr>
 			<td> ${ review.reviewNo } </td>
 			<td> ${ review.restaurantName }</td>
@@ -63,7 +61,7 @@
 			<td><a href ="/TastyPangyo/review/show?reviewNo=${ review.reviewNo }">${ review.title }</a> </td>
 			<td> ${ review.memberId }</td>
 			<td> <fmt:formatDate value="${ review.registeredDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-			<c:if test="${ sessionScope.member.memberId == 'admin' and sessionScope.member.memberPw == 'java' }" >
+			<c:if test="${ sessionScope.login.memberId == 'admin' and sessionScope.login.memberPw == '1234' }" >
 			<td style="text-align:center"> <input type="checkbox" name="reviewNo" value="${ review.reviewNo }"></td>
 			<td style="text-align:center">  <a href="/TastyPangyo/review/show/update-mode?reviewNo=${ review.reviewNo }&updateCk=yes"><input type="button" value="수정"></a></td>
 			</c:if>		
@@ -77,4 +75,5 @@
 
 
 </body>
+<% session.removeAttribute("reviews"); %>
 </html>

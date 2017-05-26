@@ -1,4 +1,3 @@
-<%@page import="tp.vo.Member"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,12 +14,6 @@ body{background-color : Bisque; text-align : center;}
 <body>
 <jsp:include page="/jsp/common.jsp"/>
 <%= session.getAttribute("result") %><br>
-<%
-HttpSession ss = request.getSession();
-Member m = (Member)ss.getAttribute("member");
-String name = m.getMemberId();
-ss.setAttribute("name", name);
-%>
-<%= session.getAttribute("name") %>님 환영합니다!
+<a href="/TastyPangyo/jsp/intro.jsp">메인페이지에서 로그인하기</a>
 </body>
 </html>
