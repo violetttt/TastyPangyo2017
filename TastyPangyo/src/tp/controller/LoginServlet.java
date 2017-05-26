@@ -30,6 +30,9 @@ public class LoginServlet extends HttpServlet {
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
 		try {
 			session.setAttribute("login", service.login(id,pw));
+			Member m =  service.login(id,pw);
+			m.setVisitDate(new Date());
+			service.updateMember(m);
 		} catch (LoginFailException e) {
 			session.setAttribute("loginfail", e.getMessage());
 			
