@@ -42,75 +42,72 @@ public class InsertRestaurantServlet extends HttpServlet {
 		Restaurant vo = new Restaurant();	// 저장할 vo 소환
 		List<String> imageName = new ArrayList<>(); // 업로드된 파일명 저장할 List변수
 		
-		
 		try{
 			//	요청 파라미터 조회
 			
-			List<FileItem> list = upload.parseRequest(req); // fileuploadException
-		for(FileItem item : list){
+			List<FileItem> list = upload.parseRequest(req); // 첫번째 for문에서 돌릴 list
+
+	for(FileItem item : list){
 			
-			String reqName = item.getFieldName(); // 요청파라미터의 이름 조회
+		String reqName = item.getFieldName(); // 요청파라미터의 이름 조회
 			
-		if(item.isFormField()){
+			if(item.isFormField()){
 		
-			String reqValue = item.getString("UTF-8");
+				String reqValue = item.getString("UTF-8");
 			//  restaurant vo 초기파라미터 값 지정하기
-		if(reqName.equals("resName")){
-			vo.setRestaurantName(reqValue);
-		}else if(reqName.equals("resTelNum")){
-			vo.setRestaurantTelNum(reqValue);
-		}else if(reqName.equals("location")){
-			vo.setLocation(reqValue);
-		}else if(reqName.equals("foodCategory")){
-			vo.setFoodCategory(reqValue);
-		}else if(reqName.equals("menu")){
-			vo.setMenu(reqValue);
-		}else if(reqName.equals("introduction")){
-			vo.setIntroduction(reqValue);
-			
-		}
-		// 2 . 처리
-		
+							if(reqName.equals("resName")){
+								vo.setRestaurantName(reqValue);
 
-		}else{
-				session.setAttribute("insertRes", "값을 입력해 주세요");
+							}else if(reqName.equals("resTelNum")){
+								vo.setRestaurantTelNum(reqValue);
+
+							}else if(reqName.equals("location")){
+								vo.setLocation(reqValue);
+
+							}else if(reqName.equals("foodCategory")){
+								vo.setFoodCategory(reqValue);
+
+							}else if(reqName.equals("menu")){
+								vo.setMenu(reqValue);
+							}else if(reqName.equals("introduction")){
+								vo.setIntroduction(reqValue);
+								
+								service.addRestaurant(vo);	// 맛집 테이블에 저장
+								session.setAttribute("insertRes", "등록이 완료 되었습니다.");
+								session.setAttribute("restaurantList", service.selectAllRestaurant());
+							}
+							
+							
+			}else{
+				
+			String fileName = item.getName();
+			fileName = UUID.randomUUID().toString(); // 중복되지않는 문자열을 만들어서 파일명으로 쓴다
 			
+			// upload된 파일이 있는지 체크. getSize() : upload된 파일의 크기를 byte로 리턴
+			if(item.getSize() != 0){
+				// 임시경로의 파일을 최종경로로 이동 
+				item.write(new File(ctx.getRealPath("/up_images"), fileName)); // imageDir로 fileName 파일을 복사
+				// 임시경로의 파일을 삭제
+				item.delete();
+				imageName.add(fileName);
+				
+				vo.setImage(fileName);
+				ris.insertRestaurantImage(vo);
 			}
-		}
-		service.addRestaurant(vo);	// 맛집 테이블에 저장
-		session.setAttribute("insertRes", "등록이 완료 되었습니다.");
-		session.setAttribute("restaurantList", service.selectAllRestaurant());
+			}	// 큰 if else 종료
+	}	// for문 종료
+	
+	
 		
-		System.out.println(vo.getRestaurantId()+vo.getRestaurantName());
-		
-		// (2) 사진등록
-
-		for(FileItem item2 : list){
-				
-				String fileName = item2.getName();
-				fileName = UUID.randomUUID().toString(); // 중복되지않는 문자열을 만들어서 파일명으로 쓴다
-				
-				// upload된 파일이 있는지 체크. getSize() : upload된 파일의 크기를 byte로 리턴
-				if(item2.getSize() != 0){
-					// 임시경로의 파일을 최종경로로 이동 
-					item2.write(new File(ctx.getRealPath("/up_images"), fileName)); // imageDir로 fileName 파일을 복사
-					// 임시경로의 파일을 삭제
-					item2.delete();
-					imageName.add(fileName);
-					
-					vo.setImage(fileName);
-					ris.insertRestaurantImage(vo);
-				} // end of if
-			}	
 				ris.selectRestaurantImageById(vo.getRestaurantId());
 				
 				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId())));
 				
 				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
 				
-				req.setAttribute("restaurtid", vo.getRestaurantId());
+				session.setAttribute("restaurtid", vo.getRestaurantId());
 				
-			
+				
 			// 응답 처리
 			req.getRequestDispatcher("/restaurant/regist_success.jsp").forward(req, resp);
 			
@@ -118,8 +115,6 @@ public class InsertRestaurantServlet extends HttpServlet {
 			e.printStackTrace();
 			throw new ServletException(e); // 예외처리를 톰캣에게 맡김. fileuploadException를 sevletException에 넣어서 던짐
 		}
-		
-		resp.sendRedirect("restaurant/regist_success.jsp");
 	
-	}
+		}
 }

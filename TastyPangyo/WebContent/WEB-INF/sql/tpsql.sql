@@ -1,5 +1,5 @@
 -- 테이블
-DROP TABLE		restaurant;
+DROP TABLE	restaurant;
 CREATE TABLE  restaurant(
 					restaurant_id 			NUMBER				PRIMARY KEY,
 					food_category			VARCHAR2(50)  		NOT NULL,
