@@ -19,8 +19,8 @@
 		<dataSource type="POOLED"><!-- connection Pool을 사용하는 DataSource를 만들라는 얘기 -->
 			<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
-			<property name="username" value="chloe" />
-			<property name="password" value="90385" />
+			<property name="username" value="scott" />
+			<property name="password" value="tiger" />
 			<property name="poolMaximumActiveConnections" value="100" />  <!-- connection Pool최대개수 -->
 		</dataSource>
 	</environment>
