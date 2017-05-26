@@ -39,8 +39,9 @@ public class LoginServlet extends HttpServlet {
 		} catch (MemberNotFoundException e) {
 			session.setAttribute("loginfail", e.getMessage());
 		}
-		session.setAttribute("id", id);
 		
+	
+		session.setAttribute("id", id);
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);
 	}

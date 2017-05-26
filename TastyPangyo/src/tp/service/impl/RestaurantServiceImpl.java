@@ -64,7 +64,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		SqlSession session=null;
 		try{
 			session = factory.openSession();
-			if(dao.selectRestaurantByID(restaurant.getRestaurantId(), session)==null){
+			if(dao.selectRestaurantByID(restaurant.getRestaurantId(),session)==null){
 				throw new NotFoundRestaurantIdException("조회된 id - "+restaurant.getRestaurantId()+" 가 없습니다");
 			}
 			count = dao.modRestaurant(restaurant, session);

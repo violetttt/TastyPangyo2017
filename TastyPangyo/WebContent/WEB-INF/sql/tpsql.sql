@@ -11,7 +11,7 @@ CREATE TABLE  restaurant(
 					menu						VARCHAR2(500)		NOT NULL
 					);
 	
-DROP TABLE 	restaurant_image;
+DROP TABLE 	restaurantimage;
 CREATE TABLE 	restaurant_image(
 					image						VARCHAR2(100) 	NOT NULL,
 					restaurant_id				NUMBER				NOT NULL,
@@ -108,14 +108,15 @@ AND	   r.restaurant_id = 1
 
 -- 삽입
 INSERT INTO member VALUES('152','1234','이병문','2016-05-23');
+INSERT INTO member VALUES('admin','1234','이병문','2016-05-23');
 
 INSERT INTO RESTAURANT 	values(4,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
 
-INSERT INTO restaurant_image	values ('c:\java\교동1',4);
-INSERT INTO restaurant_image	values ('c:\java\교동2',4);
-INSERT INTO restaurant_image	values ('c:\java\교동3',4);
-INSERT INTO restaurant_image	values ('c:\java\교동4',4);
-INSERT INTO restaurant_image	values ('c:\java\교동5',4);
+INSERT INTO restaurantimage	values ('c:\java\교동1',4);
+INSERT INTO restaurantimage	values ('c:\java\교동2',4);
+INSERT INTO restaurantimage	values ('c:\java\교동3',4);
+INSERT INTO restaurantimage	values ('c:\java\교동4',4);
+INSERT INTO restaurantimage	values ('c:\java\교동5',4);
 
 INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
 

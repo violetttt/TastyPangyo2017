@@ -25,6 +25,7 @@ public class DeleteRestaurantServlet extends HttpServlet {
 		String deleteRes = null;
 		HttpSession session = req.getSession();
 		
+		
 			try {
 				service.deleteRestaurant(paramName);
 				deleteRes= "등록성공";

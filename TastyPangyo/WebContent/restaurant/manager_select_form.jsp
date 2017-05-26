@@ -9,8 +9,12 @@
 <center>
 <body>
 
+<h1>관리자 페이지</h1>
+<%--등록 --%>
+	<a href = "/TastyPangyo/restaurant/regist_restaurant_form.jsp"> 맛집 등록</a>
+
 <%--전체조회 --%>
-	<form action = "/TastyPangyo/selectRes" method ="post">
+	<form action = "/TastyPangyo/selectRes" method ="post" >
 	<input type = "submit" name = "allRes" value ="전체조회">
 	</form>
 	<p>
@@ -24,22 +28,23 @@
 	
 <%--맛집 건물으로 조회 --%>
 	<form action="/TastyPangyo/selectRes" method="post">
-	맛집 위치 :<br> 삼환하이펙스A<input type = "radio" name="location" value="삼환하이펙스A" ><br>
+	맛집 위치 :<br> 삼환하이펙스A<input type = "radio" name="location" value="삼환하이펙스A" checked="checked"><br>
 				   삼환하이펙스B<input type = "radio" name="location" value="삼환하이펙스B" ><br>
 				   유스페이스1  <input type = "radio" name="location" value="유스페이스1"><br>
 				   유스페이스2  <input type = "radio" name="location" value="유스페이스2" ><br>
-				  H스퀘어	  <input type = "radio" name="location" value="H스퀘어" ><br><br>
+				  H스퀘어	  <input type = "radio" name="location" value="H스퀘어" ><br>
 				  <input type = "submit" value ="조회하기">
+				  
 	</form>
 	<p>
 	
 <%-- 맛집 --%>
 	<form action="/TastyPangyo/selectRes" method="post">
-	음식 종류 :<br>한식<input type = "radio" name="foodCategory" value="한식" ><br>
+	음식 종류 :<br>한식<input type = "radio" name="foodCategory" value="한식" checked="checked"><br>
 				   양식<input type = "radio" name="foodCategory" value="양식" ><br>
 				   중식<input type = "radio" name="foodCategory" value="중식"><br>
 				   일식<input type = "radio" name="foodCategory" value="일식" ><br>
-				  기타<input type = "radio" name="foodCategory" value="기타" ><br><br>
+				  기타<input type = "radio" name="foodCategory" value="기타" ><br>
 				<input type = "submit" value ="조회하기">
 	</form>			
 	<p>
