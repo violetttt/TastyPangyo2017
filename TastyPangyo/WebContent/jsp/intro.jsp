@@ -41,6 +41,7 @@ a:hover{
 		<input type="submit" value="확인">
 		<a href="/TastyPangyo/member/join_form.jsp">&nbsp&nbsp&lt;회원가입&gt;</a>
 	</c:when>
+
 	
 	<c:otherwise>
 			<%= session.getAttribute("id") %>님 환영합니다.&nbsp
