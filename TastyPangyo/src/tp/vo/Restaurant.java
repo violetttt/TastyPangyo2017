@@ -61,6 +61,8 @@ public class Restaurant implements Serializable{
 	
 	
 	
+	
+	
 	public Restaurant(int restaurantId, String foodCategory, String location, String restaurantName, int hits,
 			String restaurantTelNum, String introduction, String menu, String image, int avgKostar,
 			ArrayList<Review> reviews, ArrayList<String> images) {

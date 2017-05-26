@@ -8,7 +8,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import tp.service.impl.RestaurantServiceImpl;
 import tp.service.impl.ReviewServiceImpl;
+import tp.vo.Restaurant;
 import tp.vo.Review;
 
 public class TastyPangyoListener implements ServletContextListener{
@@ -21,21 +23,23 @@ public class TastyPangyoListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext context = event.getServletContext();
-		List<Review> reviews = new ArrayList<Review>();
-		ReviewServiceImpl rsm;
-		
+		List<Restaurant> list = new ArrayList<Restaurant>();
+		RestaurantServiceImpl rest;
+
+
+
 		try {
-			rsm = ReviewServiceImpl.getInstance();
-			reviews = rsm.selectRestaurantIdByAvgKostar();
+			rest = RestaurantServiceImpl.getInstance();
+			// 조회수순으로 조회해서 별점 TOP5에 넣기
+			list = rest.selectAllRestaurantByHit();
+			context.setAttribute("hitsTop5", list);
+			// 별점순으로 조회해서 별점TOP5에 넣기
+			list = rest.selectRestaurantIdByAvgKostar();
+			context.setAttribute("kostarTop5", list);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-				
-		context.setAttribute("reviews", reviews);
-
 	}
-	
+
 
 }

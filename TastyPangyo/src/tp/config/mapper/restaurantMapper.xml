@@ -1,190 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tp.config.mapper.restaurantMapper">
-   
-   <!-- 맛집 정보 조회 (사진들과 리뷰 포함)-->
-   <sql id="select-sql">
-   SELECT    r.restaurant_id,
-           r.food_category,
-           r.location,
-           r.restaurant_name,
-           r.hits,
-           r.restaurant_tel_num,
-           r.introduction,
-           i.image,
-           v.review_no,
-              v.member_id,
-              v.restaurant_id,
-              v.restaurant_name ,
-              v.registered_date ,
-              v.title    ,
-              v.comments ,
-              v.kostar   
-   FROM   restaurant r, restaurant_image i, review v
-   </sql>
-   
+	
+	<!-- 맛집 정보 조회 (사진들과 리뷰 포함)-->
+	<sql id="select-sql">
+	SELECT    r.restaurant_id,
+			  r.food_category,
+			  r.location,
+			  r.restaurant_name,
+			  r.hits,
+			  r.restaurant_tel_num,
+			  r.introduction,
+			  i.image,
+			  v.review_no,
+	  	 	  v.member_id,
+	   		  v.restaurant_id,
+	   		  v.restaurant_name ,
+	   		  v.registered_date ,
+	   		  v.title    ,
+	   		  v.comments ,
+	   		  v.kostar   
+	FROM   restaurant r, restaurant_image i, review v
+	</sql>
+	
+	
+	
+
+	<!-- 맛집 맵 -->
+	<resultMap type="restaurant"  id="restaurant-resultmap">
+			<id column  ="restaurant_id"				property="restaurantId"/>
+			<result column ="food_category" 			property = "foodCategory"/>
+			<result column = "location" 				property ="location"/>
+			<result column = "restaurant_name"		property="restaurantName"/>
+			<result column=	"hits"							property = "hits"/>
+			<result column ="restaurant_tel_num" 	property = "restaurantTelNum"/>
+			<result column = "introduction"			property="introduction"/>
+	</resultMap>
 
 
-   <!-- 맛집 맵 -->
-   <resultMap type="restaurant"  id="restaurant-resultmap">
-         <id column  ="restaurant_id"            property="restaurantId"/>
-         <result column ="food_category"          property = "foodCategory"/>
-         <result column = "location"             property ="location"/>
-         <result column = "restaurant_name"      property="restaurantName"/>
-         <result column=   "hits"                     property = "hits"/>
-         <result column ="restaurant_tel_num"    property = "restaurantTelNum"/>
-         <result column = "introduction"         property="introduction"/>
-   </resultMap>
+	<!-- 맛집(리뷰,사진포함) resultmap -->
+	<resultMap type="restaurant"  id ="restaurantInfo-resultmap" extends ="restaurant-resultmap">
+		<!-- 사진들 받는 ArryList -->
+		<collection ofType=	"java.lang.String" 		property="images" column="image"/>
+	
+		<!-- 리뷰들 받는 ArrayList -->
+		<collection ofType="review" 		property="reviews">
+		<result column = "review_no"		property="reviewNo"/>
+		<result column = "member_id"		property="memberId"/>
+		<result column = "restaurant_id"	property="restaurantId"/>
+		<result column = "restaurant_name" 	property="restaurantName"/>
+		<result column = "registered_date"	property="registeredDate"/>
+		<result column = "title"			property="title"/>
+		<result column = "comments"			property="comments"/>
+		</collection>
+		
+	</resultMap>
+	
 
+	<!-- 시퀀스 조회 후 맛집정보 삽입-->
+	<insert id="insertRestaurantInfo" parameterType="restaurant">
+		
+		<selectKey keyProperty="restaurantId" resultType="_int" order="BEFORE">
+		SELECT restaurant_id_seq.nextval 
+		FROM dual
+		</selectKey>		
+	INSERT INTO restaurant
+	VALUES (
+			#{restaurantId},
+			#{foodCategory},
+			#{location},
+			#{restaurantName},
+			#{hits},
+			#{restaurantTelNum},
+			#{introduction},
+			#{menu}
+			)
+	</insert>
+	
+	<!-- 맛집 id로 변경 -->
+	<update id="modRestaurantInfo" parameterType="restaurant">
+	UPDATE restaurant
+	SET	   food_category = 		#{foodCategory},
+		   location  =			#{location},
+		   restaurant_name = 	#{restaurantName},
+		   restaurant_tel_num = #{restaurantTelNum},
+		   introduction = 		#{introduction},
+		   menu=				#{menu}
+	WHERE  restaurant_id = #{restaurantId}
+	</update>
+	
+	<!-- 맛집 ID로 삭제 -->
+	<delete id="deleteRestaurantInfo" parameterType="restaurant">
+	DELETE FROM restaurant WHERE restaurant_id=#{restaurantId}
+	</delete>
+		
+	<!--  조회 -->
 
-   <!-- 맛집(리뷰,사진포함) resultmap -->
-   <resultMap type="restaurant"  id ="restaurantInfo-resultmap" extends ="restaurant-resultmap">
-      <!-- 사진들 받는 ArryList -->
-      <collection ofType=   "java.lang.String"       property="images" column="image"/>
-   
-      <!-- 리뷰들 받는 ArrayList -->
-      <collection ofType="review"       property="reviews">
-      <result column = "review_no"      property="reviewNo"/>
-      <result column = "member_id"      property="memberId"/>
-      <result column = "restaurant_id"   property="restaurantId"/>
-      <result column = "restaurant_name"    property="restaurantName"/>
-      <result column = "registered_date"   property="registeredDate"/>
-      <result column = "title"         property="title"/>
-      <result column = "comments"         property="comments"/>
-      </collection>
-      
-   </resultMap>
-   
+	<!-- 맛집 이름으로 조회 -->
+	<select id ="selectRestaurantInfoByRestaurantName" parameterType ="String"
+													 resultMap = "restaurant-resultmap"><!-- 맛집 받는 맵(사진,리뷰제외) -->
+	SELECT 	
+			restaurant_id,
+			food_category,
+			location,
+			restaurant_name,
+			hits,		
+			restaurant_tel_num,
+			introduction,
+			menu			
+	FROM   restaurant												 
+	WHERE  restaurant_name like '%'||#{restaurantName}||'%'
+	</select>
+	
 
-   <!-- 시퀀스 조회 후 맛집정보 삽입-->
-   <insert id="insertRestaurantInfo" parameterType="restaurant">
-      
-      <selectKey keyProperty="restaurantId" resultType="_int" order="BEFORE">
-      SELECT restaurant_id_seq.nextval 
-      FROM dual
-      </selectKey>      
-   INSERT INTO restaurant
-   VALUES (
-         #{restaurantId},
-         #{foodCategory},
-         #{location},
-         #{restaurantName},
-         #{hits},
-         #{restaurantTelNum},
-         #{introduction},
-         #{menu}
-         )
-   </insert>
-   
-   <!-- 맛집 id로 변경 -->
-   <update id="modRestaurantInfo" parameterType="restaurant">
-   UPDATE restaurant
-   SET      food_category =       #{foodCategory},
-         location  =         #{location},
-         restaurant_name =    #{restaurantName},
-         restaurant_tel_num = #{restaurantTelNum},
-         introduction =       #{introduction},
-         menu=            #{menu}
-   WHERE  restaurant_id = #{restaurantId}
-   </update>
-   
-   <!-- 맛집 ID로 삭제 -->
-   <delete id="deleteRestaurantInfo" parameterType="restaurant">
-   DELETE FROM restaurant WHERE restaurant_id=#{restaurantId}
-   </delete>
-      
-   <!--  조회 -->
+	<!-- 맛집id로 조회 (사진들과 리뷰들 포함) -->
+	<select id="selectRestaurantInfoByRestaurantId" parameterType="_int" 
+								resultMap="restaurantInfo-resultmap">
+	<include refid="select-sql"/>				<!-- 조회하라 -->
+	WHERE  r.restaurant_id = i.restaurant_id(+)	<!-- 맛집과 사진의 맛집 id가 같으며, -->
+	AND	   r.restaurant_id = v.restaurant_id(+) <!-- 맛집과 리뷰의 맛집 id가 같으며, -->
+	AND	   r.restaurant_id = #{value}			<!-- 입력받은 숫자가 맛집 id와 같다면 -->
+	</select>
 
-   <!-- 맛집 이름으로 조회 -->
-   <select id ="selectRestaurantInfoByRestaurantName" parameterType ="String"
-                                        resultMap = "restaurant-resultmap"><!-- 맛집 받는 맵(사진,리뷰제외) -->
-   SELECT    
-         restaurant_id,
-         food_category,
-         location,
-         restaurant_name,
-         hits,      
-         restaurant_tel_num,
-         introduction,
-         menu         
-   FROM   restaurant                                     
-   WHERE  restaurant_name like '%'||#{restaurantName}||'%'
-   </select>
-   
+	<!-- 음식종류로 맛집List 조회 -->
+	<select id ="selectRestaurantInfoByRestaurantSort" parameterType ="String" 
+														resultMap = "restaurant-resultmap">
+																										
+	SELECT 	
+			restaurant_id,
+			food_category,
+			location,
+			restaurant_name,
+			hits,		
+			restaurant_tel_num,
+			introduction,
+			menu			
+	FROM   restaurant												 
+	WHERE  food_category like '%'||#{foodCategory}||'%'
+	</select>
+											
 
-   <!-- 맛집id로 조회 (사진들과 리뷰들 포함) -->
-   <select id="selectRestaurantInfoByRestaurantId" parameterType="_int" 
-                        resultMap="restaurantInfo-resultmap">
-   <include refid="select-sql"/>            <!-- 조회하라 -->
-   WHERE  r.restaurant_id = i.restaurant_id(+)   <!-- 맛집과 사진의 맛집 id가 같으며, -->
-   AND      r.restaurant_id = v.restaurant_id(+) <!-- 맛집과 리뷰의 맛집 id가 같으며, -->
-   AND      r.restaurant_id = #{value}         <!-- 입력받은 숫자가 맛집 id와 같다면 -->
-   </select>
-
-   <!-- 음식종류로 맛집List 조회 -->
-   <select id ="selectRestaurantInfoByRestaurantSort" parameterType ="String" 
-                                          resultMap = "restaurant-resultmap">
-                                                                              
-   SELECT    
-         restaurant_id,
-         food_category,
-         location,
-         restaurant_name,
-         hits,      
-         restaurant_tel_num,
-         introduction,
-         menu         
-   FROM   restaurant                                     
-   WHERE  food_category like '%'||#{foodCategory}||'%'
-   </select>
-                                 
-
-   <!-- 위치로 맛집List 조회 -->
-    <select id ="selectRestaurantInfoByRestaurantLocation" parameterType="String"
-                                              resultMap = "restaurant-resultmap">
-      SELECT    
-         restaurant_id,
-         food_category,
-         location,
-         restaurant_name,
-         hits,      
-         restaurant_tel_num,
-         introduction,
-         menu         
-      FROM   restaurant                                     
-      WHERE  location like '%'||#{restaurantName}||'%'                                       
-    </select>
-    
-    <!-- 전체 맛집List조회 -->
-    <select id="selectAllRestaurant" resultMap = "restaurant-resultmap">
-       SELECT    
-         restaurant_id,
-         food_category,
-         location,
-         restaurant_name,
-         hits,      
-         restaurant_tel_num,
-         introduction,
-         menu   
-       FROM
-          restaurant    
-    </select>
-    
-    <!-- 조호순으로 맛집List 조회 -->
-    <select id="selectAllRestaurantByHit" resultMap="restaurantInfo-resultmap">
-    SELECT  r.restaurant_id,
-          r.food_category,
-          r.location,
-          r.restaurant_name,
-          r.hits,
-          r.restaurant_tel_num,
-         r.introduction,
-         i.image
-   FROM   restaurant r, restaurant_image i
-   WHERE   r.restaurant_id = i.restaurant_id(+)
-   ORDER BY r.hits
-   </select>
-    
+	<!-- 위치로 맛집List 조회 -->
+	 <select id ="selectRestaurantInfoByRestaurantLocation" parameterType="String"
+	 														resultMap = "restaurant-resultmap">
+		SELECT 	
+			restaurant_id,
+			food_category,
+			location,
+			restaurant_name,
+			hits,		
+			restaurant_tel_num,
+			introduction,
+			menu			
+		FROM   restaurant												 
+		WHERE  location like '%'||#{restaurantName}||'%'													
+	 </select>
+	 
+	 <!-- 전체 맛집List조회 -->
+	 <select id="selectAllRestaurant" resultMap = "restaurant-resultmap">
+	 	SELECT 	
+			restaurant_id,
+			food_category,
+			location,
+			restaurant_name,
+			hits,		
+			restaurant_tel_num,
+			introduction,
+			menu	
+	 	FROM
+	 		restaurant	 
+	 </select>
+	 
+	 <!-- 조호순으로 맛집List 조회 -->
+	 <select id="selectAllRestaurantByHit" resultMap="restaurantInfo-resultmap">
+	 SELECT  r.restaurant_id,
+			 r.food_category,
+			 r.location,
+			 r.restaurant_name,
+			 r.hits,
+			 r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM   restaurant r, restaurant_image i
+	WHERE	r.restaurant_id = i.restaurant_id(+)
+	ORDER BY r.hits
+	</select>
+	 
+	 <!-- 평균별점  순으로  조회-->
+	<select id="selectRestaurantIdByAvgKostar" resultMap="restaurantInfo-resultmap">
+	SELECT	avg(v.kostar),
+			v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM REVIEW v, RESTAURANT r, RESTAURANT_IMAGE i
+	WHERE v.restaurant_id=r.restaurant_id 
+	AND r.restaurant_id=i.restaurant_id(+)
+	GROUP BY v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	ORDER BY AVG(v.kostar) DESC
+	</select>
 
 
 </mapper>
