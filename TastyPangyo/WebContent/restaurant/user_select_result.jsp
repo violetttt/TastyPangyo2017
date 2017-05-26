@@ -21,7 +21,7 @@
 	
 	<c:forEach items="${sessionScope.resList}" var = "res">	
 			<tr align="center">
-				<td>${res.restaurantName}</td>
+				<td><a href = "/TastyPangyo/selectResById?restaurantId=${res.restaurantId}">${res.restaurantName}</a></td>
 				<td>${res.foodCategory}</td>
 			 	<td>${res.location}</td>
 				<td>${res.restaurantTelNum}</td>

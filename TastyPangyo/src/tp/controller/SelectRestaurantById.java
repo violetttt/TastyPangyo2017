@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tp.exception.NotFoundRestaurantIdException;
 import tp.service.impl.RestaurantServiceImpl;
+import tp.service.impl.ReviewServiceImpl;
 import tp.vo.Restaurant;
 
 public class SelectRestaurantById extends HttpServlet{
@@ -21,10 +22,13 @@ public class SelectRestaurantById extends HttpServlet{
 		//2. 처리
 		
 		RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();
+		ReviewServiceImpl rs = ReviewServiceImpl.getInstance();
+		// 레스토랑 아이디로 평균별점 가져오기
+		//
 		try{
 			Restaurant res = service.selectRestaurantByID(resId);
+			//res.getAvgKostar(rs.......)
 			req.setAttribute("selectRes", res);
-			req.setAttribute("errorMessage", "등록 성공");
 			req.setAttribute("image", res.getImages());
 		}catch(NotFoundRestaurantIdException e){
 			req.setAttribute("errorMessage", e.getMessage());
