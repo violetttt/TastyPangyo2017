@@ -10,7 +10,7 @@
 	<table border = "1">
 		<thead>
 			<tr>
-				<th width="50px">  식당명        </th>
+				<th width="100px">  식당명        </th>
 				<th width="100px"> 음식종류     </th>
 				<th width="150px"> 위치 		  </th>
 				<th width="100px"> 음식점 번호  </th>

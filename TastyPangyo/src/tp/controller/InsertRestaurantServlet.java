@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tp.exception.NotFoundRestaurantIdException;
 import tp.exception.NotInputDataException;
 import tp.service.impl.RestaurantServiceImpl;
 import tp.vo.Restaurant;
@@ -37,8 +38,15 @@ public class InsertRestaurantServlet extends HttpServlet {
 		} else {
 			Restaurant res = new Restaurant(0, foodCategory, location, name, 0, resTelNum, introduction, menu);
 			service.addRestaurant(res);
-			session.setAttribute("insertRes", "등록이 완료되었습니다.");
-			session.setAttribute("restaurantList",service.selectAllRestaurant());
+			session.setAttribute("resultRes", "등록이 완료되었습니다." );
+			try {
+				session.setAttribute("insertRestaurant",service.selectRestaurantByID(res.getRestaurantId()));
+				System.out.println("찍습니다.");
+			} catch (NotFoundRestaurantIdException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		resp.sendRedirect("restaurant/regist_success.jsp");

@@ -49,37 +49,35 @@ public class SelectRestaurantServlet extends HttpServlet {
 					} 
 						session.setAttribute("resList", service.selectAllRestaurant());
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-		
-					break;
+						break;
 		
 				case "location":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantByLocation(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
-					} else {
+					}
 						session.setAttribute("resList", service.selectRestaurantByLocation(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
-					break;
+						break;
 		
 				case "resName":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantByName(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
-					} else {
+					}
 						session.setAttribute("resList", service.selectRestaurantByName(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
-					break;
+						break;
 		
 				case "foodCategory":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp");
-					} else {
+					} 
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
+						break;
+					
 				}
 			
 	}

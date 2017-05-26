@@ -27,9 +27,8 @@ public class SelectRestaurantById extends HttpServlet{
 		//
 		try{
 			Restaurant res = service.selectRestaurantByID(resId);
-			//res.getAvgKostar(rs.......)
 			req.setAttribute("selectRes", res);
-			req.setAttribute("image", res.getImages());
+			System.out.println("메뉴로그 : " + res.getMenu());
 		}catch(NotFoundRestaurantIdException e){
 			req.setAttribute("errorMessage", e.getMessage());
 		}
