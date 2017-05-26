@@ -26,7 +26,13 @@ public class UpdateMemberServlet extends HttpServlet{
 		
 		// 2. 처리
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
-		Member m = new Member((String)session.getAttribute("id"), newPw, newName, new Date());
+		Member om = service.selectMemberById((String)session.getAttribute("id"));
+		
+		/*if(){
+			
+		}*/
+		
+		Member m = new Member(om.getMemberId(), newPw, newName, om.getVisitDate());
 		
 		service.updateMember(m);
 		session.setAttribute("login", m);

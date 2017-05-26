@@ -9,8 +9,8 @@
 <jsp:include page="/member/memberSelect.jsp"/>
 최종 접속일로 회원 조회<br>
 <form action="/TastyPangyo/memberByVisitDate">
-<input type="date" name="visitDate">
-<input type="submit">
+	<input type="date" name="visitDate"  required oninvalid="setCustomValidity('날짜를 선택해주세요!')" oninput="setCustomValidity('')">
+	<input type="submit" value="찾기">
 </form>
 </body>
 </html>
