@@ -105,7 +105,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 				
 				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
 				
-				session.setAttribute("restaurtid", vo.getRestaurantId());
+				req.setAttribute("restaurtid", vo.getRestaurantId());
 				
 				
 			// 응답 처리

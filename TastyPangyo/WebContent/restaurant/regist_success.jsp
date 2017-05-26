@@ -12,15 +12,17 @@
 <%=session.getAttribute("restaurantList") %>
 
 <!-- 삭제  -->
-<<form action="${initParam.rootPath}/tp/imagedelete" method="post">
-<c:forEach items="${ session.result }" var="name">
+
+<c:forEach items="${ requestScope.result }" var="name">
 		<form action="${initParam.rootPath}/tp/imagedelete" method="post">
 		<p>
+		<input type="hidden" name="resId" value="${requestScope.restaurtid}">
 		<input type="hidden" name="name" value="${name}">
 		<img src="${initParam.rootPath }/up_images/${name}" width="400px"><input type="submit" value="삭제">
 		</p>
 		</form>
 </c:forEach>
+
 
 <!--전체사진 삭제 -->
 <form action="${initParam.rootPath}/tp/imagedelete" method="post">
