@@ -187,6 +187,15 @@
   </servlet-mapping>
   
   
+  <!-- 상세정보 조회를 위한 맛집id 조회 서블릿 -->
+  <servlet>
+  	<servlet-name>SelectRestaurantById</servlet-name>
+  	<servlet-class>tp.controller.SelectRestaurantById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SelectRestaurantById</servlet-name>
+  	<url-pattern>/selectResById</url-pattern>
+  </servlet-mapping>
   
   
   

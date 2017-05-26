@@ -11,7 +11,6 @@
 <%=session.getAttribute("insertRes")%>
 <%=session.getAttribute("restaurantList") %>
 
-
 <!-- 삭제  -->
 <<form action="${initParam.rootPath}/tp/imagedelete" method="post">
 <c:forEach items="${ session.result }" var="name">
@@ -28,6 +27,7 @@
 	<input type="submit" value="전체 사진 삭제"><br>
 </form>
 
-</form>
+<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a>
+
 </body>
 </html>
