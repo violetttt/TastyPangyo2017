@@ -11,7 +11,7 @@ CREATE TABLE  restaurant(
 					menu						VARCHAR2(500)		NOT NULL
 					);
 	
-DROP TABLE 	restaurantimage;
+DROP TABLE 	restaurant_image;
 CREATE TABLE 	restaurant_image(
 					image						VARCHAR2(100) 	NOT NULL,
 					restaurant_id				NUMBER				NOT NULL,
@@ -113,7 +113,7 @@ INSERT INTO RESTAURANT 	values(4,'양식','삼환하이펙스A','김밥천국3',
 
 INSERT INTO restaurantimage	values ('c:\java\교동1',4);
 INSERT INTO restaurantimage	values ('c:\java\교동2',4);
-INSERT INTO restaurantimage	values ('c:\java\교동3',4);
+INSERT INTO restaurantimage	values ('C:\Users\kosta\Downloads\BONO (1)',4);
 INSERT INTO restaurantimage	values ('c:\java\교동4',4);
 INSERT INTO restaurantimage	values ('c:\java\교동5',4);
 
