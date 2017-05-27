@@ -238,8 +238,11 @@ a:hover {
 		
 		<h1>회원 정보 수정</h1><br>
 		<form action="/TastyPangyo/update" method="post">
-	
+		
 		<table align="center">
+		<c:choose>
+		<c:when test="${requestScope.miss != null}">
+			같은 비밀 번호 입니다.
 			<tr>
 				<td>ID</td>
 				<td><input type="text" value="${sessionScope.id }" readonly></td>
@@ -248,12 +251,35 @@ a:hover {
 				<td>비밀번호</td>
 				<td><input type="password" name="repw" placeholder="새 비밀번호를 입력하세요" required oninvalid="setCustomValidity('비밀번호를 입력해주세요!')" oninput="setCustomValidity('')"></td>
 			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="repw2" placeholder="비밀 번호가 틀렸습니다!" required oninvalid="setCustomValidity('비밀 번호가 틀렸습니다!')" oninput="setCustomValidity('')"></td>
+			
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="rename" placeholder="${sessionScope.login.memberName }" required oninvalid="setCustomValidity('이름을 입력해주세요!')" oninput="setCustomValidity('')"></td>
+				<td><input type="submit" value="변경"></td>
+		</c:when>
+		<c:otherwise>
+			<tr>
+				<td>ID</td>
+				<td><input type="text" value="${sessionScope.id }" readonly></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="repw" placeholder="새 비밀번호를 입력하세요" required oninvalid="setCustomValidity('비밀번호를 입력해주세요!')" oninput="setCustomValidity('')"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="repw2" placeholder="비밀 번호를 다시 입력해주세요" required oninvalid="setCustomValidity('비밀 번호가 틀렸습니다!')" oninput="setCustomValidity('')"></td>
 			
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="rename" placeholder="${sessionScope.login.memberName }" required oninvalid="setCustomValidity('이름을 입력해주세요!')" oninput="setCustomValidity('')"></td>
 				<td><input type="submit" value="변경"></td>
 			</tr>
+			</c:otherwise>
+			</c:choose>
 		</table>
 
 
