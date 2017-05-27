@@ -39,6 +39,6 @@ public interface RestaurantImageDao {
 	 * @param restaurantId
 	 * @return
 	 */
-	List<Restaurant> selectRestaurantImageById(SqlSession session, int restaurantId);
+	List<String> selectRestaurantImageById(SqlSession session, int restaurantId);
 	
 }

@@ -33,7 +33,7 @@ public class RestaurantImageDaoImpl implements RestaurantImageDao {
 		return session.delete("tp.config.mapper.restaurantImageMapper.deleteRestaurantImageByFile",image);
 	}
 	@Override
-	public List<Restaurant> selectRestaurantImageById(SqlSession session, int restaurantId) {
+	public List<String> selectRestaurantImageById(SqlSession session, int restaurantId) {
 		return session.selectList("tp.config.mapper.restaurantImageMapper.selectRestaurantImageById", restaurantId);
 		}
 	

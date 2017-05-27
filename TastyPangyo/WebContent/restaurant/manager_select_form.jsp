@@ -12,6 +12,7 @@
 <h1>관리자 페이지</h1>
 <%--등록 --%>
 	<a href = "/TastyPangyo/restaurant/regist_restaurant_form.jsp"> 맛집 등록</a>
+	<p>
 
 <%--전체조회 --%>
 	<form action = "/TastyPangyo/selectRes" method ="post" >
@@ -38,6 +39,8 @@
 	</form>
 	<p>
 	
+	
+
 <%-- 맛집 --%>
 	<form action="/TastyPangyo/selectRes" method="post">
 	음식 종류 :<br>한식<input type = "radio" name="foodCategory" value="한식" checked="checked"><br>

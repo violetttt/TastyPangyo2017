@@ -28,27 +28,25 @@ public class SelectRestaurantServlet extends HttpServlet {
 		// 요청 파라미터 조회
 		
 		HttpSession session = req.getSession();
-		Enumeration<String> s = req.getParameterNames();
-		String paramName = s.nextElement();
+		Enumeration<String> s = req.getParameterNames();		// 파라미터의 이름들을 받을 컬렉션
+		String paramName = s.nextElement();						// 요소들 중, 다음 파라미터 이름이 있다면 그 값을 넣는다.
 
-		String resSelectKey = req.getParameter(paramName);
-		req.setAttribute("resSelectKey", resSelectKey);
+		String resSelectKey = req.getParameter(paramName);		// 파라미터 name값으로 가져온  value를 조회값으로 사용한다.
+		req.setAttribute("resSelectKey", resSelectKey);			// ex) 검색된 값
 
-		System.out.println(paramName);
 
 		// 처리
 		RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();
 		Member member = (Member) session.getAttribute("login");
-		System.out.println("로그 : "+ member);
-			
+		
 				switch (paramName) {
 				case "allRes"
-				:	if (member==null || !member.getMemberId().equals("admin")) {
+				:	if (member==null || !member.getMemberId().equals("admin")) {    // 비회원 또는 일반회원이면 조회만 가능.
 						session.setAttribute("resList", service.selectAllRestaurant());
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
 					} 
 						session.setAttribute("resList", service.selectAllRestaurant());
-						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
+						req.getRequestDispatcher("/restaurant/manager_select_result.jsp").forward(req, resp);
 						break;
 		
 				case "location":
@@ -57,7 +55,7 @@ public class SelectRestaurantServlet extends HttpServlet {
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
 					}
 						session.setAttribute("resList", service.selectRestaurantByLocation(resSelectKey));
-						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
+						req.getRequestDispatcher("/restaurant/manager_select_result.jsp").forward(req, resp);
 						break;
 		
 				case "resName":
@@ -66,7 +64,7 @@ public class SelectRestaurantServlet extends HttpServlet {
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
 					}
 						session.setAttribute("resList", service.selectRestaurantByName(resSelectKey));
-						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
+						req.getRequestDispatcher("/restaurant/manager_select_result.jsp").forward(req, resp);
 						break;
 		
 				case "foodCategory":
@@ -75,7 +73,7 @@ public class SelectRestaurantServlet extends HttpServlet {
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp");
 					} 
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
-						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
+						req.getRequestDispatcher("/restaurant/manager_select_result.jsp").forward(req, resp);
 						break;
 					
 				}

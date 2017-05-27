@@ -1,7 +1,6 @@
 package tp.service.impl;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import tp.dao.impl.RestaurantDaoImpl;
-import tp.exception.NotInputDataException;
 import tp.exception.NotFoundRestaurantIdException;
+import tp.service.RestaurantImageService;
 import tp.service.RestaurantService;
 import tp.util.SqlSessionFactoryManager;
 import tp.vo.Restaurant;
@@ -45,7 +44,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	
 	RestaurantDaoImpl dao = RestaurantDaoImpl.getInstance();
-	
+	RestaurantImageService sdao = RestaurantImageServiceImpl.getInstance();
 	@Override
 	public void addRestaurant(Restaurant restaurant) {
 		SqlSession session =null;
@@ -106,7 +105,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if(dao.selectRestaurantByID(restaurantId, session)==null){
 				throw new NotFoundRestaurantIdException("조회된 id - "+restaurantId+" 가 없습니다.");
 			}
-			return dao.selectRestaurantByID(restaurantId, session);
+			ArrayList<String> list = (ArrayList<String>)sdao.selectRestaurantImageById(restaurantId);
+			Restaurant rest = dao.selectRestaurantByID(restaurantId, session);
+			
+			rest.setImages(list);
+			System.out.println(rest);
+			return rest;
 		} finally {
 			session.commit();
 			session.close();

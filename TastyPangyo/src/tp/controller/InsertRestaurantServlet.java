@@ -25,14 +25,14 @@ import tp.vo.Restaurant;
 public class InsertRestaurantServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.setCharacterEncoding("utf-8");
 		ServletContext ctx = getServletContext(); // 이미지를 저장할 경로
 		RestaurantImageService ris = RestaurantImageServiceImpl.getInstance();	// 레스토랑 이미지 서비스 객체 생성
 		RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();	// 레스토랑 서비스 객체 생성
 		
 		
 		// 1.요청파라미터 조회
-		req.setCharacterEncoding("utf-8");
+		
 		HttpSession session = req.getSession();
 		
 		
@@ -69,6 +69,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 
 							}else if(reqName.equals("menu")){
 								vo.setMenu(reqValue);
+								
 							}else if(reqName.equals("introduction")){
 								vo.setIntroduction(reqValue);
 								
@@ -76,8 +77,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 								session.setAttribute("insertRes", "등록이 완료 되었습니다.");
 								session.setAttribute("insertRestaurant",service.selectRestaurantByID(vo.getRestaurantId()));
 							}
-							
-							
+		
 			}else{
 				
 			String fileName = item.getName();
@@ -101,8 +101,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId())));
 				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
 				req.setAttribute("restaurtid", vo.getRestaurantId());
-				
-				
+		
 			// 응답 처리
 			req.getRequestDispatcher("/restaurant/regist_success.jsp").forward(req, resp);
 			

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-	<form action="/TastyPangyo/updateRes" method="post">
+	<form action="/TastyPangyo/updateRes" method="post" >
 		
 		맛집 ID : <input type = "text" name="resId" value = "${param.PK}" readonly><br><br>
 		
@@ -33,6 +33,9 @@
 		맛집 소개 : <textarea rows="10" cols="30" name="introduction" required="required"></textarea><br><br>	
 		<p>
 		<input type="submit" value="변경">
+		
+		<p>
+		 
 		 		
 		</form>
 

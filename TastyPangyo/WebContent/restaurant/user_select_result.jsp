@@ -21,7 +21,15 @@
 	
 	<c:forEach items="${sessionScope.resList}" var = "res">	
 			<tr align="center">
-				<td><a href = "/TastyPangyo/selectResById?restaurantId=${res.restaurantId}">${res.restaurantName}</a></td>
+				<c:choose>												<%-- 로그인을 하지 않았으면, 상세정보를 클릭할 수 없도록한다. --%>
+					<c:when test="${empty sessionScope.login}">
+						<td>${res.restaurantName}</td>
+					</c:when>
+					<c:otherwise>
+						<td><a href = "/TastyPangyo/selectResById?restaurantId=${res.restaurantId}">${res.restaurantName}</a></td>
+									<%--상세 정보를 볼 맛집 id를 서블릿으로 넘긴다. --%>																				
+					</c:otherwise>
+				</c:choose>
 				<td>${res.foodCategory}</td>
 			 	<td>${res.location}</td>
 				<td>${res.restaurantTelNum}</td>

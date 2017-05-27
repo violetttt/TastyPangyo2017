@@ -7,5 +7,6 @@
 </head>
 <body>
 <%=session.getAttribute("updateRes")%>
+
 </body>
 </html>

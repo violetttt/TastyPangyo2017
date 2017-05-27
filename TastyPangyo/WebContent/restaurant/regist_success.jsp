@@ -15,21 +15,21 @@
 식당명 : ${sessionScope.insertRestaurant.restaurantName}<br>
 음식종류 : ${sessionScope.insertRestaurant.foodCategory}<br>
 위치 : ${sessionScope.insertRestaurant.location}<br>
-소개글 : ${sessionScope.insertRestaurant.introduction}<br>
-<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a>
+소개글 : ${sessionScope.insertRestaurant.introduction}<br><br>
+<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a><br>
 
 
 <!-- 삭제  -->
 
-<c:forEach items="${ requestScope.result }" var="name">
+<c:forEach items="${requestScope.result}" var="name">
 		<form action="${initParam.rootPath}/tp/imagedelete" method="post">
 		<p>
 		<input type="hidden" name="resId" value="${requestScope.restaurtid}">
-		<input type="hidden" name="name" value="${name}">
-		<img src="${initParam.rootPath }/up_images/${name}" width="400px"><input type="submit" value="삭제">
+		<input type="hidden" name="name" value="${name}"><br>
+		<img src="${initParam.rootPath}/up_images/${name}" width="400px"><input type="submit" value="삭제">
 		</p>
 		</form>
-</c:forEach>
+</c:forEach><br>
 
 
 <!--전체사진 삭제 -->
@@ -37,7 +37,7 @@
 	<input type="submit" value="전체 사진 삭제"><br>
 </form>
 
-<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a>
+
 
 </body>
 </html>
