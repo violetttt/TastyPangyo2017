@@ -14,7 +14,8 @@
 				<th width="100px"> 음식종류     </th>
 				<th width="150px"> 위치 		  </th>
 				<th width="100px"> 음식점 번호  </th>
-				<th width="500px"> 소개글        </th>		
+				<th width="500px"> 소개글        </th>
+				<th width="100px"> 조회수	 </th>	
 			</tr>
 		</thead>
 		<tbody>
@@ -33,7 +34,8 @@
 				<td>${res.foodCategory}</td>
 			 	<td>${res.location}</td>
 				<td>${res.restaurantTelNum}</td>
-				<td>${res.introduction}</td>				
+				<td>${res.introduction}</td>
+				<td>${res.hits }</td>		
 			</tr>
 	</c:forEach>
 	</tbody>

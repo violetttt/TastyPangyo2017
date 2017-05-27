@@ -11,6 +11,7 @@
 			  r.hits,
 			  r.restaurant_tel_num,
 			  r.introduction,
+			  r.menu,
 			  i.image,
 			  v.review_no,
 	  	 	  v.member_id,
@@ -35,6 +36,7 @@
 			<result column=	"hits"							property = "hits"/>
 			<result column ="restaurant_tel_num" 	property = "restaurantTelNum"/>
 			<result column = "introduction"			property="introduction"/>
+			<result column ="menu"					property="menu"/>
 	</resultMap>
 
 
@@ -85,7 +87,8 @@
 		   restaurant_name = 	#{restaurantName},
 		   restaurant_tel_num = #{restaurantTelNum},
 		   introduction = 		#{introduction},
-		   menu=				#{menu}
+		   menu=				#{menu},
+		   hits=				#{hits}
 	WHERE  restaurant_id = #{restaurantId}
 	</update>
 	

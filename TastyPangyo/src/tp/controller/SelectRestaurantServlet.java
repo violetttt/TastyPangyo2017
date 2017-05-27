@@ -75,7 +75,8 @@ public class SelectRestaurantServlet extends HttpServlet {
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
 						req.getRequestDispatcher("/restaurant/manager_select_result.jsp").forward(req, resp);
 						break;
-					
+						
+			
 				}
 			
 	}

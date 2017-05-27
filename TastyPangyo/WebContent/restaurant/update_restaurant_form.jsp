@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-	<form action="/TastyPangyo/updateRes" method="post" >
+	<form action="/TastyPangyo/updateRes" method="post" enctype="multipart/form-data">
 		
 		맛집 ID : <input type = "text" name="resId" value = "${param.PK}" readonly><br><br>
 		
@@ -30,15 +30,17 @@
 		
 		맛집 메뉴 : <textarea rows="10" cols="30" name="menu" required="required"></textarea><br><br>
 		
-		맛집 소개 : <textarea rows="10" cols="30" name="introduction" required="required"></textarea><br><br>	
+		맛집 소개 : <textarea rows="10" cols="30" name="introduction" required="required"></textarea><br><br>
+		
+		사진 첨부: <input type="file" name="image" multiple width="100"> 
+		
+		<input type="hidden" name="update" value="변경모드로 향하기">
 		<p>
 		<input type="submit" value="변경">
-		
 		<p>
-		 
-		 		
 		</form>
-
 	</center>
+	
+	
 </body>
 </html>
