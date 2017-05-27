@@ -1,4 +1,8 @@
+<%@page import="tp.vo.Member"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,7 +191,7 @@ a:hover {
 /*****************************맛집 TOP5, 별점 TOP5 CSS 설정****************************/
 .content1 {
 	width: 100%;
-	height: 620px;
+	height: 310px;
 	border: 1px solid black;
 	background: lightyellow;
 	padding: 5px; /* 네 방향의 패딩 모두 5px */
@@ -205,6 +209,7 @@ a:hover {
 </style>
 
 </head>
+
 
 <!--------------------------------- BODY 대신 DIV 사용------------------------------------------>
 <div id="div_root">
@@ -231,14 +236,52 @@ a:hover {
 	</div>
 	<br> <br> <br> <br>
 
+
 	<!---------------------------------------내용 설정-------------------------------------------->
 	<div id="div_con">
 		<div class="content1">
-			<h1>최종 접속일로 회원 조회</h1><br>
-			<form action="/TastyPangyo/memberByVisitDate">
-				<input type="date" name="visitDate"> <input type="submit" value="찾기">
-			</form>
-		</div>
+		
+		<h1>리뷰목록</h1><br>
+		<form action="/TastyPangyo/review/remove" method="post"><!-- 관리모드를 위한 폼 -->
+
+<table border="1" align="center" valign="center">
+   <thead>
+      <tr>
+         <th width="50px"> NO </th>
+         <th width="100px"> 식당명 </th>
+         <th width="100px"> 별점 </th>
+         <th width="500px"> 제목 </th>
+         <th width="200px"> 작성일</th>
+         <!-- 회원만만 볼수있게 !!!! -->
+         <c:if test="${ sessionScope.login != null}">
+       		<th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
+         </c:if>
+         
+      </tr>
+   </thead>
+    <tfoot>
+      <tr>
+      <td colspan="8" style="text-align: center">
+      <input type="hidden" name="deleteCk" value="yes">
+      <input type="submit" value="삭제" onclick="confirm('선택한 리뷰를 삭제합니다')">
+      </td>
+      </tr>
+   </tfoot>
+   <tbody>
+   <c:forEach items="${ reviews }" var="review">   
+      <tr>
+         <td> ${ review.reviewNo } </td>
+         <td> ${ review.restaurantName }</td>
+         <td> ${ review.kostar }</td>
+         <td><a href ="/TastyPangyo/review/show?reviewNo=${ review.reviewNo }">${ review.title }</a> </td>
+         <td> <fmt:formatDate value="${ review.registeredDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+         <td style="text-align:center"> <input type="checkbox" name="reviewNo" value="${ review.reviewNo }"></td>
+      </tr>
+   </c:forEach>
+   </tbody>
+</table>
+</form>
+	</div>
 	</div>
 
 

@@ -26,11 +26,13 @@ public class DeleteMemberServlet extends HttpServlet{
 		if(pw.equals(service.selectMemberById(id).getMemberPw())){
 			service.deleteMember(pw);
 			session.invalidate();
+			// 3. 응답
+			req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);
+		}else{
+			req.getRequestDispatcher("/member/delete_falsePw.jsp").forward(req, resp);
 		}
 		
 		
-		// 3. 응답
-		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);
 		
 	}
 

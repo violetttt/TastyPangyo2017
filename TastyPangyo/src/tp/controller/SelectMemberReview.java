@@ -24,15 +24,21 @@ public class SelectMemberReview extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		// 1. 요청 파라미터 조회
 		String id = req.getParameter("id");
-		
+		String admin = req.getParameter("admin");
 		
 		// 비지니스로직처리
 		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
 		
 		req.setAttribute("reviews", rms.selectReviewByMemberId(id));
 		
+		if(admin == null){
+			req.getRequestDispatcher("/member/show_review.jsp").forward(req, resp);
+		}else{
+			req.getRequestDispatcher("/member/show_review_admin.jsp").forward(req, resp);
+		}
+		
 		// 3. 요청디스패치
-		req.getRequestDispatcher("/member/show_review.jsp").forward(req, resp);
+		
 	
 	}
 	

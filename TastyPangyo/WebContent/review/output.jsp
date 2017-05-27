@@ -2,7 +2,7 @@
 <%@page import="tp.vo.Review"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE html>
@@ -43,9 +43,10 @@
 	</tr>
 </table>
 <br>
-<form action="/TastyPangyo/review/select" method="post">
-	<button type="submit" name="default" value="registered_date">전체목록보기</button>
-</form> 
-
+<c:if test="${sessionScope.id == 'admin'}">
+	<form action="/TastyPangyo/review/select" method="post">
+		<button type="submit" name="default" value="registered_date">전체목록보기</button>
+	</form> 
+</c:if>
 </body>
 </html>

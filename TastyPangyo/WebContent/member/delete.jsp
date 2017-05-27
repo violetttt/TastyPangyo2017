@@ -140,7 +140,7 @@ a:hover {
 #div_top { /*사진/배너 */
 	width: 120%;
 	height: 200px;
-	background: url('/board/2.jpg') no-repeat;
+	background:url('/TastyPangyo/2.jpg') no-repeat ; 
 	/*2.jpg(음식사진)을 경로에 넣어서 바꿔줘야함*/
 	background-size: cover;
 	text-align: center;
@@ -225,7 +225,7 @@ a:hover {
 		<ul id="nav">
 			<li><a href="/TastyPangyo/logout"> 처음으로 </a></li>
 			<li><a href="/TastyPangyo/member/update.jsp">정보 수정</a></li>
-			<li><a href="/TastyPangyo/member/show_review.jsp">리뷰 보기</a></li>
+			<li><a href="/TastyPangyo/SelectMemberReview?id=${sessionScope.id }">리뷰 보기</a></li>
 			<li><a href="/TastyPangyo/member/delete.jsp">회원 탈퇴</a></li>
 			
 		</ul>
