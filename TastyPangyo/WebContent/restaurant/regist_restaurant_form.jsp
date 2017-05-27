@@ -13,8 +13,7 @@
 		<form action="/TastyPangyo/insertRes" method="post" enctype="multipart/form-data">
 
 		맛집 이름 : <input type = "text" name="resName"><br><br>
-		
-		전화번호 : <input type="text" name="resTelNum"><br><br>
+				전화번호 : <input type="text" name="resTelNum"><br><br>
 		
 		맛집 위치 :<br> 삼환하이펙스A<input type = "radio" name="location" value="삼환하이펙스A" ><br>
 				   삼환하이펙스B<input type = "radio" name="location" value="삼환하이펙스B" ><br>

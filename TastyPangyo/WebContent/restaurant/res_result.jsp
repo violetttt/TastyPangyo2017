@@ -10,7 +10,7 @@
 	<table border = "1">
 		<thead>
 			<tr>
-				<th width="100px">  식당명        </th>
+				<th width="100px"> 식당명        </th>
 				<th width="100px"> 음식종류     </th>
 				<th width="150px"> 위치 		  </th>
 				<th width="100px"> 음식점 번호  </th>
@@ -27,7 +27,7 @@
 				<td>${res.foodCategory}</td>
 			 	<td>${res.location}</td>
 				<td>${res.restaurantTelNum}</td>
-				<td>${res.introduction}</td>
+				<td><center>${res.introduction}</center></td>
 				<td>
 					<form action = "/TastyPangyo/deleteRes">
 					<input type ="submit" value = "맛집삭제" name = "${res.restaurantId}">

@@ -12,18 +12,21 @@
 	<center>
 	<h3>${requestScope.selectRes.restaurantName}</h3>
 	
-				<c:forEach items = "${requestScope.image}" var = "image">
+				<c:forEach items = "${requestScope.selectRes.images}" var = "image">
 					<form action="${initParam.rootPath}/tp/imagedelete" method="post">
-						<img src="${initParam.rootPath}/up_images/${image}" width="400px">
+						<c:if test=" ${empty initParam.rootPath}/up_images/${image}">
+							<img src="${initParam.rootPath}/up_images/${image}" width="400px">
+						</c:if>
 					</form>
 				</c:forEach>
 					
 	조회수 : ${requestScope.selectRes.hits}<br>
  	번호 : ${requestScope.selectRes.restaurantId}<br>
 	카테고리 분류 : ${requestScope.selectRes.foodCategory}<br>
-	위치 : ${requestScope.selelctRes.location}<p>
+	위치 : ${requestScope.selectRes.location}<p>
 	
-	소개글 :<textarea rows="10" cols="10" readonly>${requestScope.selectRes.introduction}</textarea>
+	소개글 :<input type="text" size = "50px" value = "${requestScope.selectRes.introduction}"/>
+	
 	<p>
 	
 	메뉴 : <textarea rows="10" cols="50" readonly>${requestScope.selectRes.menu}</textarea>
