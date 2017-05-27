@@ -40,7 +40,7 @@ public class UpdateReviewServlet extends HttpServlet{
 		
 		// 요청파라미터로 jsp 이동
 		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
-		resp.sendRedirect("../review/list.jsp");
+		resp.sendRedirect("../member/show_review.jsp");
 	}
 	
 

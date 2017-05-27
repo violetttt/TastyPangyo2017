@@ -94,16 +94,17 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	@Override
-	public void deleteMemberByVisitDate(Date visitDate) {
+	public int deleteMemberByVisitDate(Date visitDate) {
 		SqlSession session = null;
 		
-		session = factory.getSqlSessionFactory().openSession();
-			
-		dao.deleteMemberByVisitDate(session, visitDate);
-		session.commit();
-		
-		if(session != null) session.close();
-		
+		try{
+			session = factory.getSqlSessionFactory().openSession();
+				
+			return dao.deleteMemberByVisitDate(session, visitDate);
+		}finally{
+			session.commit();
+			if(session != null) session.close();
+		}
 	}
 	@Override
 	public List<Member> selectAllMember() {

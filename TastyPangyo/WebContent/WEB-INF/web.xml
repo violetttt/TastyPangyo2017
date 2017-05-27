@@ -63,7 +63,7 @@
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
   
-     <!-- 회원탈퇴- 관리자 서블릿 -->
+     <!-- 회원삭제- 관리자 서블릿 -->
   <servlet>
     <servlet-name>deleteByVisitDate</servlet-name>
     <servlet-class>tp.controller.DeleteByVisitDateServlet</servlet-class>

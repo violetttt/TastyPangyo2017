@@ -39,8 +39,11 @@ public class MemberTest {
 		// 수정 - O
 		//service.updateMember(m5);
 		
-		// 삭제 - O
-		service.deleteMember("f");
+		// 비번으로 삭제 - O
+		//service.deleteMember("222");
+		
+		// 접속일로 회원들 삭제 - O
+		//service.deleteMemberByVisitDate(new Date(117,04,05));
 		
 // 조회
 		// 회원수 조회 - O
@@ -53,7 +56,7 @@ public class MemberTest {
 		
 		// 접속일로 회원리스트 조회 - O
 		System.out.println("--- 접속일로 회원 조회----");
-		list = service.selectMemberByVisitDate(new Date(117,04,25));
+		list = service.selectMemberByVisitDate(new Date(117,04,05));
 		for(Member mem : list){
 			System.out.println(mem);
 		}

@@ -29,7 +29,7 @@ public class ShowReviewUpdateModeServlet extends HttpServlet{
 		req.setAttribute("review", rms.selectReviewByNo(reviewNo));	
 		
 		
-		req.getRequestDispatcher("/review/update_form.jsp").forward(req, resp);
+		req.getRequestDispatcher("/member/update_form.jsp").forward(req, resp);
 		
 	}
 	

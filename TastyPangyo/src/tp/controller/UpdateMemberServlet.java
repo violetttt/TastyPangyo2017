@@ -28,10 +28,6 @@ public class UpdateMemberServlet extends HttpServlet{
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
 		Member om = service.selectMemberById((String)session.getAttribute("id"));
 		
-		/*if(){
-			
-		}*/
-		
 		Member m = new Member(om.getMemberId(), newPw, newName, om.getVisitDate());
 		
 		service.updateMember(m);

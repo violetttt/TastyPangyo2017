@@ -26,19 +26,19 @@ public class DeleteByVisitDateServlet extends HttpServlet{
 		// 2. 처리
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
 		Date d = null;
-		
+		int cnt = 0;
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			d = transFormat.parse(date);
-			service.deleteMemberByVisitDate(d);
+			cnt = service.deleteMemberByVisitDate(d);
+			session.setAttribute("delete", cnt);
 		} catch (ParseException e) {
-			
 		}
 		
 		
-		
 		// 3. 응답
-		req.getRequestDispatcher("/member/delete_result.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/member/delete_result.jsp").forward(req, resp);
+		resp.sendRedirect("/TastyPangyo/member/delete_result.jsp");
 		
 	}
 

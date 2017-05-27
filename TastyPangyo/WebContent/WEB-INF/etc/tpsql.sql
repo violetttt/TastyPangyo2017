@@ -44,7 +44,7 @@ CREATE TABLE 	member(
 CREATE SEQUENCE restaurant_id_seq; 
 DROP SEQUENCE restaurant_id_seq;
 
-CREATE sequence review_no;
+CREATE sequence review_no_seq;
 DROP sequence review_no;
 
 
@@ -81,7 +81,11 @@ AND	   r.restaurant_id = 1
 -- 삽입
 INSERT INTO member VALUES('152','1234','이병문','2016-05-23');
 
-INSERT INTO RESTAURANT values(4,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(6,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(1,'중식','삼환하이펙스','이츠',20,'01041841109','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(2,'한식','유스페이스1','청년다방',50,'01052651244','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(3,'분식','H스퀘어','신기소',100,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(5,'기타','유스페이스2','고메부인',70,'01041953154','냉면전문점','냉면 갈비 등등');
 
 insert into member values('shh', '000', '서현화', '2017,05,01');
 insert into member values('lbm', '111', '이병문', '2017,05,01');

@@ -25,7 +25,7 @@ public class RemoveReviewServlet extends HttpServlet{
 		rms.deleteReviewSelected(noArr);
 		
 		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
-		resp.sendRedirect("../review/list.jsp");
+		resp.sendRedirect("../member/show_review.jsp");
 		
 	}
 

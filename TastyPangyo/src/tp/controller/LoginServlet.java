@@ -1,7 +1,6 @@
 package tp.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -28,20 +27,20 @@ public class LoginServlet extends HttpServlet {
 		
 		// 2. 처리- Model 호출
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
-		try {
-			session.setAttribute("login", service.login(id,pw));
-			Member m =  service.login(id,pw);
-			m.setVisitDate(new Date());
-			service.updateMember(m);
-		} catch (LoginFailException e) {
-			session.setAttribute("loginfail", e.getMessage());
-			
-		} catch (MemberNotFoundException e) {
-			session.setAttribute("loginfail", e.getMessage());
-		}
+		Member m = service.selectMemberById(id);
+
+			if(m != null){
+				if(pw.equals(m.getMemberPw())){
+					session.setAttribute("login", m);
+					m.setVisitDate(new Date());
+					service.updateMember(m);
+					session.setAttribute("id", id);
+				}
+				session.setAttribute("fail", "비밀번호가 틀렸습니다");
+			}
+			session.setAttribute("fail", "아이디가 틀렸습니다");
 		
-	
-		session.setAttribute("id", id);
+
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);
 	}
