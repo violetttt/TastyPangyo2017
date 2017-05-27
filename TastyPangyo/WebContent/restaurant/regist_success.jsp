@@ -16,7 +16,7 @@
 음식종류 : ${sessionScope.insertRestaurant.foodCategory}<br>
 위치 : ${sessionScope.insertRestaurant.location}<br>
 소개글 : ${sessionScope.insertRestaurant.introduction}<br><br>
-<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a><br>
+
 
 
 <!-- 삭제  -->
@@ -37,7 +37,7 @@
 	<input type="submit" value="전체 사진 삭제"><br>
 </form>
 
-
+<a href="/TastyPangyo/restaurant/manager_select_form.jsp">관리자 페이지로</a><br>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ CREATE TABLE  restaurant(
 					restaurant_tel_num		VARCHAR2(50)		NOT NULL,
 					introduction				VARCHAR2(1000)	NOT NULL,
 					menu						VARCHAR2(500)		NOT NULL
+					
 					);
 	
 DROP TABLE 	restaurant_image;
@@ -44,7 +45,7 @@ CREATE TABLE 	member(
 CREATE SEQUENCE restaurant_id_seq; 
 DROP SEQUENCE restaurant_id_seq;
 
-CREATE sequence review_no;
+CREATE sequence review_no_seq;
 DROP sequence review_no;
 
 
@@ -81,7 +82,11 @@ AND	   r.restaurant_id = 1
 -- 삽입
 INSERT INTO member VALUES('152','1234','이병문','2016-05-23');
 
-INSERT INTO RESTAURANT values(4,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(6,'양식','삼환하이펙스A','김밥천국3',10,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(1,'중식','삼환하이펙스','이츠',20,'01041841109','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(2,'한식','유스페이스1','청년다방',50,'01052651244','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(3,'분식','H스퀘어','신기소',100,'01041953154','냉면전문점','냉면 갈비 등등');
+INSERT INTO RESTAURANT values(5,'기타','유스페이스2','고메부인',70,'01041953154','냉면전문점','냉면 갈비 등등');
 
 insert into member values('shh', '000', '서현화', '2017,05,01');
 insert into member values('lbm', '111', '이병문', '2017,05,01');
@@ -92,12 +97,58 @@ insert into member values('sey', '777', '성은영', '2017,05,01');
 insert into member values('admin', 'java', '관리자', '2017,01,01');
 
 
-INSERT INTO restaurant_image	values ('c:\java\교동1',1);
-INSERT INTO restaurant_image	values ('c:\java\교동2',1);
-INSERT INTO restaurant_image	values ('c:\java\교동3',1);
-INSERT INTO restaurant_image	values ('c:\java\교동4',1);
-INSERT INTO restaurant_image	values ('c:\java\교동5',1);
+INSERT INTO restaurant_image	values ('새마을식당',2);
+INSERT INTO restaurant_image	values ('새마을식당',2);
+INSERT INTO restaurant_image	values ('새마을식당1',2);
+INSERT INTO restaurant_image	values ('브루클린2',1);
+INSERT INTO restaurant_image	values ('브루클린1',1);
 
 INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
 
 DELETE FROM member WHERE visit_date < '2017,05,20'
+
+SELECT    restaurant_id,
+			 food_category,
+			 location,
+			 restaurant_name,
+			 hits,
+			 restaurant_tel_num,
+			introduction
+	FROM   restaurant
+	ORDER BY hits
+	
+	SELECT  r.restaurant_id,
+			 r.food_category,
+			 r.location,
+			 r.restaurant_name,
+			 r.hits,
+			 r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM   restaurant r, restaurant_image i
+	WHERE	r.restaurant_id = i.restaurant_id(+)
+	ORDER BY r.hits
+	
+	
+	
+	SELECT	avg(v.kostar),
+			v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	FROM REVIEW v, RESTAURANT r, RESTAURANT_IMAGE i
+	WHERE v.restaurant_id=r.restaurant_id 
+	AND r.restaurant_id=i.restaurant_id(+)
+	GROUP BY v.restaurant_id,
+			r.food_category,
+			r.location,
+			r.restaurant_name,
+			r.hits,
+			r.restaurant_tel_num,
+			r.introduction,
+			i.image
+	ORDER BY AVG(v.kostar) DESC

@@ -27,8 +27,10 @@ public class SelectReviewServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		req.setCharacterEncoding("utf-8");
 		HttpSession session = req.getSession();
 
@@ -56,8 +58,8 @@ public class SelectReviewServlet extends HttpServlet {
 			// 비지니스로직처리
 		
 
-			if (member==null || !member.getMemberId().equals("admin")) { //일반회원일때는 회원아이디로 작성된 것만 보여줌 
-				req.setAttribute("reviews", rms.selectReviewByMemberId("chloes"));
+			if (member==null || !member.getMemberId().equals("admin") ) { //일반회원일때는 회원아이디로 작성된 것만 보여줌 
+				req.setAttribute("reviews", rms.selectReviewByMemberId(keyword));
 			} else {
 				switch (param) {
 				case "allReviews":
@@ -108,10 +110,6 @@ public class SelectReviewServlet extends HttpServlet {
 		}
 		// 3. 요청디스패치
 		req.getRequestDispatcher("/review/list.jsp").forward(req, resp);
-		
-
-	
-
+	}
 	}
 
-}

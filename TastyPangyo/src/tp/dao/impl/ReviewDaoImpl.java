@@ -159,7 +159,7 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 
 	@Override
-	public int selectAverageOfKostarByRestaurantId(SqlSession session, int restaurantId) {
+	public double selectAverageOfKostarByRestaurantId(SqlSession session, int restaurantId) {
 		return session.selectOne(MapperPath("selectAverageOfKostarByRestaurantId"), restaurantId);
 	}
 	

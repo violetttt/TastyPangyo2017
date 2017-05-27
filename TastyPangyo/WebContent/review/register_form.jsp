@@ -2,7 +2,7 @@
 <%@page import="java.util.Date"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% Restaurant r = new Restaurant(2, "한식", "유스페이스", "새마을식당", 123, "010-3333-2222", "봉추찜닭 소개글입니다.","메뉴");
+<% Restaurant r = new Restaurant(4, "한식", "유스페이스", "새마을식당", 123, "010-3333-2222", "봉추찜닭 소개글입니다.","메뉴");
 	request.setAttribute("restaurant", r); %>
 
 <!DOCTYPE html>

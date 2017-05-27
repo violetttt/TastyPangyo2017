@@ -97,11 +97,22 @@ public class InsertRestaurantServlet extends HttpServlet {
 			}	// 큰 if else 종료
 	}	// for문 종료
 	
+<<<<<<< HEAD
 				ris.selectRestaurantImageById(vo.getRestaurantId());			
 				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId())));
 				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
 				req.setAttribute("restaurtid", vo.getRestaurantId());
 		
+=======
+				ris.selectRestaurantImageById(vo.getRestaurantId()); // 위에서 생성된 레스토랑 테이블에서 레스토랑id 번호를 받아오기 위한 작업
+				
+				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId()))); // 레스토랑 id로 테이블에서 이미지를 호출해 vo에 넣는 작업
+				
+				req.setAttribute("result", vo.getImages()); // vo에 넣은 이미지들을 속성에 넣어 jsp에 보낸다
+				
+				session.setAttribute("resId", vo.getRestaurantId());	// 이미지들을 삭제하기 위해 레스토랑 id도 보내준다
+				
+>>>>>>> branch 'master' of https://github.com/violetttt/TastyPangyo2017.git
 			// 응답 처리
 			req.getRequestDispatcher("/restaurant/regist_success.jsp").forward(req, resp);
 			

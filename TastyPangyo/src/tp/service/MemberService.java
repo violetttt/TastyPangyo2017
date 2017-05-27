@@ -43,7 +43,7 @@ public interface MemberService {
 	 * 접속일로 회원정보 삭제하는 메소드
 	 * @param visitDate
 	 */
-	void deleteMemberByVisitDate(Date visitDate);
+	int deleteMemberByVisitDate(Date visitDate);
 	
 	/**
 	 * 모든 회원정보 조회하는 메소드

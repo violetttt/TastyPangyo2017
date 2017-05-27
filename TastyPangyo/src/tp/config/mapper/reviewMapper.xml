@@ -251,7 +251,7 @@
 
 	<!-- 평균별점  순으로  조회-->
 	<select id="selectAvgKostarByRestaurantId" resultMap="review-restaurant-resultmap">
-	SELECT	avg(v.kostar),
+	SELECT	round(avg(v.kostar), 1),
 			v.restaurant_id,
 			r.food_category,
 			r.location,

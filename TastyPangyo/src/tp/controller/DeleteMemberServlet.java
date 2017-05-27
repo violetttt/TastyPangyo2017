@@ -23,12 +23,11 @@ public class DeleteMemberServlet extends HttpServlet{
 		
 		// 2. 처리
 		MemberServiceImpl service = MemberServiceImpl.getInstance();
-		/*if(pw.equals(service.selectMemberById(id).getMemberPw())){
+		if(pw.equals(service.selectMemberById(id).getMemberPw())){
 			service.deleteMember(pw);
 			session.invalidate();
-		}*/
-		service.deleteMember(pw);
-		session.invalidate();
+		}
+		
 		
 		// 3. 응답
 		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);
