@@ -120,7 +120,8 @@ public interface ReviewService {
 	 *  평균별점 순으로 맛집조회
 	 * @return
 	 */
-	List<Review> selectRestaurantIdByAvgKostar();
-	
+	List<Review> selectAvgKostarByRestaurantId();
+
+	double selectAverageOfKostarByRestaurantId(int restaurantId);
 	
 }

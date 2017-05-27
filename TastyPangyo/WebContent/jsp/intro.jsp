@@ -186,14 +186,22 @@ border-top-width: 2px;
 	background:lightyellow;	
 	padding:5px;				  /* 네 방향의 패딩 모두 5px */
 }
+
+.con_td {
+ text-align: center;
+ width: 280px;
+ height: 200px;
+ padding-left: 20px;
+ padding-right: 20px;
+ border-color:black;
+ border:1;
+ background-color: white;
+
+}
 /*****************************************************************************************/
 </style>
 </head>
 
-
-
-
-<hr>
 <!--------------------------------- BODY 대신 DIV 사용------------------------------------------>
 <div id="div_root"> 
 
@@ -205,37 +213,33 @@ border-top-width: 2px;
 <!-------------------------------------메뉴바 설정----------------------------------------------->
 <div id="div_menu">
 <ul id="nav">
-	<li><a href="/TastyPangyo/logout"> 처음으로 </a></li>
-  <li><a href="/TastyPangyo/restaurant/user_select_result.jsp"> 전체맛집조회 </a></li>
-	<li><a href="/TastyPangyo/restaurant/user_selectByLocation.jsp"> 건물로조회</a></li>
-	<li><a href="/TastyPangyo/restaurant/user_selectByName_form.jsp"> 이름으로조회 </a></li>  
-	<li><a href="/TastyPangyo/restaurant/user_selectByCategory_form.jsp"> 카테고리로조회</a></li>
-	<li><a href="/TastyPangyo/member/join_form.jsp">회원가입</a></li>
-	
-	<li><form action="/TastyPangyo/login" method="post">
-<c:choose>
 
-	<c:when test="${empty sessionScope.login }">
-		ID : <input type="text" name="id" placeholder="id를 입력하세요">
-		PW : <input type="password" name="pw" placeholder="비밀번호를 입력하세요">
-		<input type="submit" value="확인">
-		
-	</c:when>
-
-	
-	<c:otherwise>
-			<%= session.getAttribute("id") %>님 환영합니다.<br>
-		<ul>	<li><a href="/TastyPangyo/logout">로그아웃</a></li>
-			<li><a href="/TastyPangyo/member/myPage.jsp">마이페이지</a></li>
-			<c:if test="${sessionScope.id == 'admin' }">
-         	<li><a href="/TastyPangyo/member/memberSelect.jsp">관리모드</a></li>
-         </ul>
-      </c:if> 	
-	</c:otherwise>
-</c:choose>
-</form>
-	</li>            
-</ul>	
+   <li><a href="/TastyPangyo/jsp/main.jsp"> 처음으로 </a></li>
+  <li><a href="/TastyPangyo/rastaurant/select_restaurant.jsp"> 전체맛집조회 </a></li>
+   <li><a href=""> 건물로조회</a></li>
+   <li><a href="#"> 이름으로조회 </a></li>  
+   <li><a href="#"> 카테고리로조회</a></li>
+  
+   
+   <li><form action="/TastyPangyo/login" method="post">
+   <c:choose>
+      <c:when test="${empty sessionScope.id }">
+         ID : <input type="text" name="id" placeholder="id를 입력하세요" required oninvalid="setCustomValidity('ID를 입력해주세요!')" oninput="setCustomValidity('')">
+         PW : <input type="password" name="pw" placeholder="비밀번호를 입력하세요" required oninvalid="setCustomValidity('비밀번호를 입력해주세요!')" oninput="setCustomValidity('')">      
+               <input type="submit" value="확인"> 
+       <li><a href="/TastyPangyo/member/join_form.jsp">회원가입</a></li>
+   </c:when>
+   <c:otherwise>
+      <%= session.getAttribute("id") %>님 환영합니다.&nbsp
+      <a href="/TastyPangyo/logout">로그아웃</a>&nbsp
+      <a href="/TastyPangyo/member/myPage.jsp">마이페이지</a>
+      <c:if test="${sessionScope.id == 'admin' }">
+         <a href="/TastyPangyo/member/memberSelect.jsp">관리모드</a>
+      </c:if>      
+   </c:otherwise>
+   </c:choose>'
+   </form></li>            
+</ul>
 </div><br><br><br><br>
 
 <!---------------------------------------내용 설정-------------------------------------------->
@@ -243,50 +247,44 @@ border-top-width: 2px;
 	<div class="content1">
       <h3> 맛집 TOP 5</h3>
       <table> 
-      <tr>
-         <c:forEach items="${ applicationScope.hitsTop5 }" var="hitsTop5">
-            <td class="con_td">
-            <!-- top 5 별점 조회수 -->
-            ${ hitsTop5.restaurantName }<br>
-            ${ hitsTop5.foodCategory }<br>
-            ${ hitsTop5.location }<br>
-            ${ hitsTop5.hits }<br>
-            ${ hitsTop5.images[0] }
-            
-            
-            </td>
-         </c:forEach>
-      </tr>
-    </table>
-	  </div><br>
-	<div class="content2">
+
+		<tr>
+			<c:forEach items="${ applicationScope.hitsTop5 }" var="hitsTop5">
+				<td class="con_td">
+				<!-- top 5 별점 조회수 -->
+				${ hitsTop5.restaurantName }
+				${ hitsTop5.foodCategory }
+				${ hitsTop5.location }
+				${ hitsTop5.hits }
+				
+				</td>
+			</c:forEach>
+		</tr>
+	 </table>
+   </div><br>
+   <div class="content2">
+
       <h3> 별점 TOP 5</h3>
       <table>
-      <tr>
-         <c:forEach items="${ applicationScope.kostarTop5 }" var="kostarTop5">
-            <td class="con_td">
-            <!-- top 5 별점 조회수 -->
-            ${ kostarTop5.restaurantName }<br>
-            ${ kostarTop5.foodCategory }<br>
-            ${ kostarTop5.location }<br>
-            ${ kostarTop5.hits}<br>
-            <%-- ${ hitsTop5.AVG(kostar) }<br> --%>
-            ${ kostarTop5.images[0] }
-            
-            </td>
-         </c:forEach>
-      </tr>
-   </table>
-	  </div> 
+		<tr>
+			<c:forEach items="${ applicationScope.kostarTop5 }" var="kostarTop5">
+				<td class="con_td">
+				<!-- top 5 별점 조회수 -->
+				${ kostarTop5 }
+				
+				</td>
+			</c:forEach>
+		</tr>
+	</table>
+     </div> 
 </div>
 
 
 <!---------------------------------------소개 내용---------------------------------------------->
 <div id="div_bottom"><p id="p1">Tasty Pangyo 경기 성남시 분당구 대왕판교로 660  www.kosta.or.kr<br>
-										대표이사 서현화	대표전화 02-XXXX-XXXX					</p>
-							
-						
+
+                              대표이사 서현화   대표전화 02-XXXX-XXXX               </p>
+                     
 </div>
 </div>
 
-</html>

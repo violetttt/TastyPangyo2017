@@ -4,17 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!-- 세션으로 받은 레스토랑 정보, 로그인 정본로 화면 리스트 뿌려주기 -->
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!-- 리뷰index 화면 고정 -->
-<jsp:include page="/review/select_form.jsp"/>
 
 <h3>리뷰목록</h3>
 <% if( request.getAttribute("keyword") != null ){ %>

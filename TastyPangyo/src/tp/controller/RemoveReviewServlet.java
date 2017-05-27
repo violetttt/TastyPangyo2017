@@ -13,6 +13,7 @@ import tp.service.impl.ReviewServiceImpl;
 
 public class RemoveReviewServlet extends HttpServlet{
 
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -28,9 +29,6 @@ public class RemoveReviewServlet extends HttpServlet{
 		resp.sendRedirect("../member/show_review.jsp");
 		
 	}
-
-	
-
-	
+   
 
 }

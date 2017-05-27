@@ -155,7 +155,7 @@
 						<br>
 					제목 <input type="text" name="title" size="100" placeholder="제목을 입력하세요." required oninvalid="this.setCustomValidity('제목을 입력하지 않았습니다!')" oninput="setCustomValidity('')" >
 					<p>
-					<textarea name="comments" rows="10" cols="107" placeholder="리뷰 내용을 입력하세요." required oninvalid="this.setCustomValidity('내용을 입력하지 않았습니다!')" oninput="setCustomValidity('')"></textarea>
+					<textarea name="comments" rows="10" cols="107" placeholder="리뷰 내용을 입력하세요."  required oninvalid="this.setCustomValidity('내용을 입력하지 않았습니다!')" oninput="setCustomValidity('')"></textarea>
 					</p>
 				</div>
 				<input type="reset" value="입력초기화"> 

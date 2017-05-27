@@ -273,11 +273,24 @@ public class ReviewServiceImpl implements ReviewService {
 
 	
 	@Override
-	public List<Review> selectRestaurantIdByAvgKostar() {
+	public List<Review> selectAvgKostarByRestaurantId() {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			return dao.selectRestaurantIdByAvgKostar(session);
+			return dao.selectAvgKostarByRestaurantId(session);
+		
+		}finally{
+			session.commit();
+			session.close();
+		}
+	}
+	
+	@Override
+	public double selectAverageOfKostarByRestaurantId(int restaurantId) {
+		SqlSession session = null;
+		try{
+			session = factory.openSession();
+			return dao.selectAverageOfKostarByRestaurantId(session, restaurantId);
 		
 		}finally{
 			session.commit();
@@ -298,5 +311,6 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("-----------------------------------");
 		
 	}
+	
 	
 }

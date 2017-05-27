@@ -1,13 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 관리자 모드에서 나오는 선택 모드  -->
 
 <!-- 리뷰index 화면 고정 -->
 <jsp:include page="/review/index.jsp"/>
 
+
 <!-- 리뷰등록페이지로 가기 -->
-<a href ="/TastyPangyo/review/register_form.jsp" ><input type="button" value="리뷰등록페이지로"></a><br>
+<a href ="/TastyPangyo/review/register_form.jsp" >리뷰등록페이지로</a><br>
 <hr>	
+<!-- 전체리뷰 가기 -->
+<a href ="/TastyPangyo/review/select">전체리뷰</a><br>
+<hr>
+
+<!-- 로그인 한 회원일 때 자신의 전체리뷰 보기-->
+<a href ="/TastyPangyo/review/select?memberId=${sessionScope.login.memberId}" >리뷰보기</a><br>
+<hr>
 <!-- 전체목록 조회 -->
 <form action="/TastyPangyo/review/select" method="post">
 	전체목록 
@@ -28,12 +37,12 @@
 <hr>
 
 <form action="/TastyPangyo/review/select" method="post">
-	내용으로 찾기 <input type="search" name="comments" placeholder="내용 일부를 입력하세요">
+	내용으로 찾기 <input type="search" name="comments" placeholder="내용 일부를 입력하세요" required oninvalid="alert('값을 입력하세요!')">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>
 <form action="/TastyPangyo/review/select" method="post">
-	작성자로 찾기 <input type="search" name="memberId" placeholder="아이디를 입력하세요">
+	작성자로 찾기 <input type="search" name="memberId" placeholder="아이디를 입력하세요" required oninvalid="alert('값을 입력하세요!')">
 	<input type="submit" value="리뷰검색"><br>
 </form>
 <hr>

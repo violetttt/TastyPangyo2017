@@ -14,10 +14,19 @@ import tp.service.impl.RestaurantServiceImpl;
 import tp.vo.Member;
 
 public class SelectRestaurantServlet extends HttpServlet {
+		
+		@Override
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			doPost(request, response);
+		}
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		// 요청 파라미터 조회
+		
 		HttpSession session = req.getSession();
 		Enumeration<String> s = req.getParameterNames();
 		String paramName = s.nextElement();
@@ -40,37 +49,35 @@ public class SelectRestaurantServlet extends HttpServlet {
 					} 
 						session.setAttribute("resList", service.selectAllRestaurant());
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-		
-					break;
+						break;
 		
 				case "location":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantByLocation(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
-					} else {
+					}
 						session.setAttribute("resList", service.selectRestaurantByLocation(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
-					break;
+						break;
 		
 				case "resName":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantByName(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp").forward(req, resp);
-					} else {
+					}
 						session.setAttribute("resList", service.selectRestaurantByName(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
-					break;
+						break;
 		
 				case "foodCategory":
-					if (!member.getMemberId().equals("admin")) {
+					if (member==null || !member.getMemberId().equals("admin")) {
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
 						req.getRequestDispatcher("/restaurant/user_select_result.jsp");
-					} else {
+					} 
 						session.setAttribute("resList", service.selectRestaurantBySort(resSelectKey));
 						req.getRequestDispatcher("/restaurant/res_result.jsp").forward(req, resp);
-					}
+						break;
+					
 				}
 			
 	}

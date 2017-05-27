@@ -186,7 +186,7 @@ public interface ReviewDao {
 	 * @param kostar
 	 * @return
 	 */
-	int selectAverageOfKostarByRestaurantId(SqlSession session, int restaurantId);
+	double selectAverageOfKostarByRestaurantId(SqlSession session, int restaurantId);
 	
 	/**
 	 * 특정 음식점의 리뷰개수 select
@@ -209,5 +209,5 @@ public interface ReviewDao {
 	 * @param session
 	 * @return
 	 */
-	List<Review> selectRestaurantIdByAvgKostar(SqlSession session);
+	List<Review> selectAvgKostarByRestaurantId(SqlSession session);
 }
