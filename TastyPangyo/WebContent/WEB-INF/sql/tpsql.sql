@@ -85,26 +85,27 @@ SELECT * FROM review;
 SELECT restaurant_id_seq.nextval FROM DUAL;
 SELECT review_no_seq.nextval FROM DUAL;
 
-SELECT  r.restaurant_id,
-		  r.food_category,
-		  r.location,
-		  r.restaurant_name,
-		  r.hits,
-		  r.restaurant_tel_num,
-		  r.introduction,
-		  i.image,
-		  v.review_no,
-  	 	  v.member_id,
-   		  v.restaurant_id,
-   		  v.restaurant_name ,
-   		  v.registered_date ,
-   		  v.title    ,
-   		  v.comments ,
-   		  v.kostar   
+SELECT    r.restaurant_id,
+			  r.food_category,
+			  r.location,
+			  r.restaurant_name,
+			  r.hits,
+			  r.restaurant_tel_num,
+			  r.introduction,
+			  r.menu,
+			  i.image,			  
+			  v.review_no,
+	  	 	  v.member_id,
+	   		  v.restaurant_id,
+	   		  v.restaurant_name ,
+	   		  v.registered_date ,
+	   		  v.title    ,
+	   		  v.comments ,
+	   		  v.kostar   
 FROM   restaurant r, restaurant_image i, review v
 WHERE  r.restaurant_id = i.restaurant_id(+)
 AND	   r.restaurant_id = v.restaurant_id(+)
-AND	   r.restaurant_id = 1	
+AND	   r.restaurant_id = 82;	
 
 -- 삽입
 INSERT INTO member VALUES('152','1234','이병문','2016-05-23');
@@ -118,6 +119,6 @@ INSERT INTO restaurantimage	values ('C:\Users\kosta\Downloads\BONO (1)',4);
 INSERT INTO restaurantimage	values ('c:\java\교동4',4);
 INSERT INTO restaurantimage	values ('c:\java\교동5',4);
 
-INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
-INSERT INTO review VALUES	(15 ,'ke',64,'교동맛있어','2017-05-28' ,'ㅇㅇ','맛난다',10);
+INSERT INTO review VALUES	(4 ,'152',82,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
+INSERT INTO review VALUES	(18 ,'ke',82,'교동맛있어','2017-05-28' ,'ㅇㅇ','맛난다',10);
 SELECT review_no_seq.nextval     FROM dual

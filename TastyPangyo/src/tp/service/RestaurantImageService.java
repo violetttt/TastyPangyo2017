@@ -16,6 +16,6 @@ public interface RestaurantImageService {
 	
 	int deleteRestaurantImageByFile(String image);
 	
-	List<Restaurant> selectRestaurantImageById(int restaurantId);
+	List<String> selectRestaurantImageById(int restaurantId);
 	
 }

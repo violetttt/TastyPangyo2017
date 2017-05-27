@@ -11,7 +11,7 @@
 <%--맛집이름으로 조회--%>
 	<center>
 	<form action="/TastyPangyo/selectRes" method="post">
-	맛집이름으로 조회 :<br> <input type = "text" name="resName">
+	맛집이름으로 조회 :<br> <input type = "text" name="resName" required="required">
 					<input type = "submit" value="조회하기">
 	</form>
 	</center>

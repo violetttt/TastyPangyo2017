@@ -25,14 +25,14 @@ import tp.vo.Restaurant;
 public class InsertRestaurantServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.setCharacterEncoding("utf-8");
 		ServletContext ctx = getServletContext(); // 이미지를 저장할 경로
 		RestaurantImageService ris = RestaurantImageServiceImpl.getInstance();	// 레스토랑 이미지 서비스 객체 생성
 		RestaurantServiceImpl service = RestaurantServiceImpl.getInstance();	// 레스토랑 서비스 객체 생성
 		
 		
 		// 1.요청파라미터 조회
-		req.setCharacterEncoding("utf-8");
+		
 		HttpSession session = req.getSession();
 		
 		
@@ -69,6 +69,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 
 							}else if(reqName.equals("menu")){
 								vo.setMenu(reqValue);
+								
 							}else if(reqName.equals("introduction")){
 								vo.setIntroduction(reqValue);
 								
@@ -76,8 +77,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 								session.setAttribute("insertRes", "등록이 완료 되었습니다.");
 								session.setAttribute("insertRestaurant",service.selectRestaurantByID(vo.getRestaurantId()));
 							}
-							
-							
+		
 			}else{
 				
 			String fileName = item.getName();
@@ -97,6 +97,13 @@ public class InsertRestaurantServlet extends HttpServlet {
 			}	// 큰 if else 종료
 	}	// for문 종료
 	
+<<<<<<< HEAD
+				ris.selectRestaurantImageById(vo.getRestaurantId());			
+				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId())));
+				req.setAttribute("result", vo.getImages()); // ===> Model 호출해서 Business Logic 처리
+				req.setAttribute("restaurtid", vo.getRestaurantId());
+		
+=======
 				ris.selectRestaurantImageById(vo.getRestaurantId()); // 위에서 생성된 레스토랑 테이블에서 레스토랑id 번호를 받아오기 위한 작업
 				
 				vo.setImages(new ArrayList(ris.selectRestaurantImageById(vo.getRestaurantId()))); // 레스토랑 id로 테이블에서 이미지를 호출해 vo에 넣는 작업
@@ -105,6 +112,7 @@ public class InsertRestaurantServlet extends HttpServlet {
 				
 				session.setAttribute("resId", vo.getRestaurantId());	// 이미지들을 삭제하기 위해 레스토랑 id도 보내준다
 				
+>>>>>>> branch 'master' of https://github.com/violetttt/TastyPangyo2017.git
 			// 응답 처리
 			req.getRequestDispatcher("/restaurant/regist_success.jsp").forward(req, resp);
 			

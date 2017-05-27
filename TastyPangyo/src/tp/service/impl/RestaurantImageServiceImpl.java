@@ -75,11 +75,11 @@ public class RestaurantImageServiceImpl implements RestaurantImageService {
 	}
 
 	@Override
-	public List<Restaurant> selectRestaurantImageById(int restaurantId) {
+	public List<String> selectRestaurantImageById(int restaurantId) {
 		SqlSession session = null;
 		try{
 			session = factory.openSession();
-			return  dao.selectRestaurantImageById(session, restaurantId);
+			return dao.selectRestaurantImageById(session, restaurantId);
 		}finally{
 			session.commit();
 			session.close();

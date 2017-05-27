@@ -21,14 +21,25 @@ public class DeleteRestaurantImage extends HttpServlet {
 		RestaurantImageService ris = RestaurantImageServiceImpl.getInstance();
 		HttpSession session = request.getSession();
 		
+<<<<<<< HEAD
+		String imagePath = request.getParameter("name");
+		String restId	= request.getParameter("resId");
+		int id = Integer.parseInt(restId);
+=======
 		String imagePath = request.getParameter("name");	// 이미지 이름 하나당 받아올 변수
 		int restId = (int)session.getAttribute("resId");	// 레스토랑 id를 받아올 변수
 		
 		Restaurant vo = new Restaurant(restId, "들어올일름");	// 저장할 vo 소환
+>>>>>>> branch 'master' of https://github.com/violetttt/TastyPangyo2017.git
 		
 		
+<<<<<<< HEAD
+		if(imagePath==null){	// 전체 삭제		
+			ris.deleteRestaurantImage(id);
+=======
 		if(imagePath==null){
 		ris.deleteRestaurantImage(restId);	// 전체 삭제
+>>>>>>> branch 'master' of https://github.com/violetttt/TastyPangyo2017.git
 		}
 		else{	
 		ris.deleteRestaurantImageByFile(imagePath);	// 이미지 하나 삭제

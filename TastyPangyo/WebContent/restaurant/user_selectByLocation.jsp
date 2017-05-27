@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%--맛집 건물으로 조회 --%>
+	<%--맛집 건물으로 조회 --%>
 	<center>
 	<form action="/TastyPangyo/selectRes" method="post">
 	맛집 위치 :<br> 삼환하이펙스A<input type = "radio" name="location" value="삼환하이펙스A" checked="checked"><br>
