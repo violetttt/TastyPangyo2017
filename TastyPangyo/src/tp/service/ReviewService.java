@@ -121,6 +121,7 @@ public interface ReviewService {
 	 * @return
 	 */
 	List<Review> selectAvgKostarByRestaurantId();
-	
+
+	double selectAverageOfKostarByRestaurantId(int restaurantId);
 	
 }

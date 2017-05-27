@@ -13,24 +13,24 @@ import tp.service.impl.ReviewServiceImpl;
 
 public class RemoveReviewServlet extends HttpServlet{
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		HttpSession session = req.getSession();
-		// 1. 요청파라미터 조회
-		String[] noArr = req.getParameterValues("reviewNo");
-		
-		// 2. 비지니스 로직 처리
-		ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
-		rms.deleteReviewSelected(noArr);
-		
-		session.setAttribute("reviews", rms.selectAllReview("registered_date"));
-		resp.sendRedirect("../review/list.jsp");
-		
-	}
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      req.setCharacterEncoding("utf-8");
+      HttpSession session = req.getSession();
+      // 1. 요청파라미터 조회
+      String[] noArr = req.getParameterValues("reviewNo");
+      
+      // 2. 비지니스 로직 처리
+      ReviewServiceImpl rms = ReviewServiceImpl.getInstance();
+      rms.deleteReviewSelected(noArr);
+      
+      session.setAttribute("reviews", rms.selectAllReview("registered_date"));
+      resp.sendRedirect("../member/show_review.jsp");
+      
+   }
 
-	
+   
 
-	
+   
 
 }

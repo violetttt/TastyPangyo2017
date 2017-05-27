@@ -1,20 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 관리자 모드에서 나오는 선택 모드  -->
 
 <!-- 리뷰index 화면 고정 -->
 <jsp:include page="/review/index.jsp"/>
 
 
 <!-- 리뷰등록페이지로 가기 -->
-<a href ="/TastyPangyo/review/register_form.jsp" ><input type="button" value="리뷰등록페이지로"></a><br>
+<a href ="/TastyPangyo/review/register_form.jsp" >리뷰등록페이지로</a><br>
 <hr>	
 <!-- 전체리뷰 가기 -->
-<a href ="/TastyPangyo/review/select" >전체리뷰</a><br>
+<a href ="/TastyPangyo/review/select">전체리뷰</a><br>
 <hr>
 
-<!-- 전체리뷰 가기 -->
-<a href ="/TastyPangyo/review/select?select=${sessionScope.login.memberId}" >내리뷰</a><br>
+<!-- 로그인 한 회원일 때 자신의 전체리뷰 보기-->
+<a href ="/TastyPangyo/review/select?memberId=${sessionScope.login.memberId}" >리뷰보기</a><br>
 <hr>
 <!-- 전체목록 조회 -->
 <form action="/TastyPangyo/review/select" method="post">
