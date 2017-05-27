@@ -141,7 +141,7 @@ a:hover {
 #div_top { /*사진/배너 */
 	width: 120%;
 	height: 200px;
-	background: url('/board/2.jpg') no-repeat;
+	background:url('/TastyPangyo/2.jpg') no-repeat ; 
 	/*2.jpg(음식사진)을 경로에 넣어서 바꿔줘야함*/
 	background-size: cover;
 	text-align: center;
@@ -226,7 +226,7 @@ a:hover {
 		<ul id="nav">
 			<li><a href="/TastyPangyo/logout"> 처음으로 </a></li>
 			<li><a href="/TastyPangyo/member/update.jsp">정보 수정</a></li>
-			<li><a href="/TastyPangyo/member/show_review">리뷰 보기</a></li>
+			<li><a href="/TastyPangyo/SelectMemberReview?id=${ sessionScope.id }">리뷰 보기</a></li>
 			<li><a href="/TastyPangyo/member/delete.jsp">회원 탈퇴</a></li>
 			
 		</ul>
@@ -250,7 +250,7 @@ a:hover {
          <th width="200px"> 작성일</th>
          <!-- 회원만만 볼수있게 !!!! -->
          <c:if test="${ sessionScope.login != null}">
-       <th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
+       		<th width="50px"> 선택</th> <!-- 관리모드에서 삭제를 위한 체크박스 -->
             <th width ="60px"> 수정 </th>
          </c:if>
          
@@ -273,7 +273,9 @@ a:hover {
          <td><a href ="/TastyPangyo/review/show?reviewNo=${ review.reviewNo }">${ review.title }</a> </td>
          <td> <fmt:formatDate value="${ review.registeredDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
          <td style="text-align:center"> <input type="checkbox" name="reviewNo" value="${ review.reviewNo }"></td>
-         <td style="text-align:center">  <a href="/TastyPangyo/member/update_form.jsp"><input type="button" value="수정"></a></td>         
+         
+         	<td style="text-align:center">  <a href="/TastyPangyo/member/update_form.jsp"><input type="button" value="수정"></a></td>         
+     	 
       </tr>
    </c:forEach>
    </tbody>

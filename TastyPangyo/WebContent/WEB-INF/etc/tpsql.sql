@@ -104,6 +104,9 @@ INSERT INTO restaurant_image	values ('브루클린2',1);
 INSERT INTO restaurant_image	values ('브루클린1',1);
 
 INSERT INTO review VALUES	(3 ,'152',1,'교동- ','2017-05-28' ,'ㅇㅇ','맛난다',1);
+INSERT INTO review VALUES	(review_no_seq.nextval ,'shh',2,'청년다방','2017-05-05' ,'떡볶이이','맛난다',7);
+INSERT INTO review VALUES	(review_no_seq.nextval ,'shh',3,'신기소','2017-05-05' ,'돈까스','맛난다',5);
+INSERT INTO review VALUES	(review_no_seq.nextval ,'shh',2,'청년다방','2017-05-05' ,'떡볶이이','맛난다',7);
 
 DELETE FROM member WHERE visit_date < '2017,05,20'
 

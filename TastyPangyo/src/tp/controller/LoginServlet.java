@@ -30,16 +30,17 @@ public class LoginServlet extends HttpServlet {
 		Member m = service.selectMemberById(id);
 
 			if(m != null){
-				if(pw.equals(m.getMemberPw())){
+				if(pw.equals(m.getMemberPw())){ // 로그인 성공
 					session.setAttribute("login", m);
 					m.setVisitDate(new Date());
 					service.updateMember(m);
 					session.setAttribute("id", id);
-				}
+				}else{
 				session.setAttribute("fail", "비밀번호가 틀렸습니다");
-			}
+				}
+			}else{
 			session.setAttribute("fail", "아이디가 틀렸습니다");
-		
+			}
 
 		// 3. 응답 - View 호출
 		req.getRequestDispatcher("/jsp/intro.jsp").forward(req, resp);

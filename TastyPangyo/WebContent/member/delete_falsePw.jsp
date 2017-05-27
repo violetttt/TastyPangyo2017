@@ -1,4 +1,7 @@
+<%@page import="tp.vo.Member"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,7 +190,7 @@ a:hover {
 /*****************************맛집 TOP5, 별점 TOP5 CSS 설정****************************/
 .content1 {
 	width: 100%;
-	height: 620px;
+	height: 310px;
 	border: 1px solid black;
 	background: lightyellow;
 	padding: 5px; /* 네 방향의 패딩 모두 5px */
@@ -206,6 +209,7 @@ a:hover {
 
 </head>
 
+
 <!--------------------------------- BODY 대신 DIV 사용------------------------------------------>
 <div id="div_root">
 
@@ -220,13 +224,10 @@ a:hover {
 	<div id="div_menu">
 		<ul id="nav">
 			<li><a href="/TastyPangyo/logout"> 처음으로 </a></li>
-			<li><a>회원 관리</a>
-			  	<ul>
-			  	<li><a href="/TastyPangyo/allmember">전체 회원 보기</a></li>
-				<li><a href="/TastyPangyo/count">총 회원 수</a></li>
-				<li><a href="/TastyPangyo/member/selectById.jsp">회원 찾기</a></li>
-				<li><a href="/TastyPangyo/member/selectByVisitDate.jsp">장기 미접속자</a></li>
-				</ul></li>
+			<li><a href="/TastyPangyo/member/update.jsp">정보 수정</a></li>
+			<li><a href="/TastyPangyo/SelectMemberReview?id=${sessionScope.id }">리뷰 보기</a></li>
+			<li><a href="/TastyPangyo/member/delete.jsp">회원 탈퇴</a></li>
+			
 		</ul>
 	</div>
 	<br> <br> <br> <br>
@@ -234,11 +235,15 @@ a:hover {
 	<!---------------------------------------내용 설정-------------------------------------------->
 	<div id="div_con">
 		<div class="content1">
-			<h1>최종 접속일로 회원 조회</h1><br>
-			<form action="/TastyPangyo/memberByVisitDate">
-				<input type="date" name="visitDate"> <input type="submit" value="찾기">
-			</form>
-		</div>
+		
+		<h1>비밀번호가 일치하지 않습니다. 다시 한번 입력해주세요.</h1><br>
+		<form action="/TastyPangyo/delete" method="post">
+			<input type="password" name= "pw" placeholder="탈퇴하지마세요ㅠㅠ" required oninvalid="setCustomValidity('비밀번호를 입력해주세요!')" oninput="setCustomValidity('')">
+			<input type="hidden"  name="id" value="${sessionScope.id }">
+			<input type="submit" value="확인" >
+		</form>
+
+	</div>
 	</div>
 
 

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,7 +139,7 @@ a:hover {
 #div_top { /*사진/배너 */
 	width: 120%;
 	height: 200px;
-	background: url('/board/2.jpg') no-repeat;
+	background:url('/TastyPangyo/2.jpg') no-repeat ; 
 	/*2.jpg(음식사진)을 경로에 넣어서 바꿔줘야함*/
 	background-size: cover;
 	text-align: center;
@@ -251,12 +253,14 @@ a:hover {
 					</tr>
 				</thead>
 				<tbody>
+				
 					<tr>
-						<td>${memberById.memberId }</td>
-						<td>${memberById.memberName }</td>
-						<td>${memberById.visitDate }</td>
-						<td><a href="">보기</a></td>
+						<td>${requestScope.memberById.memberId }</td>
+						<td>${requestScope.memberById.memberName }</td>
+						<td><fmt:formatDate value="${requestScope.memberById.visitDate }" pattern="yyyy-MM-dd" /></td>
+						<td><a href="/TastyPangyo/SelectMemberReview?id=${requestScope.memberById.memberId }&admin=admin">보기</a></td>
 					</tr>
+				
 				</tbody>
 			</table>
 		</div>

@@ -141,7 +141,7 @@ a:hover {
 #div_top { /*사진/배너 */
 	width: 120%;
 	height: 200px;
-	background: url('/board/2.jpg') no-repeat;
+	background:url('/TastyPangyo/2.jpg') no-repeat ; 
 	/*2.jpg(음식사진)을 경로에 넣어서 바꿔줘야함*/
 	background-size: cover;
 	text-align: center;
@@ -273,7 +273,7 @@ a:hover {
 					</p>
 				</div>
 				<input type="reset" value="입력초기화">
-				<a href="/TastyPangyo/member/show_review.jsp" ><input type="button" value="돌아가기" ></a>
+				<a href="/TastyPangyo/SelectMemberReview?id=${ sessionScope.id }" ><input type="button" value="돌아가기" ></a>
 		 		<input type="submit" value="리뷰수정" onclick="alert('수정되었습니다.')">
 			
 			</fieldset>

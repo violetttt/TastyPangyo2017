@@ -140,7 +140,7 @@ a:hover {
 #div_top { /*사진/배너 */
 	width: 120%;
 	height: 200px;
-	background: url('/board/2.jpg') no-repeat;
+	background:url('/TastyPangyo/2.jpg') no-repeat ; 
 	/*2.jpg(음식사진)을 경로에 넣어서 바꿔줘야함*/
 	background-size: cover;
 	text-align: center;
@@ -241,7 +241,7 @@ a:hover {
 	<!---------------------------------------내용 설정-------------------------------------------->
 	<div id="div_con">
 		<div class="content1">
-			<h1>전체 회원 보기</h1></br>
+			<h1>전체 회원 보기</h1>
 			<table border="1"	  align="center"  valign="middle">
 				<thead>
 					<tr align="center">
@@ -253,12 +253,14 @@ a:hover {
 				</thead>
 				<tbody>
 					<c:forEach var="member" items="${requestScope.allmember}">
+					<c:if test="${member.memberId != 'admin' }">
 						<tr align="center">
 							<td>${member.memberId }</td>
 							<td>${member.memberName }</td>
 							<td><fmt:formatDate value="${member.visitDate }" pattern="yyyy-MM-dd" /></td>
-							<td><a href="">보기</a></td>
+							<td><a href="/TastyPangyo/SelectMemberReview?id=${member.memberId }&admin=admin">보기</a></td>
 						</tr>
+					</c:if>
 					</c:forEach>
 				</tbody>
 			</table>
